@@ -21,7 +21,13 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@ng-clay/example": ["./src/libs/example"],
+      "@ng-clay/components": ["./src/libs/components"],
+      "@ng-clay/components/*": ["./src/libs/components/*"],
+      "@ng-clay/markdown": ["./src/libs/markdown"]
+    },
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

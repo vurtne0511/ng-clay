@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "stripInternal": false,
+    "experimentalDecorators": true,
+    "noUnusedParameters": false,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "newLine": "lf",
+    "module": "es2020",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "removeComments": true,
+    "inlineSources": true,
+    "target": "es2017",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true
+  }
+}
