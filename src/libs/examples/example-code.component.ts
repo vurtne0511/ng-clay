@@ -18,8 +18,7 @@ import { faAngular } from '@fortawesome/free-brands-svg-icons';
   selector: 'nt-example-code',
   template: `
     <span class="nt-example-code-shown"
-      (click)="shown=!shown"
-      [nt-tooltip]="shown ? '收起代码' : '展开代码'">
+      (click)="shown=!shown">
       <fa-icon [icon]="faAngular" class="icon" [class.visible]="shown"></fa-icon>代码
     </span>
     <pre class="code-container language-{{lang}}"><code class="language-{{lang}}">{{code}}</code></pre>
@@ -32,7 +31,7 @@ import { faAngular } from '@fortawesome/free-brands-svg-icons';
 })
 export class NtExampleCodeComponent implements AfterContentInit, OnChanges {
 
-  @Input() code: string;
+  @Input() code!: string;
 
   @Input() lang: string = 'typescript';
 
@@ -51,7 +50,7 @@ export class NtExampleCodeComponent implements AfterContentInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const change = changes.code || changes.lang;
+    const change = changes['code'] || changes['lang'];
     if (change && !change.firstChange && isPlatformBrowser(this.platformId)) {
       highlightAll(this.elementRef.nativeElement);
     }

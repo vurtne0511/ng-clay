@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NtTooltipModule } from '@ng-tangram/components/tooltip';
-import { NtMarkedEngineModule } from '@ng-tangram/markdown';
+// import { NtTooltipModule } from '@ng-tangram/components/tooltip';
+import { NtMarkedEngineModule } from '@ng-clay/markdown';
 
 import { NtExampleCodeTabsPanelComponent } from './example-code-tabs-panel.component';
 import { NtExampleCodeTabsComponent } from './example-code-tabs.component';
@@ -24,7 +24,7 @@ export const NT_EXAMPLE_COMPONENTS = [
   imports: [
     CommonModule,
     FontAwesomeModule,
-    NtTooltipModule,
+    // NtTooltipModule,
     NtMarkedEngineModule
   ],
   exports: NT_EXAMPLE_COMPONENTS,

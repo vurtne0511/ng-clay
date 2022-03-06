@@ -1,0 +1,5 @@
+
+.app-wrapper {
+  /* @apply bg-gray-800; */
+  @apply min-h-full;
+}

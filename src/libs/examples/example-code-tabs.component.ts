@@ -17,8 +17,7 @@ import {
   selector: 'nt-example-code-tabs',
   template: `
     <span class="nt-example-code-shown"
-      (click)="shown=!shown"
-      [nt-tooltip]="shown ? '收起代码' : '展开代码'">
+      (click)="shown=!shown">
       <fa-icon [icon]="faAngular" class="icon" [class.visible]="shown"></fa-icon>代码
     </span>
     <div class="nt-example-code-tabs">
@@ -43,11 +42,11 @@ export class NtExampleCodeTabsComponent implements NtExampleCodeTabPaneParent, A
 
   shown = false;
 
-  activeTab: string;
+  activeTab!: string;
 
   faAngular = faAngular;
 
-  @ContentChildren(NtExampleCodeTabsPanelComponent) panes: QueryList<NtExampleCodeTabsPanelComponent>;
+  @ContentChildren(NtExampleCodeTabsPanelComponent) panes: QueryList<NtExampleCodeTabsPanelComponent> | undefined;
 
   ngAfterContentInit() {
     if (this.panes && this.panes.length > 0) {

@@ -7,7 +7,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { NT_MARKDOWN_ENGINE, NtMarkdownEngine } from '@ng-tangram/markdown';
+import { NT_MARKDOWN_ENGINE, NtMarkdownEngine } from '@ng-clay/markdown';
 
 @Component({
   selector: 'nt-example-legend',
@@ -24,9 +24,9 @@ import { NT_MARKDOWN_ENGINE, NtMarkdownEngine } from '@ng-tangram/markdown';
 })
 export class NtExampleLegendComponent implements AfterContentInit {
 
-  @Input() title: string;
+  @Input() title!: string;
 
-  @ViewChild('content', { static: true, read: ElementRef }) content: ElementRef;
+  @ViewChild('content', { static: true, read: ElementRef }) content!: ElementRef;
 
   constructor(
     @Inject(NT_MARKDOWN_ENGINE) private _markdownEngine: NtMarkdownEngine) {

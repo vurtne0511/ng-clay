@@ -24,15 +24,15 @@ import { NT_MARKDOWN_ENGINE, NtMarkdownEngine } from './markdown-engine';
 })
 export class NtMarkdownComponent implements OnChanges {
 
-  private _ext: string;
+  private _ext!: string;
 
-  private _path: string;
+  private _path!: string;
 
   @Input()
   get path() { return this._path; }
   set path(value: string) { this._path = value || ''; }
 
-  private _data: string;
+  private _data!: string;
 
   @Input()
   get data() { return this._data; }
@@ -44,8 +44,8 @@ export class NtMarkdownComponent implements OnChanges {
     private _elementRef: ElementRef) { }
 
   ngOnChanges(changes: SimpleChanges) {
-    const pathChange = changes.path;
-    const dataChange = changes.data;
+    const pathChange = changes['path'];
+    const dataChange = changes['data'];
     if (pathChange && !pathChange.firstChange) {
       this._pathChange();
     }
