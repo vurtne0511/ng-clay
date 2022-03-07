@@ -1,4 +1,4 @@
-import marked from 'marked';
+import { marked } from 'marked';
 import { Observable, of as observableOf, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 

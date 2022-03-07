@@ -1,0 +1,23 @@
+@tailwind components;
+
+@layer components {
+  .nc-button {
+    @apply inline-flex items-center justify-center;
+    @apply px-4 py-2;
+    @apply border border-transparent;
+    @apply rounded-md;
+    /* color: theme('colors.white'); */
+    /* background-color: theme('colors.indigo.600'); */
+  }
+
+  /* .nc-button:hover {
+    background-color: theme('colors.indigo.800');
+  } */
+/*
+  .nc-button:focus {
+    @apply outline-none;
+    @apply ring-2;
+    @apply ring-offset-2;
+    background-color: theme('colors.indigo.800');
+  } */
+}

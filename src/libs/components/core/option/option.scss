@@ -1,0 +1,46 @@
+$nt-option-padding: .5rem 1rem !default;
+$nt-option-font-size: 1rem !default;
+
+$nt-option-color: $black !default;
+$nt-option-color-hover: $black !default;
+$nt-option-color-selected: $white !default;
+$nt-option-color-disabled: $medium-gray !default;
+
+$nt-option-background: $white !default;
+$nt-option-background-hovered: rgba(get-color(primary), .1) !default;
+$nt-option-background-selected: get-color(primary) !default;
+$nt-option-background-disabled: $white !default;
+
+@mixin nt-option {
+
+  .nt-option {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    user-select: none;
+    font-size: $nt-option-font-size;
+    padding: $nt-option-padding;
+    color: $nt-option-color;
+
+    &:hover,
+    &.nt-option-active {
+      color: $nt-option-color-hover;
+      background-color: $nt-option-background-hovered;
+    }
+
+    &.nt-option-selected {
+      color: $nt-option-color-selected;
+      background-color: $nt-option-background-selected;
+    }
+
+    &.nt-option-disabled {
+      color: $nt-option-color-disabled;
+      background-color: $nt-option-background-disabled;
+      cursor: $input-cursor-disabled;
+    }
+
+    &.nt-option-hidden {
+      display: none;
+    }
+  }
+}

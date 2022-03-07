@@ -25,6 +25,7 @@
     "@fortawesome/free-brands-svg-icons": "latest",
     "@fortawesome/free-solid-svg-icons": "latest",
     "marked": "^4.0.12",
+    "moment": "^2.29.1",
     "prismjs": "^1.27.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",

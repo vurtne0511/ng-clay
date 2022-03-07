@@ -31,11 +31,11 @@ export const NT_EXAMPLE_CODE_PANEL_PARENT = new InjectionToken<NtExampleCodeTabP
 })
 export class NtExampleCodeTabsPanelComponent {
 
-  private _title: string;
+  private _title!: string;
 
-  @Input() code: string;
+  @Input() code!: string;
 
-  @Input() lang: string;
+  @Input() lang!: string;
 
   @Input()
   get title() { return this._title || this.lang; }
@@ -53,7 +53,7 @@ export class NtExampleCodeTabsPanelComponent {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const change = changes.code || changes.lang;
+    const change = changes['code'] || changes['lang'];
     if (change && !change.firstChange && isPlatformBrowser(this.platformId)) {
       highlightAll(this.elementRef.nativeElement);
     }
