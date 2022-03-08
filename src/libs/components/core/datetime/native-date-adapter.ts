@@ -77,9 +77,9 @@ export class NativeDateAdapter extends DateAdapter<Date> {
    */
   useUtcForDisplay: boolean = true;
 
-  constructor(@Optional() @Inject(NC_DATE_LOCALE) ntDateLocale: string, platform: Platform) {
+  constructor(@Optional() @Inject(NC_DATE_LOCALE) NcDateLocale: string, platform: Platform) {
     super();
-    super.setLocale(ntDateLocale);
+    super.setLocale(NcDateLocale);
 
     // IE does its own time zone correction, so we disable this on IE.
     this.useUtcForDisplay = !platform.TRIDENT;

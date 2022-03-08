@@ -15,7 +15,7 @@ import {
 import { faAngular } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
-  selector: 'nt-example-code',
+  selector: 'nc-example-code',
   template: `
     <span class="nt-example-code-shown"
       (click)="shown=!shown">
@@ -29,7 +29,7 @@ import { faAngular } from '@fortawesome/free-brands-svg-icons';
     '[class.shown]': 'shown'
   }
 })
-export class NtExampleCodeComponent implements AfterContentInit, OnChanges {
+export class NcExampleCodeComponent implements AfterContentInit, OnChanges {
 
   @Input() code!: string;
 

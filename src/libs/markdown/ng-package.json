@@ -1,15 +1,15 @@
 {
   "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../../dist/@ng-tangram/markdown",
+  "dest": "../../../dist/@ng-clay/markdown",
   "lib": {
     "entryFile": "./index.ts",
     "flatModuleFile": "markdown",
     "umdModuleIds": {
       "marked": "marked",
       "prismjs": "Prism",
-      "@ng-tangram/components": "nt.components",
-      "@ng-tangram/components/core": "nt.components.core",
-      "@ng-tangram/components/forms": "nt.components.forms"
+      "@ng-clay/components": "nc.components",
+      "@ng-clay/components/core": "nc.components.core",
+      "@ng-clay/components/forms": "nc.components.forms"
     },
     "umdId": "nt.markdown"
   }

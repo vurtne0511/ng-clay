@@ -24,6 +24,7 @@
     "@fortawesome/fontawesome-svg-core": "latest",
     "@fortawesome/free-brands-svg-icons": "latest",
     "@fortawesome/free-solid-svg-icons": "latest",
+    "blueimp-load-image": "^5.16.0",
     "marked": "^4.0.12",
     "moment": "^2.29.1",
     "prismjs": "^1.27.0",

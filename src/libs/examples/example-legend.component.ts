@@ -7,10 +7,10 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { NT_MARKDOWN_ENGINE, NtMarkdownEngine } from '@ng-clay/markdown';
+import { NC_MARKDOWN_ENGINE, NcMarkdownEngine } from '@ng-clay/markdown';
 
 @Component({
-  selector: 'nt-example-legend',
+  selector: 'nc-example-legend',
   template: `
     <div class="nt-example-legend-title" *ngIf="title">{{title}}</div>
     <div class="nt-example-legend-content" #content>
@@ -22,14 +22,14 @@ import { NT_MARKDOWN_ENGINE, NtMarkdownEngine } from '@ng-clay/markdown';
     'class': 'nt-example-legend'
   }
 })
-export class NtExampleLegendComponent implements AfterContentInit {
+export class NcExampleLegendComponent implements AfterContentInit {
 
   @Input() title!: string;
 
   @ViewChild('content', { static: true, read: ElementRef }) content!: ElementRef;
 
   constructor(
-    @Inject(NT_MARKDOWN_ENGINE) private _markdownEngine: NtMarkdownEngine) {
+    @Inject(NC_MARKDOWN_ENGINE) private _markdownEngine: NcMarkdownEngine) {
 
   }
 

@@ -1,0 +1,144 @@
+// Foundation for Sites
+// https://get.foundation
+// Licensed under MIT Open Source
+
+////
+/// @group pagination
+////
+
+/// Font size of pagination items.
+/// @type Number
+$nc-pagination-font-size: rem-calc(12) !default;
+
+/// Default bottom margin of the pagination object.
+/// @type Number
+$nc-pagination-margin-bottom: $global-margin !default;
+
+/// Text color of pagination items.
+/// @type Color
+$nc-pagination-item-color: $black !default;
+
+/// Padding inside of pagination items.
+/// @type Number
+$nc-pagination-item-padding: rem-calc(3 6) !default;
+
+/// Right margin to separate pagination items.
+/// @type Number
+$nc-pagination-item-spacing: rem-calc(3) !default;
+
+/// Default radius for pagination items.
+/// @type Number
+$nc-pagination-radius: $global-radius !default;
+
+/// Background color of pagination items on hover.
+/// @type Color
+$nc-pagination-item-background-hover: $light-gray !default;
+
+/// Background color of pagination item for the current page.
+/// @type Color
+$nc-pagination-item-background-current: $primary-color !default;
+
+/// Text color of the pagination item for the current page.
+/// @type Color
+$nc-pagination-item-color-current: $white !default;
+
+/// Text color of a disabled pagination item.
+/// @type Color
+$nc-pagination-item-color-disabled: $medium-gray !default;
+
+/// If `true`, display the current page number on mobile even if `$nc-pagination-mobile-items` is set to `false`.
+/// This parameter will only override the visibility setting of the current item for `$nc-pagination-mobile-items: false;`,
+/// it will not affect the current page number visibility when `$nc-pagination-mobile-items` is set to `true`.
+/// @type Boolean
+$nc-pagination-mobile-current-item: false !default;
+
+/// If `true`, arrows are added to the next and previous links of pagination.
+/// @type Boolean
+$nc-pagination-arrows: true !default;
+
+/// Content for the previous arrow when `$nc-pagination-arrows` is `true`
+/// @type String
+$nc-pagination-arrow-previous: '\00AB' !default;
+
+/// Content for the next arrow when `$nc-pagination-arrows` is `true`
+/// @type String
+$nc-pagination-arrow-next: '\00BB' !default;
+
+/// Adds styles for a pagination container. Apply this to a `<ul>`.
+@mixin nc-pagination-container (
+  $margin-bottom: $nc-pagination-margin-bottom,
+  $font-size: $nc-pagination-font-size,
+  $spacing: $nc-pagination-item-spacing,
+  $radius: $nc-pagination-radius,
+  $color: $nc-pagination-item-color,
+  $padding: $nc-pagination-item-padding,
+  $background-hover: $nc-pagination-item-background-hover
+) {
+  @include clearfix;
+  margin-#{$global-left}: 0;
+  margin-bottom: $margin-bottom;
+
+  // List item
+  li {
+    margin-#{$global-right}: $spacing;
+    border-radius: $radius;
+    font-size: $font-size;
+    min-width: 2em;
+    text-align: center;
+    display: inline-block;
+  }
+
+  // Page links
+  a,
+  button {
+    display: block;
+    padding: $padding;
+    border-radius: $radius;
+    color: $color;
+
+    &:hover {
+      background: $background-hover;
+    }
+  }
+}
+
+/// Adds styles for the current pagination item. Apply this to an `<a>`.
+@mixin nc-pagination-item-current (
+  $padding: $nc-pagination-item-padding,
+  $background-current: $nc-pagination-item-background-current,
+  $color-current: $nc-pagination-item-color-current
+) {
+  padding: $padding;
+  background: $background-current;
+  color: $color-current;
+  cursor: default;
+}
+
+/// Adds styles for a disabled pagination item. Apply this to an `<a>`.
+@mixin nc-pagination-item-disabled (
+  $padding: $nc-pagination-item-padding,
+  $color: $nc-pagination-item-color-disabled
+) {
+  // padding: $padding;
+  color: $color;
+  cursor: not-allowed;
+  pointer-events: none;
+
+  &:hover {
+    background: transparent;
+  }
+}
+
+@mixin nc-pagination {
+  .nc-pagination {
+    @include nc-pagination-container;
+
+    .current {
+      @include nc-pagination-item-current;
+    }
+
+    .disabled {
+      @include nc-pagination-item-disabled;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+$nt-popover-padding: $global-padding !default;
+$nt-popover-background: $white !default;
+$nt-popover-border: 1px solid #eee !default;
+$nt-popover-arrow-gap: 0.75rem !default;
+
+@mixin nt-popover {
+  .nt-popover {
+    .nt-popover-title {
+      padding: $nt-popover-padding / 2 $nt-popover-padding;
+      border-bottom: $nt-popover-border;
+    }
+    .nt-popover-pane {
+      padding: $nt-popover-padding;
+    }
+  }
+
+  .nt-overlay-container.nt-popover-overlay {
+    --nt-overlay-container-background: #{$nt-popover-background};
+    --nt-overlay-container-arrow-gap: #{$nt-popover-arrow-gap};
+  }
+}

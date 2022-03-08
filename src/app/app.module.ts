@@ -3,11 +3,11 @@ import locale from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-// import { NtNativeDateModule } from '@ng-tangram/components/core';
-// import { NtFormsModule } from '@ng-tangram/components/forms';
-// import { NtNoopUploadModule } from '@ng-tangram/components/noop-upload';
-// import { NtNotifierModule } from '@ng-tangram/components/notifier';
-// import { NtMarkedEngineModule } from '@ng-tangram/markdown';
+// import { NtNativeDateModule } from '@ng-clay/components/core';
+// import { NtFormsModule } from '@ng-clay/components/forms';
+// import { NtNoopUploadModule } from '@ng-clay/components/noop-upload';
+// import { NcNotifierModule } from '@ng-clay/components/notifier';
+// import { NtMarkedEngineModule } from '@ng-clay/markdown';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
@@ -32,7 +32,7 @@ const ROUTES: Routes = [
     // NtFormsModule.forRoot(),
     // NtNoopUploadModule,
     // NtNativeDateModule,
-    // NtNotifierModule,
+    // NcNotifierModule,
     // NtMarkedEngineModule,
     RouterModule.forRoot(ROUTES, {
       initialNavigation: 'enabled',

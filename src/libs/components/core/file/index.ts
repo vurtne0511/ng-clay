@@ -21,4 +21,4 @@ export * from './file-size.pipe';
     NcFileSelectDirective
   ]
 })
-export class NtFileModule { }
+export class NcFileModule { }

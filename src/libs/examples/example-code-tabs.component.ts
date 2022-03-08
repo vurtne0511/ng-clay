@@ -8,13 +8,13 @@ import {
 import { faAngular } from '@fortawesome/free-brands-svg-icons';
 
 import {
-  NT_EXAMPLE_CODE_PANEL_PARENT,
-  NtExampleCodeTabPaneParent,
-  NtExampleCodeTabsPanelComponent
+  NC_EXAMPLE_CODE_PANEL_PARENT,
+  NcExampleCodeTabPaneParent,
+  NcExampleCodeTabsPanelComponent
 } from './example-code-tabs-panel.component';
 
 @Component({
-  selector: 'nt-example-code-tabs',
+  selector: 'nc-example-code-tabs',
   template: `
     <span class="nt-example-code-shown"
       (click)="shown=!shown">
@@ -35,10 +35,10 @@ import {
     '[class.shown]': 'shown'
   },
   providers: [
-    { provide: NT_EXAMPLE_CODE_PANEL_PARENT, useExisting: NtExampleCodeTabsComponent }
+    { provide: NC_EXAMPLE_CODE_PANEL_PARENT, useExisting: NcExampleCodeTabsComponent }
   ]
 })
-export class NtExampleCodeTabsComponent implements NtExampleCodeTabPaneParent, AfterContentInit {
+export class NcExampleCodeTabsComponent implements NcExampleCodeTabPaneParent, AfterContentInit {
 
   shown = false;
 
@@ -46,7 +46,7 @@ export class NtExampleCodeTabsComponent implements NtExampleCodeTabPaneParent, A
 
   faAngular = faAngular;
 
-  @ContentChildren(NtExampleCodeTabsPanelComponent) panes: QueryList<NtExampleCodeTabsPanelComponent> | undefined;
+  @ContentChildren(NcExampleCodeTabsPanelComponent) panes: QueryList<NcExampleCodeTabsPanelComponent> | undefined;
 
   ngAfterContentInit() {
     if (this.panes && this.panes.length > 0) {

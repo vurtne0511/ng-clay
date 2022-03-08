@@ -12,17 +12,17 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { NT_MARKDOWN_ENGINE, NtMarkdownEngine } from './markdown-engine';
+import { NC_MARKDOWN_ENGINE, NcMarkdownEngine } from './markdown-engine';
 
 @Component({
-  selector: 'nt-markdown, [nt-markdown]',
+  selector: 'nc-markdown, [nt-markdown]',
   template: '',
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'nt-markdown'
   }
 })
-export class NtMarkdownComponent implements OnChanges {
+export class NcMarkdownComponent implements OnChanges {
 
   private _ext!: string;
 
@@ -40,7 +40,7 @@ export class NtMarkdownComponent implements OnChanges {
 
   constructor(
     @Inject(PLATFORM_ID) private _platformId: Object,
-    @Inject(NT_MARKDOWN_ENGINE) private _markdownEngine: NtMarkdownEngine,
+    @Inject(NC_MARKDOWN_ENGINE) private _markdownEngine: NcMarkdownEngine,
     private _elementRef: ElementRef) { }
 
   ngOnChanges(changes: SimpleChanges) {

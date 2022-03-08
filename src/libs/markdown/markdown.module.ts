@@ -2,11 +2,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { NtMarkdownComponent } from './markdown.component';
+import { NcMarkdownComponent } from './markdown.component';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [NtMarkdownComponent],
-  exports: [NtMarkdownComponent]
+  declarations: [NcMarkdownComponent],
+  exports: [NcMarkdownComponent]
 })
-export class NtMarkdownModule { }
+export class NcMarkdownModule { }

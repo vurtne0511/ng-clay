@@ -27,7 +27,7 @@ export class NcOptionSelectionChange {
     public isUserInput = false) { }
 }
 
-export const Nc_OPTION_PARENT_COMPONENT = new InjectionToken<NcOptionParentComponent>('nc-option-parent-component');
+export const NC_OPTION_PARENT_COMPONENT = new InjectionToken<NcOptionParentComponent>('nc-option-parent-component');
 
 @Component({
   selector: 'nc-option',
@@ -89,7 +89,7 @@ export class NcOptionComponent implements AfterViewChecked, Highlightable, ListK
   constructor(
     private _element: ElementRef,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Optional() @Inject(Nc_OPTION_PARENT_COMPONENT) private _parent: NcOptionParentComponent) { }
+    @Optional() @Inject(NC_OPTION_PARENT_COMPONENT) private _parent: NcOptionParentComponent) { }
 
   ngAfterViewChecked() {
     if (this._selected) {

@@ -1,0 +1,232 @@
+$nt-datepicker-background-selected: get-color(primary) !default;
+$nt-datepicker-background-range: rgba(get-color(primary), 0.1) !default;
+$nt-datepicker-background-preview: rgba(get-color(primary), 0.1) !default;
+$nt-datepicker-background-active: $light-gray !default;
+$nt-datepicker-block-width: 2.5em !default;
+$nt-datepicker-block-padding: rem-calc(4 5) !default;
+
+$nt-datepicker-color: $black !default;
+$nt-datepicker-color-selected: $white !default;
+$nt-datepicker-color-hover: get-color(primary) !default;
+$nt-datepicker-color-disabled: $medium-gray !default;
+
+$nt-datepicker-font-size: rem-calc(12) !default;
+
+$nt-datepicker-pane-radius: $global-radius !default;
+$nt-datepicker-pane-padding: rem-calc(6) !default;
+$nt-datepicker-pane-background: $white !default;
+
+$nt-datepicker-calendar-padding: rem-calc(6) !default;
+
+@mixin nc-calendar-table {
+  table {
+    font-size: $nt-datepicker-font-size;
+    margin: 0;
+    user-select: none;
+    border-collapse: separate;
+  }
+  tbody,
+  tfoot,
+  thead {
+    border: 0px;
+    background: transparent !important;
+  }
+  tfoot button {
+    margin-bottom: 0px;
+  }
+
+  tr {
+    &:nth-child(even),
+    &:nth-child(odd) {
+      background: transparent !important;
+    }
+  }
+
+  td,
+  th {
+    text-align: center;
+    width: $nt-datepicker-block-width;
+    height: 2em;
+    box-sizing: border-box;
+    white-space: nowrap;
+    transition: color .3s, background .15s;
+    padding: rem-calc(4 0);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    &[colspan="3"] {
+      width: $nt-datepicker-block-width * 3;
+      span {
+        padding: 0 2px;
+      }
+    }
+
+    &.nc-calendar-cell-disabled span {
+      color: $nt-datepicker-color-disabled;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@mixin nc-calendar-views {
+  .nc-calendar-month {
+    td,
+    th {
+      width: 14.28571428%;
+    }
+  }
+  .nc-calendar-year {
+    td,
+    th {
+      width: 33.333333333%;
+      height: 3.7em;
+    }
+
+    .nc-calendar-cell-content {
+      left: 10% !important;
+      top: 10% !important;
+      width: 80% !important;
+      height: 80% !important;
+    }
+  }
+  .nc-calendar-multi-year {
+    td,
+    th {
+      width: 25%;
+      height: 3.7em;
+    }
+
+    .nc-calendar-cell-content {
+      left: 10% !important;
+      top: 15% !important;
+      width: 80% !important;
+      height: 70% !important;
+    }
+  }
+}
+
+@mixin nc-calendar-body {
+
+  .nc-calendar-cell {
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: $nt-datepicker-block-padding;
+    &:hover {
+      color: $nt-datepicker-color-hover;
+    }
+  }
+
+  .nc-calendar-cell-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    border-radius: $nt-datepicker-pane-radius;
+  }
+
+  .nc-calendar-body-cell-preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    transition: background-color .15s;
+    border-radius: $nt-datepicker-pane-radius;
+  }
+
+  .nc-calendar-cell-today {
+    background-color: $nt-datepicker-background-active;
+  }
+
+  .nc-calendar-cell-selected {
+    color: $nt-datepicker-color-selected;
+    background-color: $nt-datepicker-background-selected;
+
+    &:hover {
+      background-color: darken($nt-datepicker-background-selected, 5%);
+    }
+  }
+
+  .nc-calendar-cell.nc-calendar-cell-preview-start .nc-calendar-body-cell-preview,
+  .nc-calendar-cell.nc-calendar-cell-preview-end .nc-calendar-body-cell-preview,
+  .nc-calendar-cell.nc-calendar-cell-in-preview .nc-calendar-body-cell-preview {
+    background-color: $nt-datepicker-background-preview;
+  }
+
+  .nc-calendar-cell.nc-calendar-cell-range-start .nc-calendar-body-cell-preview,
+  .nc-calendar-cell.nc-calendar-cell-range-end .nc-calendar-body-cell-preview,
+  .nc-calendar-cell.nc-calendar-cell-in-range .nc-calendar-body-cell-preview {
+    background-color: $nt-datepicker-background-range;
+  }
+}
+
+@mixin nt-datepicker-table {
+  table {
+    font-size: $nt-datepicker-font-size;
+    margin: 0;
+    user-select: none;
+    border-collapse: separate;
+  }
+  tbody,
+  tfoot,
+  thead {
+    border: 0px;
+    background: transparent !important;
+  }
+  tfoot button {
+    margin-bottom: 0px;
+  }
+
+}
+
+
+@mixin nt-datepicker {
+  .nt-datepicker {
+    position: relative;
+    display: block;
+    margin: 0 0 $form-spacing;
+  }
+
+  .nt-datepicker-calendar {
+    display: inline-block;
+    padding: $nt-datepicker-calendar-padding;
+    @include nc-calendar-table;
+    @include nc-calendar-views;
+
+    .nc-calendar-header {
+      // @include nc-calendar-header;
+    }
+
+    .nc-calendar-body {
+      @include nc-calendar-body;
+    }
+  }
+
+  .nt-datepicker-pane {
+    position: relative;
+    border-radius: $nt-datepicker-pane-radius;
+    padding: $nt-datepicker-pane-padding;
+    line-height: 1.5;
+  }
+
+  .nt-overlay-container.nt-datepicker-overlay {
+    --nt-overlay-container-background: #{$nt-datepicker-pane-background};
+  }
+
+  .nt-datepicker-clear {
+    pointer-events: auto !important;
+    cursor: pointer;
+  }
+}

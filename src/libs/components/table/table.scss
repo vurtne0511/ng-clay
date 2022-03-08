@@ -1,0 +1,221 @@
+$nt-table-sortable-icon-font-family: 'Font Awesome 5 Free' !default;
+$nt-table-sortable-normal: '\f0dc' !default;
+$nt-table-sortable-asc: '\f0de' !default;
+$nt-table-sortable-desc: '\f0dd' !default;
+$nt-table-sortable-color: get-color(primary) !default;
+$nt-table-sortable-color-symbol: $medium-gray !default;
+$nt-table-sortable-color-active: lighten(get-color(primary), 10%) !default;
+$nt-table-selector-padding: rem-calc(8 10 10) !default;
+
+@mixin nt-table-row($stripe: $table-stripe, $is-striped: $table-is-striped) {
+
+  .nt-row,
+  .nt-header-row,
+  .nt-footer-row {
+    display: table-row;
+    border-bottom: $table-border;
+    background-color: $table-background;
+  }
+
+  .nt-header-row,
+  .nt-footer-row {
+    background: transparent;
+  }
+
+  .nt-header-row {
+    background: $table-head-background;
+  }
+
+  .nt-footer-row {
+    background: $table-foot-background;
+  }
+
+  @if $is-striped == true {
+    .nt-row {
+      @if $stripe == even {
+        &:nth-of-type(even) {
+          border-bottom: 0;
+          background-color: $table-striped-background;
+        }
+
+        &:nth-of-type(odd) {
+          border-bottom: $table-border;
+          background-color: transparent;
+        }
+      }
+
+      // If stripe is set to odd, darken the odd rows.
+      @else if $stripe == odd {
+        &:nth-of-type(even) {
+          border-bottom: $table-border;
+          background-color: transparent;
+        }
+
+        &:nth-of-type(odd) {
+          background-color: $table-striped-background;
+        }
+      }
+    }
+  }
+}
+
+@mixin nt-table-cell {
+
+  .nt-cell,
+  .nt-header-cell,
+  .nt-footer-cell {
+    display: table-cell;
+    padding: $table-padding;
+    text-align: #{$global-left};
+    vertical-align: middle;
+  }
+
+  .nt-header-cell {
+    font-weight: $global-weight-bold;
+    color: $table-head-font-color;
+  }
+
+  .nt-footer-cell {
+    font-weight: $global-weight-bold;
+    color: $table-foot-font-color;
+  }
+}
+
+@mixin nt-table-hover {
+  .nt-row:hover {
+    background-color: $table-row-hover;
+  }
+
+  .nt-header-row:hover {
+    background-color: $table-head-row-hover;
+  }
+
+  .nt-footer-row :hover {
+    background-color: $table-foot-row-hover;
+  }
+}
+
+@mixin nt-table-stack($header: $show-header-for-stacked) {
+  @if $header {
+    .nt-header-cell {
+      display: block;
+    }
+  }
+  @else {
+    .nt-header-row {
+      display: none;
+    }
+  }
+
+  .nt-footer-row {
+    display: none;
+  }
+
+  .nt-row,
+  .nt-header-row,
+  .nt-footer-row,
+  .nt-header-cell,
+  .nt-cell {
+    display: block;
+  }
+
+  .nt-cell {
+    border-top: 0;
+  }
+}
+
+
+@mixin nt-table-selector {
+
+  .nt-selector-header,
+  .nt-selector-cell {
+    width: 2em;
+    padding: $nt-table-selector-padding;
+
+    input {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+@mixin nt-table-sort {
+  .nt-column-sortable {
+    cursor: pointer;
+    transition: background-color .2s;
+    position: relative;
+    color: $nt-table-sortable-color;
+
+    $sortable-spacing: get-side($table-padding, 'right') / 3;
+
+    &:after {
+      position: absolute;
+      // right: $sortable-spacing;
+
+      // top: 50%;
+      margin-left: 0.3em;
+      font-size: 1em;
+      // transform: scale(.8);
+      color: $nt-table-sortable-color-symbol;
+      transition: color .2s;
+    }
+
+    &:after {
+      // margin-top: -.35em;
+      font-family: $nt-table-sortable-icon-font-family;
+      content: $nt-table-sortable-normal;
+    }
+
+    &.asc:after {
+      content: $nt-table-sortable-asc;
+    }
+
+    &.desc:after {
+      content: $nt-table-sortable-desc;
+    }
+
+    &.asc:after,
+    &.desc:after {
+      color: $nt-table-sortable-color-active;
+    }
+  }
+}
+
+@mixin nt-table {
+  .nt-table {
+
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    border: $table-border;
+    margin-bottom: $global-margin;
+    border-radius: $global-radius;
+    background: $table-background;
+
+    @include nt-table-selector;
+    @include nt-table-sort;
+    @include nt-table-row;
+    @include nt-table-cell;
+
+    &.stack {
+      @include breakpoint($table-stack-breakpoint down) {
+        @include nt-table-stack;
+      }
+    }
+
+    &.scroll {
+      @include table-scroll;
+    }
+
+    &.hover {
+      @include nt-table-hover;
+    }
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+
+    .nt-table {
+      width: auto;
+    }
+  }
+}

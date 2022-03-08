@@ -1,0 +1,15 @@
+<ul class="nc-pagination">
+  <li class="nc-pagination-previous">
+    <a [class.disabled]="pageIndex === 1" (click)="_pageChange(pageIndex - 1)">{{ previousLabel }}</a>
+  </li>
+
+  <ng-container *ngFor="let item of pageItems">
+    <li *ngIf="item === pageIndex" [class.current]="item === pageIndex">{{ item }}</li>
+    <li *ngIf="item !== pageIndex && item !== '...'"><a (click)="_pageChange(item)">{{ item }}</a></li>
+    <li class="ellipsis" *ngIf="item === '...'">{{item}}</li>
+  </ng-container>
+
+  <li class="nc-pagination-next">
+    <a [class.disabled]="pageIndex === totalPage" (click)="_pageChange(pageIndex + 1)">{{ nextLabel }}</a>
+  </li>
+</ul>

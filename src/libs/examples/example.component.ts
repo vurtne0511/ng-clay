@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'nt-example',
+  selector: 'nc-example',
   template: `<ng-content></ng-content>`,
   host: {
     'class': 'nt-example'
@@ -9,4 +9,4 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 
-export class NtExampleComponent { }
+export class NcExampleComponent { }

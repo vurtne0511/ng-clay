@@ -2,6 +2,6 @@
   "lib": {
     "entryFile": "index.ts",
     "flatModuleFile": "button",
-    "umdId": "nt.components.button"
+    "umdId": "nc.components.button"
   }
 }

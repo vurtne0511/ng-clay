@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import { InjectionToken } from '@angular/core';
 
-export interface NtMarkdownEngine {
+export interface NcMarkdownEngine {
 
   // comple markdown to html
   compile(data: string): Observable<any>;
@@ -11,4 +11,4 @@ export interface NtMarkdownEngine {
   getContent(path: string): Observable<any>;
 }
 
-export const NT_MARKDOWN_ENGINE = new InjectionToken<NtMarkdownEngine>('nc-markdown-engine');
+export const NC_MARKDOWN_ENGINE = new InjectionToken<NcMarkdownEngine>('nc-markdown-engine');

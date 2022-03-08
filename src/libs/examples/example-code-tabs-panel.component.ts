@@ -12,14 +12,14 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-export interface NtExampleCodeTabPaneParent {
+export interface NcExampleCodeTabPaneParent {
   activeTab: string;
 }
 
-export const NT_EXAMPLE_CODE_PANEL_PARENT = new InjectionToken<NtExampleCodeTabPaneParent>('nt-example-code-panel-parent');
+export const NC_EXAMPLE_CODE_PANEL_PARENT = new InjectionToken<NcExampleCodeTabPaneParent>('nc-example-code-panel-parent');
 
 @Component({
-  selector: 'nt-example-code-tabs-panel',
+  selector: 'nc-example-code-tabs-panel',
   template: `
     <pre class="code-container language-{{lang}}"><code class="language-{{lang}}">{{code}}</code></pre>
   `,
@@ -29,7 +29,7 @@ export const NT_EXAMPLE_CODE_PANEL_PARENT = new InjectionToken<NtExampleCodeTabP
     '[class.is-active]': 'parent.activeTab === title'
   },
 })
-export class NtExampleCodeTabsPanelComponent {
+export class NcExampleCodeTabsPanelComponent {
 
   private _title!: string;
 
@@ -43,7 +43,7 @@ export class NtExampleCodeTabsPanelComponent {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject(NT_EXAMPLE_CODE_PANEL_PARENT) public parent: NtExampleCodeTabPaneParent,
+    @Inject(NC_EXAMPLE_CODE_PANEL_PARENT) public parent: NcExampleCodeTabPaneParent,
     private elementRef: ElementRef) { }
 
   ngAfterContentInit() {

@@ -1,33 +1,33 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-// import { NtTooltipModule } from '@ng-tangram/components/tooltip';
-import { NtMarkedEngineModule } from '@ng-clay/markdown';
+// import { NcTooltipModule } from '@ng-clay/components/tooltip';
+import { NcMarkedEngineModule } from '@ng-clay/markdown';
 
-import { NtExampleCodeTabsPanelComponent } from './example-code-tabs-panel.component';
-import { NtExampleCodeTabsComponent } from './example-code-tabs.component';
-import { NtExampleCodeComponent } from './example-code.component';
-import { NtExampleLegendComponent } from './example-legend.component';
-import { NtExampleShowcaseComponent } from './example-showcase.component';
-import { NtExampleComponent } from './example.component';
+import { NcExampleCodeTabsPanelComponent } from './example-code-tabs-panel.component';
+import { NcExampleCodeTabsComponent } from './example-code-tabs.component';
+import { NcExampleCodeComponent } from './example-code.component';
+import { NcExampleLegendComponent } from './example-legend.component';
+import { NcExampleShowcaseComponent } from './example-showcase.component';
+import { NcExampleComponent } from './example.component';
 
-export const NT_EXAMPLE_COMPONENTS = [
-  NtExampleComponent,
-  NtExampleShowcaseComponent,
-  NtExampleLegendComponent,
-  NtExampleCodeComponent,
-  NtExampleCodeTabsComponent,
-  NtExampleCodeTabsPanelComponent
+export const NC_EXAMPLE_COMPONENTS = [
+  NcExampleComponent,
+  NcExampleShowcaseComponent,
+  NcExampleLegendComponent,
+  NcExampleCodeComponent,
+  NcExampleCodeTabsComponent,
+  NcExampleCodeTabsPanelComponent
 ];
 
 @NgModule({
   imports: [
     CommonModule,
     FontAwesomeModule,
-    // NtTooltipModule,
-    NtMarkedEngineModule
+    // NcTooltipModule,
+    NcMarkedEngineModule
   ],
-  exports: NT_EXAMPLE_COMPONENTS,
-  declarations: NT_EXAMPLE_COMPONENTS
+  exports: NC_EXAMPLE_COMPONENTS,
+  declarations: NC_EXAMPLE_COMPONENTS
 })
-export class NtExampleModule { }
+export class NcExampleModule { }

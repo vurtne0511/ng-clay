@@ -1,0 +1,12 @@
+{
+  "lib": {
+    "entryFile": "index.ts",
+    "flatModuleFile": "datepicker",
+    "umdModuleIds": {
+      "@ng-clay/components/core": "nc.components.core",
+      "@ng-clay/components/overlay": "nc.components.overlay",
+      "@ng-clay/components/forms": "nc.components.forms"
+    },
+    "umdId": "nc.components.datepicker"
+  }
+}

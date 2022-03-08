@@ -4,7 +4,7 @@
     "baseUrl": "./",
     "rootDir": ".",
     "paths": {
-      "@ng-tangram/components/*": ["../../../dist/@ng-clay/components/*"],
+      "@ng-clay/components/*": ["../../../dist/@ng-clay/components/*"],
     }
   },
   "angularCompilerOptions": {

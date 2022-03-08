@@ -5,11 +5,11 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable, Optional } from '@angular/core';
 
-import { NtMarkdownEngine } from './markdown-engine';
+import { NcMarkdownEngine } from './markdown-engine';
 import { NT_MARKED_OPTIONS } from './marked-engine-options';
 
 @Injectable()
-export class NtMarkedEngine implements NtMarkdownEngine {
+export class NcMarkedEngine implements NcMarkdownEngine {
 
   private _renderer = new marked.Renderer();
 
