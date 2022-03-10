@@ -18,9 +18,9 @@ import { fadeIn, fadeOut } from '@ng-clay/components/core';
 @Component({
   selector: 'nc-contextmenu',
   template: `
-    <div class="nt-overlay-container start-bottom-start-top">
-      <div class="nt-overlay-shadow"></div>
-      <div class="nt-overlay-pane">
+    <div class="nc-overlay-container start-bottom-start-top">
+      <div class="nc-overlay-shadow"></div>
+      <div class="nc-overlay-pane">
         <ng-template cdkPortalOutlet></ng-template>
       </div>
     </div>
@@ -33,7 +33,7 @@ import { fadeIn, fadeOut } from '@ng-clay/components/core';
     ])
   ],
   host: {
-    'class': 'nt-contextmenu',
+    'class': 'nc-contextmenu',
     '(contextmenu)': '_onInteractionEvent($event)',
     '[@fade]': 'state',
     '(@fade.start)': 'onAnimationStart($event)',

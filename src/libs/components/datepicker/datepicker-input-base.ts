@@ -20,9 +20,9 @@ import { ExtractDateTypeFromSelection, NcDateSelectionModel } from './selections
 export abstract class NcDatePickerInputBase<S, D = ExtractDateTypeFromSelection<S>>
   implements OnInit, OnDestroy, ControlValueAccessor, Validator {
 
-  ngControl: NgControl | null;
+  ngControl!: NgControl | null;
 
-  private _value: D | null;
+  private _value!: D | null;
 
   get value(): D | null {
     return this._model
@@ -66,7 +66,7 @@ export abstract class NcDatePickerInputBase<S, D = ExtractDateTypeFromSelection<
 
   protected _lastValueValid = false;
 
-  protected _model: NcDateSelectionModel<S, D>;
+  protected _model!: NcDateSelectionModel<S, D>;
 
   protected abstract _validator: ValidatorFn | null;
   protected abstract _assignValueToModel(value: D | null): void;

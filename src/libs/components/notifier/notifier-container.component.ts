@@ -42,7 +42,7 @@ import { switchMap } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush, // (#perfmatters)
   host: {
-    class: 'nt-notifier-container',
+    class: 'nc-notifier-container',
   },
 })
 export class NcNotifierContainerComponent implements OnDestroy {
@@ -64,7 +64,7 @@ export class NcNotifierContainerComponent implements OnDestroy {
   /**
    * Promise resolve function reference, temporarily used while the notification child component gets created
    */
-  private _tempPromiseResolver!: () => void;
+  private _tempPromiseResolver!: (value?: any) => void;
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,

@@ -11,7 +11,7 @@ export enum NcUploadStatus {
 export abstract class NcUploadRef<T = any> {
   id?: string;
   type?: string;
-  status?: NcUploadStatus;
+  status!: NcUploadStatus;
   error?: string;
   link?: string;
   data?: T;

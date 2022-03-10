@@ -21,7 +21,7 @@ export interface NcDateRangePickerParent<D> {
   _endDate: NcDateRangePart<D>;
   min: D | null;
   max: D | null;
-  dateFilter: DateFilterFn<D> | undefined;
+  dateFilter: DateFilterFn<D>;
 }
 
 export const NC_DATE_RANGE_PICKER_PARENT =
@@ -33,7 +33,7 @@ export const NC_DATE_RANGE_PICKER_PARENT =
 @Directive()
 export abstract class NcDateRangePart<D> extends NcDatePickerInputBase<DateRange<D>, D> implements OnInit {
 
-  ngControl: NgControl | null;
+  override ngControl!: NgControl | null;
 
   constructor(
     dateAdapter: DateAdapter<D>,
@@ -42,7 +42,7 @@ export abstract class NcDateRangePart<D> extends NcDatePickerInputBase<DateRange
     super(dateAdapter);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     const ngControl = this._injector.get(NgControl, null, InjectFlags.Self);
 
     if (ngControl) {
@@ -51,17 +51,17 @@ export abstract class NcDateRangePart<D> extends NcDatePickerInputBase<DateRange
   }
 
   /** Gets the minimum date for the input. Used for validation. */
-  _getMinDate() {
+  _getMinDate(): D | null {
     return this._rangePicker.min;
   }
 
   /** Gets the maximum date for the input. Used for validation. */
-  _getMaxDate() {
+  _getMaxDate(): D | null {
     return this._rangePicker.max;
   }
 
   /** Gets the date filter function. Used for validation. */
-  protected _getDateFilter(): DateFilterFn<D> | undefined {
+  protected _getDateFilter(): DateFilterFn<D> {
     return this._rangePicker.dateFilter;
   }
 }

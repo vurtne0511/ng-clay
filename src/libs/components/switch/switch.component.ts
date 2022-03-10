@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Attribute,
   ChangeDetectionStrategy,
@@ -17,7 +17,7 @@ let uniqueId = 0;
 
 export class NcSwitchChange<T> {
   constructor(
-    public source: NtSwitchComponent<T>,
+    public source: NcSwitchComponent<T>,
     public checked: boolean) { }
 }
 
@@ -33,7 +33,7 @@ export class NcSwitchChange<T> {
     '[class.nt-switch-circle]': 'circle'
   },
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: NtSwitchComponent, multi: true }
+    { provide: NG_VALUE_ACCESSOR, useExisting: NcSwitchComponent, multi: true }
   ]
 })
 export class NcSwitchComponent<T> implements ControlValueAccessor {
@@ -46,7 +46,7 @@ export class NcSwitchComponent<T> implements ControlValueAccessor {
 
   @Input()
   get disabled() { return this._disabled; }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     if (value !== this.disabled) {
       this._disabled = coerceBooleanProperty(value);
       this._changeDetectorRef.markForCheck();
@@ -57,7 +57,7 @@ export class NcSwitchComponent<T> implements ControlValueAccessor {
 
   @Input()
   get checked(): boolean { return this._checked; }
-  set checked(value: boolean) {
+  set checked(value: BooleanInput) {
     if (value !== this.checked) {
       this._checked = coerceBooleanProperty(value);
       this._changeDetectorRef.markForCheck();
@@ -68,13 +68,13 @@ export class NcSwitchComponent<T> implements ControlValueAccessor {
 
   @Input()
   get circle(): boolean { return this._circle; }
-  set circle(value: boolean) {
+  set circle(value: BooleanInput) {
     if (value !== this.circle) {
       this._circle = coerceBooleanProperty(value);
     }
   }
 
-  @Output() readonly change = new EventEmitter<NtSwitchChange<T>>();
+  @Output() readonly change = new EventEmitter<NcSwitchChange<T>>();
 
   private _onChange: (value: any) => void = () => { };
   private _onTouched = () => { };
@@ -123,7 +123,7 @@ export class NcSwitchComponent<T> implements ControlValueAccessor {
   }
 
   private _emitChangeEvent() {
-    const event = new NtSwitchChange(this, this.checked);
+    const event = new NcSwitchChange(this, this.checked);
     this._onChange(this.checked);
     this.change.emit(event);
   }

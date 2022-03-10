@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
@@ -23,6 +23,6 @@ export class NcButtonComponent {
   @Input() size: string = '';
 
   @Input()
-  set expanded(value: boolean) { this._expanded = coerceBooleanProperty(value); }
+  set expanded(value: BooleanInput) { this._expanded = coerceBooleanProperty(value); }
   get expanded() { return this._expanded; }
 }

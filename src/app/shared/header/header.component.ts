@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty, BooleanInput } from '@angular/cdk/coercion';
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
@@ -16,7 +16,7 @@ export class HeaderComponent {
 
   @Input()
   get fixed() { return this._fixed; }
-  set fixed(value: boolean) {
+  set fixed(value: BooleanInput) {
     this._fixed = coerceBooleanProperty(value);
   }
 }

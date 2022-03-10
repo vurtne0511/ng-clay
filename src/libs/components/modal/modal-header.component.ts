@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'nc-modal-header',
   template: `<ng-content></ng-content>`,
   host: {
-    class: 'nt-modal-header'
+    class: 'nc-modal-header'
   }
 })
 export class NcModalHeaderComponent  { }

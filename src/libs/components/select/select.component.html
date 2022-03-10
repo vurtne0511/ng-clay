@@ -1,4 +1,4 @@
-<nt-pseudo-input
+<nc-pseudo-input
   *ngIf="!filter"
   [style.margin.px]="0"
   [attr.tabindex]="tabIndex"
@@ -6,10 +6,10 @@
   [placeholder]="placeholder"
   [disabled]="disabled"
   (click)="_onInputClick($event)">
-  <nt-pseudo-caret *ngIf="!clearable else clearCaret">
+  <nc-pseudo-caret *ngIf="!clearable else clearCaret">
     <span [class]="icons.caret"></span>
-  </nt-pseudo-caret>
-</nt-pseudo-input>
+  </nc-pseudo-caret>
+</nc-pseudo-input>
 <div *ngIf="filter" class="nt-pseudo-input only-caret">
   <input #inputElement type="text"
     [style.margin.px]="0"
@@ -19,11 +19,11 @@
     (focus)="_onInputFocus()"
     (blur)="_onInputBlur()"
     (keyup)="_onSearch($event)">
-  <nt-pseudo-caret *ngIf="!clearable else clearCaret">
+  <nc-pseudo-caret *ngIf="!clearable else clearCaret">
     <span [class]="icons.caret"></span>
-  </nt-pseudo-caret>
+  </nc-pseudo-caret>
 </div>
-<nt-overlay
+<nc-overlay
   overlayClass="nt-select-overlay"
   [origin]="origin"
   [positionPairs]="_positionPairs"
@@ -42,13 +42,13 @@
       {{ filterNotFound }}
     </div>
   </div>
-</nt-overlay>
+</nc-overlay>
 
 <ng-template #clearCaret>
-  <nt-pseudo-caret *ngIf="!hasSelectedValue">
+  <nc-pseudo-caret *ngIf="!hasSelectedValue">
     <span [class]="icons.caret"></span>
-  </nt-pseudo-caret>
-  <nt-pseudo-caret class="nt-select-clear" (click)="_onClear($event)" *ngIf="hasSelectedValue && !disabled">
+  </nc-pseudo-caret>
+  <nc-pseudo-caret class="nt-select-clear" (click)="_onClear($event)" *ngIf="hasSelectedValue && !disabled">
     <span [class]="icons.clear"></span>
-  </nt-pseudo-caret>
+  </nc-pseudo-caret>
 </ng-template>

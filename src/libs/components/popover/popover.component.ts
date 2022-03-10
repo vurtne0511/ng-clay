@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { NcOverlayComponent, NcOverlayPosition } from '@ng-clay/components/overlay';
 
-import { NT_POPOVER_PARENT_COMPONENT, NcPopoverParentComponent } from './popover-pane.component';
+import { NC_POPOVER_PARENC_COMPONENT, NcPopoverParentComponent } from './popover-pane.component';
 
 @Component({
   selector: '[nc-popover]',
@@ -21,14 +21,14 @@ import { NT_POPOVER_PARENT_COMPONENT, NcPopoverParentComponent } from './popover
     '(click)': 'overlay.toggle()'
   },
   providers: [
-    { provide: NT_POPOVER_PARENT_COMPONENT, useExisting: NcPopoverComponent }
+    { provide: NC_POPOVER_PARENC_COMPONENT, useExisting: NcPopoverComponent }
   ]
 })
 export class NcPopoverComponent implements NcPopoverParentComponent {
 
   private _title = '';
 
-  private _template: TemplateRef<any> | null;
+  private _template!: TemplateRef<any> | null;
 
   readonly origin: CdkOverlayOrigin;
 
@@ -63,7 +63,7 @@ export class NcPopoverComponent implements NcPopoverParentComponent {
 
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
-  @ViewChild(NcOverlayComponent, { static: true }) overlay: NcOverlayComponent;
+  @ViewChild(NcOverlayComponent, { static: true }) overlay!: NcOverlayComponent;
 
   constructor(
     private _elementRef: ElementRef) {

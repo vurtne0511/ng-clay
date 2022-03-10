@@ -15,11 +15,11 @@ import {
 import { NC_MARKDOWN_ENGINE, NcMarkdownEngine } from './markdown-engine';
 
 @Component({
-  selector: 'nc-markdown, [nt-markdown]',
+  selector: 'nc-markdown, [nc-markdown]',
   template: '',
   encapsulation: ViewEncapsulation.None,
   host: {
-    class: 'nt-markdown'
+    class: 'nc-markdown'
   }
 })
 export class NcMarkdownComponent implements OnChanges {

@@ -1,14 +1,14 @@
 import { Directive, ElementRef } from '@angular/core';
 
-import { NT_DRAWER_CONTAINER, NcDrawerContainer } from './drawer.component';
+import { NC_DRAWER_CONTAINER, NcDrawerContainer } from './drawer.component';
 
 @Directive({
   selector: '[nc-drawer-container]',
   providers: [
-    { provide: NT_DRAWER_CONTAINER, useExisting: NcDrawerContainerDirective }
+    { provide: NC_DRAWER_CONTAINER, useExisting: NcDrawerContainerDirective }
   ],
   host: {
-    'class': 'nt-drawer-container'
+    'class': 'nc-drawer-container'
   }
 })
 export class NcDrawerContainerDirective implements NcDrawerContainer {

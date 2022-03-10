@@ -164,7 +164,7 @@ export function getPositionClassName(pair: ConnectionPositionPair) {
  * @param position
  */
 export function getPositionOrientation(position: string): NcOverlayOrientation {
-  return Object.keys(NT_OVERLAY_POSITION_PAIRS).indexOf(position) > 5
+  return Object.keys(NC_OVERLAY_POSITION_PAIRS).indexOf(position) > 5
     ? NcOverlayOrientation.Horizontal
     : NcOverlayOrientation.Vertical;
 }

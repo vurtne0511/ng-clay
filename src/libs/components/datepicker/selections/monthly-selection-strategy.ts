@@ -45,14 +45,14 @@ export class MonthlyNcCalendarRangeStrategy<D> implements NcDateRangeSelectionSt
 }
 
 /** @docs-private */
-export function MONTHLY_NT_CALENDAR_RANGE_STRATEGY_PROVIDER_FACTORY(
+export function MONTHLY_NC_CALENDAR_RANGE_STRATEGY_PROVIDER_FACTORY(
   parent: NcDateRangeSelectionStrategy<unknown>, adapter: DateAdapter<unknown>) {
   return parent || new MonthlyNcCalendarRangeStrategy(adapter);
 }
 
 /** @docs-private */
-export const MONTHLY_NT_CALENDAR_RANGE_STRATEGY_PROVIDER: FactoryProvider = {
+export const MONTHLY_NC_CALENDAR_RANGE_STRATEGY_PROVIDER: FactoryProvider = {
   provide: NC_DATE_RANGE_SELECTION_STRATEGY,
   deps: [[new Optional(), new SkipSelf(), NC_DATE_RANGE_SELECTION_STRATEGY], DateAdapter],
-  useFactory: MONTHLY_NT_CALENDAR_RANGE_STRATEGY_PROVIDER_FACTORY,
+  useFactory: MONTHLY_NC_CALENDAR_RANGE_STRATEGY_PROVIDER_FACTORY,
 };

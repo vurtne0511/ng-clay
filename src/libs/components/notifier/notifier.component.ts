@@ -43,7 +43,7 @@ const TYPE_COLORS_MAP = {
   changeDetection: ChangeDetectionStrategy.OnPush, // (#perfmatters)
   providers: [NcNotifierTimer],
 	host: {
-    'class': 'nt-notifier',
+    'class': 'nc-notifier',
 		'(click)': 'onNotificationClick()',
 		'(mouseout)': 'onNotificationMouseout()',
 		'(mouseover)': 'onNotificationMouseover()'

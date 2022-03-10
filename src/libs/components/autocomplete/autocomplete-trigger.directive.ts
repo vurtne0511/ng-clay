@@ -72,7 +72,7 @@ export function getMatAutocompleteMissingPanelError(): Error {
 @Directive({
   selector: 'input[NcAutocomplete], textarea[NcAutocomplete]',
   host: {
-    'class': 'nt-autocomplete-trigger',
+    'class': 'nc-autocomplete-trigger',
     '(focusin)': '_handleFocus()',
     '(blur)': '_onTouched()',
     '(input)': '_handleInput($event)',
@@ -82,19 +82,20 @@ export function getMatAutocompleteMissingPanelError(): Error {
   providers: [NC_AUTOCOMPLETE_VALUE_ACCESSOR]
 })
 export class NcAutocompleteTriggerDirective implements ControlValueAccessor, AfterViewInit, OnChanges, OnDestroy {
-  private _overlayRef: OverlayRef | null;
-  private _portal: TemplatePortal;
+
+  private _overlayRef!: OverlayRef | null;
+  private _portal!: TemplatePortal;
   private _componentDestroyed = false;
   private _autocompleteDisabled = false;
   private _scrollStrategy: () => ScrollStrategy;
 
-  private _previousValue: string | number | null;
+  private _previousValue!: string | number | null;
 
-  private _positionStrategy: FlexibleConnectedPositionStrategy;
+  private _positionStrategy!: FlexibleConnectedPositionStrategy;
 
   private _manuallyFloatingLabel = false;
 
-  private _closingActionsSubscription: Subscription;
+  private _closingActionsSubscription!: Subscription;
 
   private _viewportSubscription = Subscription.EMPTY;
 
@@ -111,9 +112,9 @@ export class NcAutocompleteTriggerDirective implements ControlValueAccessor, Aft
 
   _onTouched = () => { };
 
-  @Input('ncAutocomplete') autocomplete: NcAutocompleteComponent;
+  @Input('ncAutocomplete') autocomplete!: NcAutocompleteComponent;
 
-  @Input('ncAutocompleteConnectedTo') connectedTo: NcAutocompleteOriginDirective;
+  @Input('ncAutocompleteConnectedTo') connectedTo!: NcAutocompleteOriginDirective;
 
   @Input('ncAutocompletePosition') position: 'auto' | 'above' | 'below' = 'auto';
 
@@ -121,7 +122,7 @@ export class NcAutocompleteTriggerDirective implements ControlValueAccessor, Aft
 
   @Input('ncAutocompleteDisabled')
   get autocompleteDisabled(): boolean { return this._autocompleteDisabled; }
-  set autocompleteDisabled(value: boolean) {
+  set autocompleteDisabled(value: BooleanInput) {
     this._autocompleteDisabled = coerceBooleanProperty(value);
   }
 

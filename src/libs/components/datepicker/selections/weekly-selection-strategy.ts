@@ -43,14 +43,14 @@ export class WeeklyNcCalendarRangeStrategy<D> implements NcDateRangeSelectionStr
 }
 
 /** @docs-private */
-export function WEEKLY_NT_CALENDAR_RANGE_STRATEGY_PROVIDER_FACTORY(
+export function WEEKLY_NC_CALENDAR_RANGE_STRATEGY_PROVIDER_FACTORY(
   parent: NcDateRangeSelectionStrategy<unknown>, adapter: DateAdapter<unknown>) {
   return parent || new WeeklyNcCalendarRangeStrategy(adapter);
 }
 
 /** @docs-private */
-export const WEEKLY_NT_CALENDAR_RANGE_STRATEGY_PROVIDER: FactoryProvider = {
+export const WEEKLY_NC_CALENDAR_RANGE_STRATEGY_PROVIDER: FactoryProvider = {
   provide: NC_DATE_RANGE_SELECTION_STRATEGY,
   deps: [[new Optional(), new SkipSelf(), NC_DATE_RANGE_SELECTION_STRATEGY], DateAdapter],
-  useFactory: WEEKLY_NT_CALENDAR_RANGE_STRATEGY_PROVIDER_FACTORY,
+  useFactory: WEEKLY_NC_CALENDAR_RANGE_STRATEGY_PROVIDER_FACTORY,
 };

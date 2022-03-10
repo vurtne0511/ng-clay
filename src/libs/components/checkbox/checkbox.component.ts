@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Attribute,
   ChangeDetectionStrategy,
@@ -27,7 +27,7 @@ export class NcCheckboxChange {
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'checkbox.component.html',
   host: {
-    'class': 'nt-checkbox',
+    'class': 'nc-checkbox',
     '[class.nt-checkbox-checked]': 'checked',
     '[class.nt-checkbox-disabled]': 'disabled',
     '[class.nt-checkbox-indeterminate]': 'indeterminate',
@@ -49,7 +49,7 @@ export class NcCheckboxComponent implements ControlValueAccessor {
 
   @Input()
   get disabled() { return this._disabled; }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     if (value !== this.disabled) {
       this._disabled = coerceBooleanProperty(value);
       this._changeDetectorRef.markForCheck();
@@ -60,13 +60,13 @@ export class NcCheckboxComponent implements ControlValueAccessor {
 
   @Input()
   get readonly() { return this._readonly; }
-  set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
+  set readonly(value: BooleanInput) { this._readonly = coerceBooleanProperty(value); }
 
   private _checked = false;
 
   @Input()
   get checked(): boolean { return this._checked; }
-  set checked(value: boolean) {
+  set checked(value: BooleanInput) {
     if (value !== this.checked) {
       this._checked = coerceBooleanProperty(value);
       this._changeDetectorRef.markForCheck();

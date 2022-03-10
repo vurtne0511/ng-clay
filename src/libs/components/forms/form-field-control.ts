@@ -1,3 +1,4 @@
+import { BooleanInput } from '@angular/cdk/coercion';
 import { Directive } from '@angular/core';
 import { NgControl, ValidationErrors } from '@angular/forms';
 
@@ -10,13 +11,13 @@ export abstract class NcFormFieldControl<T> {
 
   readonly ngControl?: NgControl | null;
 
-  readonly focused?: boolean;
+  readonly focused?: BooleanInput;
 
-  readonly empty?: boolean;
+  readonly empty?: BooleanInput;
 
-  readonly required?: boolean;
+  readonly required?: BooleanInput;
 
-  readonly disabled?: boolean;
+  readonly disabled?: BooleanInput;
 
   getErrors?(): ValidationErrors | null;
 

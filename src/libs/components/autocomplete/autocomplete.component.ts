@@ -20,7 +20,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { NC_OPTION_PARENT_COMPONENT, NcOptionComponent } from '@ng-clay/components/core';
+import { NC_OPTION_PARENC_COMPONENT, NcOptionComponent } from '@ng-clay/components/core';
 
 let _uniqueIdCounter = 0;
 
@@ -57,10 +57,10 @@ export function NC_AUTOCOMPLETE_DEFAULT_OPTIONS_FACTORY(): NcAutocompleteDefault
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'ncAutocomplete',
   host: {
-    'class': 'nt-autocomplete'
+    'class': 'nc-autocomplete'
   },
   providers: [
-    { provide: NC_OPTION_PARENT_COMPONENT, useExisting: NcAutocompleteComponent }
+    { provide: NC_OPTION_PARENC_COMPONENT, useExisting: NcAutocompleteComponent }
   ]
 })
 export class NcAutocompleteComponent implements AfterContentInit, OnDestroy {
@@ -87,7 +87,7 @@ export class NcAutocompleteComponent implements AfterContentInit, OnDestroy {
 
   @Input()
   get autoActiveFirstOption(): boolean { return this._autoActiveFirstOption; }
-  set autoActiveFirstOption(value: boolean) {
+  set autoActiveFirstOption(value: BooleanInput) {
     this._autoActiveFirstOption = coerceBooleanProperty(value);
   }
 

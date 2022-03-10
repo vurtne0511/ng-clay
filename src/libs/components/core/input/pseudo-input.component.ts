@@ -1,5 +1,5 @@
 
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Attribute, Component, ElementRef, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
@@ -35,7 +35,7 @@ export class NcPseudoInputComponent implements OnInit {
   private _disabled = false;
 
   @Input()
-  set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
+  set disabled(value: BooleanInput) { this._disabled = coerceBooleanProperty(value); }
   get disabled() { return this._disabled; }
 
   constructor(

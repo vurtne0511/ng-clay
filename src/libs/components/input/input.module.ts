@@ -2,14 +2,14 @@ import { Platform } from '@angular/cdk/platform';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { NtInputAddonComponent } from './input-addon.component';
-import { NtInputGroupComponent } from './input-group.component';
-import { NtInputDirective } from './input.directive';
+import { NcInputAddonComponent } from './input-addon.component';
+import { NcInputGroupComponent } from './input-group.component';
+import { NcInputDirective } from './input.directive';
 
 @NgModule({
   imports: [CommonModule],
-  exports: [NtInputDirective, NtInputGroupComponent, NtInputAddonComponent],
-  declarations: [NtInputDirective, NtInputGroupComponent, NtInputAddonComponent],
+  exports: [NcInputDirective, NcInputGroupComponent, NcInputAddonComponent],
+  declarations: [NcInputDirective, NcInputGroupComponent, NcInputAddonComponent],
   providers: [Platform]
 })
 export class NcInputModule { }

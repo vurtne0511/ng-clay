@@ -18,8 +18,8 @@ export class NcHeaderRowDefDirective extends CdkHeaderRowDef { }
 
 @Directive({
   selector: '[ncFooterRowDef]',
-  providers: [{ provide: CdkFooterRowDef, useExisting: NtFooterRowDefDirective }],
-  inputs: ['columns: ntFooterRowDef', 'sticky: ntFooterRowDefSticky'],
+  providers: [{ provide: CdkFooterRowDef, useExisting: NcFooterRowDefDirective }],
+  inputs: ['columns: NcFooterRowDef', 'sticky: NcFooterRowDefSticky'],
 })
 export class NcFooterRowDefDirective extends CdkFooterRowDef { }
 
@@ -31,10 +31,10 @@ export class NcFooterRowDefDirective extends CdkFooterRowDef { }
 export class NcRowDefDirective<T> extends CdkRowDef<T> { }
 
 @Component({
-  selector: 'nc-header-row, tr[nt-header-row]',
+  selector: 'nc-header-row, tr[nc-header-row]',
   template: CDK_ROW_TEMPLATE,
   host: {
-    'class': 'nt-header-row',
+    'class': 'nc-header-row',
     'role': 'row',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,24 +45,24 @@ export class NcRowDefDirective<T> extends CdkRowDef<T> { }
 export class NcHeaderRowComponent extends CdkHeaderRow { }
 
 @Component({
-  selector: 'nc-footer-row, tr[nt-footer-row]',
+  selector: 'nc-footer-row, tr[nc-footer-row]',
   template: CDK_ROW_TEMPLATE,
   host: {
-    'class': 'nt-footer-row',
+    'class': 'nc-footer-row',
     'role': 'row',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ncFooterRow',
-  providers: [{ provide: CdkFooterRow, useExisting: NtFooterRowComponent }],
+  providers: [{ provide: CdkFooterRow, useExisting: NcFooterRowComponent }],
 })
 export class NcFooterRowComponent extends CdkFooterRow { }
 
 @Component({
-  selector: 'nc-row, tr[nt-row]',
+  selector: 'nc-row, tr[nc-row]',
   template: CDK_ROW_TEMPLATE,
   host: {
-    'class': 'nt-row',
+    'class': 'nc-row',
     'role': 'row',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,

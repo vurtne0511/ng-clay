@@ -84,7 +84,7 @@ export class DefaultNcCalendarRangeStrategy<D> implements NcDateRangeSelectionSt
 }
 
 /** @docs-private */
-export function NT_CALENDAR_RANGE_STRATEGY_PROVIDER_FACTORY(
+export function NC_CALENDAR_RANGE_STRATEGY_PROVIDER_FACTORY(
   parent: NcDateRangeSelectionStrategy<unknown>, adapter: DateAdapter<unknown>) {
   return parent || new DefaultNcCalendarRangeStrategy(adapter);
 }
@@ -93,5 +93,5 @@ export function NT_CALENDAR_RANGE_STRATEGY_PROVIDER_FACTORY(
 export const NC_CALENDAR_RANGE_STRATEGY_PROVIDER: FactoryProvider = {
   provide: NC_DATE_RANGE_SELECTION_STRATEGY,
   deps: [[new Optional(), new SkipSelf(), NC_DATE_RANGE_SELECTION_STRATEGY], DateAdapter],
-  useFactory: NT_CALENDAR_RANGE_STRATEGY_PROVIDER_FACTORY,
+  useFactory: NC_CALENDAR_RANGE_STRATEGY_PROVIDER_FACTORY,
 };

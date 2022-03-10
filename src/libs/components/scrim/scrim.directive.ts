@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { isPlatformBrowser } from '@angular/common';
 import {
   ComponentFactoryResolver,
@@ -25,10 +25,14 @@ export class NcScrimDirective implements OnDestroy {
   // @ContentChild(NcScrimComponent) component: NcScrimComponent;
 
   @Input('scrimText')
-  set text(value: string) { this._componentRef.instance.text = value; }
+  set text(value: string) {
+    this._componentRef.instance.text = value;
+  }
 
   @Input('ncScrim')
-  set scrim(value: boolean) { this._componentRef.instance.isOpen = coerceBooleanProperty(value); }
+  set scrim(value: BooleanInput) {
+    this._componentRef.instance.isOpen = coerceBooleanProperty(value);
+  }
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,

@@ -1,5 +1,5 @@
 <ng-content></ng-content>
-<nt-overlay
+<nc-overlay
   overlayClass="nt-tootip-overlay"
   arrow
   [origin]="origin"
@@ -15,4 +15,4 @@
     <ng-container *ngTemplateOutlet="template"></ng-container>
   </div>
   <div class="nt-tooltip-content" *ngIf="!template" [innerHtml]="title"></div>
-</nt-overlay>
+</nc-overlay>

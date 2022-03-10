@@ -19,10 +19,10 @@ import {
 import { DateAdapter, NC_DATE_FORMATS, NcDateFormats } from '@ng-clay/components/core';
 
 import { NcCalendarCellClassFunction, NcCalendarUserEvent } from './calendar-body.component';
-import { DateRange } from './selections';
 import { createMissingDateImplError } from './datepicker-errors';
 import { NcCalendarMonth } from './month.component';
 import { NcCalendarMultiYear } from './multi-year.component';
+import { DateRange } from './selections';
 import { NcCalendarYear } from './year.component';
 
 export type NcDatePickerViewType = 'month' | 'year' | 'multi-year';
@@ -33,7 +33,7 @@ export type NcDatePickerViewType = 'month' | 'year' | 'multi-year';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'nt-datepicker-calendar'
+    'class': 'nc-datepicker-calendar'
   }
 })
 export class NcDatePickerCalendar<D> implements AfterContentInit, OnChanges, OnDestroy {
@@ -57,12 +57,12 @@ export class NcDatePickerCalendar<D> implements AfterContentInit, OnChanges, OnD
   }
 
   /** The currently selected date. */
-  private _selected!: D | null ;
+  private _selected!: D | DateRange<D> | null ;
 
   @Input()
   @Input()
-  get selected(): D | null { return this._selected; }
-  set selected(value: D | null) {
+  get selected(): D | DateRange<D> | null { return this._selected; }
+  set selected(value: D | DateRange<D> | null) {
     if (value instanceof DateRange) {
       this._selected = value;
     } else {

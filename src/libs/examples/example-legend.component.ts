@@ -12,14 +12,14 @@ import { NC_MARKDOWN_ENGINE, NcMarkdownEngine } from '@ng-clay/markdown';
 @Component({
   selector: 'nc-example-legend',
   template: `
-    <div class="nt-example-legend-title" *ngIf="title">{{title}}</div>
-    <div class="nt-example-legend-content" #content>
+    <div class="nc-example-legend-title" *ngIf="title">{{title}}</div>
+    <div class="nc-example-legend-content" #content>
       <ng-content></ng-content>
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'nt-example-legend'
+    'class': 'nc-example-legend'
   }
 })
 export class NcExampleLegendComponent implements AfterContentInit {

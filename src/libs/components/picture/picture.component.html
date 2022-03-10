@@ -8,12 +8,12 @@
     <span *ngIf="!readonly && !disabled" class="nt-picture-symbol {{ icons.remove }}" (click)="_remove(item)"></span>
   </div>
   <div class="nt-picture-progress" *ngIf="item.status === 1" [@fadeOut]>
-    <nt-progress *ngIf="item.status === 1" [value]="item.progress" size="tiny" color="success"></nt-progress>
+    <nc-progress *ngIf="item.status === 1" [value]="item.progress || 0" size="tiny" color="success"></nc-progress>
   </div>
 </div>
 <div class="nt-picture-add {{ shape }}"
   *ngIf="!notrigger && !isFulled"
-  ntFileSelect
+  ncFileSelect
   [accept]="accept"
   [limitSize]="limitSize"
   [multiple]="multiple"

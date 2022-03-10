@@ -1,32 +1,28 @@
 
 
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { getSupportedInputTypes, Platform } from '@angular/cdk/platform';
 import { Directive, ElementRef, Input, Optional, Self } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { NtFormFieldControl } from '@ng-clay/components/forms';
+import { NcFormFieldControl } from '@ng-clay/components/forms';
 
 @Directive({
-  selector: 'input[ntInput], textarea[ntInput]',
+  selector: 'input[ncInput], textarea[ncInput]',
   host: {
     '(blur)': '_focusChanged(false)',
     '(focus)': '_focusChanged(true)',
   },
   providers: [
-    { provide: NtFormFieldControl, useExisting: NtInputDirective }
+    { provide: NcFormFieldControl, useExisting: NcInputDirective }
   ]
 })
-export class NcInputDirective implements NtFormFieldControl<any> {
-
-  private _disabled = false;
-  private _value: any;
-  private _type = 'text';
-  private _readonly = false;
-  private _required = false;
+export class NcInputDirective implements NcFormFieldControl<any> {
 
   _focused = false;
 
   @Input() placeholder = '';
+
+  private _disabled = false;
 
   @Input()
   get disabled(): boolean {
@@ -36,16 +32,22 @@ export class NcInputDirective implements NtFormFieldControl<any> {
     }
     return this._disabled;
   }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
     if (this._focused) {
       this._focused = false;
     }
   }
 
+  private _required = false;
+
   @Input()
   get required(): boolean { return this._required; }
-  set required(value: boolean) { this._required = coerceBooleanProperty(value); }
+  set required(value: BooleanInput) {
+    this._required = coerceBooleanProperty(value);
+  }
+
+  private _type = 'text';
 
   /** Input type of the element. */
   @Input()
@@ -65,9 +67,13 @@ export class NcInputDirective implements NtFormFieldControl<any> {
     }
   }
 
+  private _readonly = false;
+
   @Input()
   get readonly(): boolean { return this._readonly; }
-  set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
+  set readonly(value: BooleanInput) {
+    this._readonly = coerceBooleanProperty(value);
+  }
 
   get empty(): boolean { return !this._elementRef.nativeElement.value && !this._isBadInput(); }
 

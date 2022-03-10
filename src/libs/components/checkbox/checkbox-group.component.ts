@@ -1,7 +1,7 @@
 import { defer, merge, Observable, Subject } from 'rxjs';
 import { startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -38,7 +38,7 @@ let uniqueId = 0;
     { provide: NcFormFieldControl, useExisting: NcCheckboxGroupComponent }
   ],
   host: {
-    'class': 'nt-checkbox-group'
+    'class': 'nc-checkbox-group'
   }
 })
 export class NcCheckboxGroupComponent<T>
@@ -48,7 +48,7 @@ export class NcCheckboxGroupComponent<T>
 
   private readonly _destroy = new Subject<void>();
 
-  private _value: T[];
+  private _value!: T[];
   private _disabled = false;
   private _readonly = false;
   private _required = false;
@@ -56,18 +56,18 @@ export class NcCheckboxGroupComponent<T>
   get value() { return this._value; }
 
   @Input()
-  set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
+  set disabled(value: BooleanInput) { this._disabled = coerceBooleanProperty(value); }
   get disabled() { return this._disabled; }
 
   @Input()
   get required(): boolean { return this._required; }
-  set required(value: boolean) { this._required = coerceBooleanProperty(value); }
+  set required(value: BooleanInput) { this._required = coerceBooleanProperty(value); }
 
   @Input()
-  set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
+  set readonly(value: BooleanInput) { this._readonly = coerceBooleanProperty(value); }
   get readonly() { return this._readonly; }
 
-  @ContentChildren(NcCheckboxComponent) checkboxes: QueryList<NcCheckboxComponent>;
+  @ContentChildren(NcCheckboxComponent) checkboxes!: QueryList<NcCheckboxComponent>;
 
   private _compareWith = (o1: any, o2: any) => o1 === o2;
 
@@ -81,8 +81,14 @@ export class NcCheckboxGroupComponent<T>
   }
 
   @Output() readonly checkedChanges: Observable<NcCheckboxChange> = defer(() => {
-    if (this.checkboxes) {
-      return merge<NcCheckboxChange>(...this.checkboxes.map(item => item.change));
+
+    const checkboxes = this.checkboxes;
+
+    if (checkboxes) {
+      return checkboxes.changes.pipe(
+        startWith(checkboxes),
+        switchMap(() => merge(...checkboxes.map(item => item.change))),
+      );
     }
 
     return this._ngZone.onStable

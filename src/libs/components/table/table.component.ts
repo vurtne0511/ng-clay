@@ -1,44 +1,34 @@
 import { defer, merge, Observable, Subject } from 'rxjs';
 import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 
-import { Directionality } from '@angular/cdk/bidi';
-import { Platform } from '@angular/cdk/platform';
-import { CDK_TABLE_TEMPLATE, CdkTable, CDK_TABLE } from '@angular/cdk/table';
-import { DOCUMENT } from '@angular/common';
+import { CDK_TABLE, CDK_TABLE_TEMPLATE, CdkTable } from '@angular/cdk/table';
 import {
   AfterContentInit,
-  Attribute,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChildren,
-  ElementRef,
   EventEmitter,
-  Inject,
   Input,
-  IterableDiffers,
-  NgZone,
   OnChanges,
-  Optional,
   Output,
   QueryList,
   SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
 
-import { NtColumnDirective, NtColumnSort, NtColumnSortChange } from './cell.directive';
+import { NcColumnDirective, NcColumnSort, NcColumnSortChange } from './cell.directive';
 
 @Component({
-  selector: 'nc-table, table[nt-table]',
+  selector: 'nc-table, table[nc-table]',
   template: CDK_TABLE_TEMPLATE,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    { provide: CdkTable, useExisting: NtTableComponent },
-    { provide: CDK_TABLE, useExisting: NtTableComponent },
+    { provide: CdkTable, useExisting: NcTableComponent },
+    { provide: CDK_TABLE, useExisting: NcTableComponent },
   ],
   host: {
-    'class': 'nt-table'
+    'class': 'nc-table'
   }
 })
 export class NcTableComponent<T> extends CdkTable<T> implements AfterContentInit, OnChanges {
@@ -47,17 +37,23 @@ export class NcTableComponent<T> extends CdkTable<T> implements AfterContentInit
 
   private readonly _destroy = new Subject<void>();
 
-  readonly columSortChanges: Observable<NtColumnSortChange> = defer(() => {
-    if (this._contentColumns) {
-      return merge<NtColumnSortChange>(...this._contentColumns.map(column => column._sortChange));
+  readonly columSortChanges: Observable<NcColumnSortChange> = defer(() => {
+
+    const contentColumns = this._contentColumns;
+
+    if (contentColumns) {
+      return contentColumns.changes.pipe(
+        startWith(contentColumns),
+        switchMap(() => merge(...contentColumns.map(item => item._sortChange))),
+      );
     }
 
-    return this._ngZone.onStable
+    return super._ngZone!.onStable
       .asObservable()
       .pipe(take(1), switchMap(() => this.columSortChanges));
   });
 
-  private _sort: string;
+  private _sort!: string;
 
   @Input()
   get sort() { return this._sort; }
@@ -65,21 +61,9 @@ export class NcTableComponent<T> extends CdkTable<T> implements AfterContentInit
     this._sort = value;
   }
 
-  @ContentChildren(NtColumnDirective) _contentColumns: QueryList<NtColumnDirective>;
+  @ContentChildren(NcColumnDirective) _contentColumns!: QueryList<NcColumnDirective>;
 
-  @Output() readonly sortChange: EventEmitter<NtColumnSortChange | NtColumnSortChange[]> = new EventEmitter();
-
-  constructor(
-    private _ngZone: NgZone,
-    protected _differs: IterableDiffers,
-    protected _changeDetectorRef: ChangeDetectorRef,
-    protected _elementRef: ElementRef,
-    @Attribute('role') role: string,
-    @Optional() protected readonly _dir: Directionality,
-    @Inject(DOCUMENT) _document: any,
-    _platform: Platform) {
-    super(_differs, _changeDetectorRef, _elementRef, role, _dir, _document, _platform);
-  }
+  @Output() readonly sortChange: EventEmitter<NcColumnSortChange | NcColumnSortChange[]> = new EventEmitter();
 
   ngAfterContentInit() {
     this._contentColumns.changes.pipe(startWith(null), takeUntil(this._destroy)).subscribe(() => {
@@ -99,7 +83,7 @@ export class NcTableComponent<T> extends CdkTable<T> implements AfterContentInit
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const change = changes.sort;
+    const change = changes['sort'];
     if (change && !change.firstChange) {
       const currentValue = change.currentValue || '';
       const [column, sort] = currentValue.split(':');
@@ -122,14 +106,14 @@ export class NcTableComponent<T> extends CdkTable<T> implements AfterContentInit
   private _checkSortInputAndSetValue(column: string, sort: string) {
     const findColumn = this._contentColumns.find(col => col.name === column);
     if (findColumn) {
-      findColumn.sort = sort as NtColumnSort;
+      findColumn.sort = sort as NcColumnSort;
     }
   }
 
-  private _clearSort(filter?: NtColumnSortChange) {
+  private _clearSort(filter?: NcColumnSortChange) {
     this._contentColumns
       .filter(column => column.name !== (filter ? filter.column : ''))
-      .forEach(column => column.sort = NtColumnSort.NONE);
+      .forEach(column => column.sort = NcColumnSort.NONE);
     this._changeDetectorRef.markForCheck();
   }
 
@@ -150,7 +134,7 @@ export class NcTableComponent<T> extends CdkTable<T> implements AfterContentInit
       .subscribe(() => this._changeDetectorRef.markForCheck());
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
     this._destroy.next();
     this._destroy.complete();
     super.ngOnDestroy();

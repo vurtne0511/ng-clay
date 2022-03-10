@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   CdkCell,
   CdkCellDef,
@@ -10,7 +10,7 @@ import {
 } from '@angular/cdk/table';
 import { Directive, ElementRef, EventEmitter, Input } from '@angular/core';
 
-export enum NtColumnSort {
+export enum NcColumnSort {
   ASC = 'asc',
   DESC = 'desc',
   NONE = ''
@@ -54,13 +54,13 @@ export class NcFooterCellDefDirective extends CdkFooterCellDef { }
  * table 列定义指令
  */
 @Directive({
-  selector: 'nc-column, [nt-column]',
+  selector: 'nc-column, [nc-column]',
   providers: [{ provide: CdkColumnDef, useExisting: NcColumnDirective }],
   inputs: ['name', 'sticky', 'stickyEnd']
 })
 export class NcColumnDirective extends CdkColumnDef {
 
-  sort: NtColumnSort = NtColumnSort.NONE;
+  sort: NcColumnSort = NcColumnSort.NONE;
 
   @Input('nc-column')
   set column(value: string) { this.name = value; }
@@ -68,8 +68,10 @@ export class NcColumnDirective extends CdkColumnDef {
   private _sortable = false;
 
   @Input()
-  set sortable(value: boolean) { this._sortable = coerceBooleanProperty(value); }
   get sortable() { return this._sortable; }
+  set sortable(value: BooleanInput) {
+    this._sortable = coerceBooleanProperty(value);
+  }
 
   _sortChange: EventEmitter<NcColumnSortChange> = new EventEmitter<NcColumnSortChange>();
 
@@ -80,14 +82,14 @@ export class NcColumnDirective extends CdkColumnDef {
       /** 按照 升 -> 降 -> 无 的循环改变排序 */
 
       switch (this.sort) {
-        case NtColumnSort.ASC:
-          this.sort = NtColumnSort.DESC;
+        case NcColumnSort.ASC:
+          this.sort = NcColumnSort.DESC;
           break;
-        case NtColumnSort.DESC:
-          this.sort = NtColumnSort.NONE;
+        case NcColumnSort.DESC:
+          this.sort = NcColumnSort.NONE;
           break;
         default:
-          this.sort = NtColumnSort.ASC;
+          this.sort = NcColumnSort.ASC;
           break;
       }
 
@@ -102,7 +104,7 @@ export class NcColumnDirective extends CdkColumnDef {
 @Directive({
   selector: 'nc-header-cell, th[nc-header-cell]',
   host: {
-    'class': 'nt-header-cell',
+    'class': 'nc-header-cell',
     '[class.nt-column-sortable]': 'columnDef.sortable',
     '[class.asc]': 'columnDef.sort === "asc"',
     '[class.desc]': 'columnDef.sort === "desc"',
@@ -123,7 +125,7 @@ export class NcHeaderCellDirective extends CdkHeaderCell {
 @Directive({
   selector: 'nc-footer-cell, td[nc-footer-cell]',
   host: {
-    'class': 'nt-footer-cell',
+    'class': 'nc-footer-cell',
     'role': 'gridcell',
   },
 })
@@ -140,7 +142,7 @@ export class NcFooterCellDirective extends CdkFooterCell {
 @Directive({
   selector: 'nc-cell, td[nc-cell]',
   host: {
-    'class': 'nt-cell',
+    'class': 'nc-cell',
     'role': 'gridcell',
   },
 })

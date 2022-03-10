@@ -12,7 +12,7 @@ import {
 import { NcOverlayComponent, NcOverlayPosition } from '@ng-clay/components/overlay';
 
 import {
-  NT_DROPDOWN_PARENT_COMPONENT,
+  NC_DROPDOWN_PARENC_COMPONENT,
   NcDropdownPaneComponent,
   NcDropdownParentComponent
 } from './dropdown-pane.component';
@@ -20,7 +20,7 @@ import {
 export declare type NcDropdownTriggerType = '' | 'hover' | 'click';
 
 @Component({
-  selector: 'nc-dropdown, [nt-dropdown]',
+  selector: 'nc-dropdown, [nc-dropdown]',
   templateUrl: 'dropdown.component.html',
   encapsulation: ViewEncapsulation.None,
   host: {
@@ -29,7 +29,7 @@ export declare type NcDropdownTriggerType = '' | 'hover' | 'click';
     '(mouseleave)': '_onMouseLeave($event)'
   },
   providers: [
-    { provide: NT_DROPDOWN_PARENT_COMPONENT, useExisting: NcDropdownComponent }
+    { provide: NC_DROPDOWN_PARENC_COMPONENT, useExisting: NcDropdownComponent }
   ]
 })
 export class NcDropdownComponent implements NcDropdownParentComponent {

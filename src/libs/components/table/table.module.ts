@@ -3,41 +3,41 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import {
-  NtCellDefDirective,
-  NtCellDirective,
-  NtColumnDirective,
-  NtFooterCellDefDirective,
-  NtFooterCellDirective,
-  NtHeaderCellDefDirective,
-  NtHeaderCellDirective
+  NcCellDefDirective,
+  NcCellDirective,
+  NcColumnDirective,
+  NcFooterCellDefDirective,
+  NcFooterCellDirective,
+  NcHeaderCellDefDirective,
+  NcHeaderCellDirective
 } from './cell.directive';
-import { NtTableResizable } from './resizable.directive';
+import { NcTableResizable } from './resizable.directive';
 import {
-  NtFooterRowComponent,
-  NtFooterRowDefDirective,
-  NtHeaderRowComponent,
-  NtHeaderRowDefDirective,
-  NtRowComponent,
-  NtRowDefDirective
+  NcFooterRowComponent,
+  NcFooterRowDefDirective,
+  NcHeaderRowComponent,
+  NcHeaderRowDefDirective,
+  NcRowComponent,
+  NcRowDefDirective
 } from './row.directive';
-import { NtTableComponent } from './table.component';
+import { NcTableComponent } from './table.component';
 
 const EXPORTS_DECLARATIONS = [
-  NtTableComponent,
-  NtTableResizable,
-  NtCellDefDirective,
-  NtCellDirective,
-  NtColumnDirective,
-  NtFooterCellDefDirective,
-  NtFooterCellDirective,
-  NtHeaderCellDefDirective,
-  NtHeaderCellDirective,
-  NtFooterRowComponent,
-  NtFooterRowDefDirective,
-  NtHeaderRowComponent,
-  NtHeaderRowDefDirective,
-  NtRowComponent,
-  NtRowDefDirective
+  NcTableComponent,
+  NcTableResizable,
+  NcCellDefDirective,
+  NcCellDirective,
+  NcColumnDirective,
+  NcFooterCellDefDirective,
+  NcFooterCellDirective,
+  NcHeaderCellDefDirective,
+  NcHeaderCellDirective,
+  NcFooterRowComponent,
+  NcFooterRowDefDirective,
+  NcHeaderRowComponent,
+  NcHeaderRowDefDirective,
+  NcRowComponent,
+  NcRowDefDirective
 ];
 
 @NgModule({

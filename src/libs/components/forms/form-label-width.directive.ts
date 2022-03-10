@@ -12,7 +12,7 @@ export class NcFormLabelWidthDirective implements OnChanges, OnDestroy {
 
   private _width: number = 120;
 
-  @Input('ntFormLabelWidth')
+  @Input('ncFormLabelWidth')
   get width() { return this._width; }
   set width(value: number) {
     this._width = coerceNumberProperty(value, 120);

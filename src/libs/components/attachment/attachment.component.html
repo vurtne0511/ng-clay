@@ -1,6 +1,6 @@
 <a class="nt-attachment-trigger"
   *ngIf="!notrigger"
-  ntFileSelect
+  ncFileSelect
   [limitSize]="limitSize"
   [multiple]="multiple"
   [disabled]="disabled || readonly"
@@ -26,12 +26,12 @@
         <span aria-hidden="true">&times;</span>
       </div>
     </div>
-    <nt-progress class="nt-attachment-progress"
-      *ngIf="item.status === 1"
+    <nc-progress class="nt-attachment-progress"
+      *ngIf="item.status >= 1"
       [class.success]="item.status === 2"
       [class.alert]="item.status === 3"
-      [value]="item.progress"
+      [value]="item.progress || 0"
       size="tiny"
-      [@fadeOut]></nt-progress>
+      [@fadeOut]></nc-progress>
   </div>
 </div>

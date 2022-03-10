@@ -17,7 +17,7 @@ import { faAngular } from '@fortawesome/free-brands-svg-icons';
 @Component({
   selector: 'nc-example-code',
   template: `
-    <span class="nt-example-code-shown"
+    <span class="nc-example-code-shown"
       (click)="shown=!shown">
       <fa-icon [icon]="faAngular" class="icon" [class.visible]="shown"></fa-icon>代码
     </span>
@@ -25,7 +25,7 @@ import { faAngular } from '@fortawesome/free-brands-svg-icons';
   `,
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'nt-example-code',
+    'class': 'nc-example-code',
     '[class.shown]': 'shown'
   }
 })

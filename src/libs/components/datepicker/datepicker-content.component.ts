@@ -37,7 +37,7 @@ import {
   selector: 'nc-datepicker-content',
   templateUrl: 'datepicker-content.component.html',
   host: {
-    'class': 'nt-datepicker-content',
+    'class': 'nc-datepicker-content',
   },
   exportAs: 'ncDatePickerContent',
   encapsulation: ViewEncapsulation.None,
@@ -48,13 +48,13 @@ export class NcDatePickerContent<S, D = ExtractDateTypeFromSelection<S>> impleme
   private _subscriptions = new Subscription();
 
   /** Reference to the internal calendar component. */
-  @ViewChild(NcDatePickerCalendar) _calendar: NcDatePickerCalendar<D>;
+  @ViewChild(NcDatePickerCalendar) _calendar!: NcDatePickerCalendar<D>;
 
   /** Start of the comparison range. */
-  comparisonStart: D | null;
+  comparisonStart!: D | null;
 
   /** End of the comparison range. */
-  comparisonEnd: D | null;
+  comparisonEnd!: D | null;
 
   constructor(
     public elementRef: ElementRef,

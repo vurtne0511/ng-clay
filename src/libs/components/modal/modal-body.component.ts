@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'nc-modal-body',
   template: `<ng-content></ng-content>`,
   host: {
-    'class': 'nt-modal-body'
+    'class': 'nc-modal-body'
   }
 })
 export class NcModalBodyComponent  { }

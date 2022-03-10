@@ -165,7 +165,7 @@ export class NcRangeDateSelectionModel<D> extends NcDateSelectionModel<DateRange
 }
 
 /** @docs-private */
-export function NT_SINGLE_DATE_SELECTION_MODEL_FACTORY(
+export function NC_SINGLE_DATE_SELECTION_MODEL_FACTORY(
     parent: NtSingleDateSelectionModel<unknown>, adapter: DateAdapter<unknown>) {
   return parent || new NtSingleDateSelectionModel(adapter);
 }
@@ -174,12 +174,12 @@ export function NT_SINGLE_DATE_SELECTION_MODEL_FACTORY(
 export const NC_SINGLE_DATE_SELECTION_MODEL_PROVIDER: FactoryProvider = {
   provide: NcDateSelectionModel,
   deps: [[new Optional(), new SkipSelf(), NcDateSelectionModel], DateAdapter],
-  useFactory: NT_SINGLE_DATE_SELECTION_MODEL_FACTORY,
+  useFactory: NC_SINGLE_DATE_SELECTION_MODEL_FACTORY,
 };
 
 
 /** @docs-private */
-export function NT_RANGE_DATE_SELECTION_MODEL_FACTORY(
+export function NC_RANGE_DATE_SELECTION_MODEL_FACTORY(
     parent: NtSingleDateSelectionModel<unknown>, adapter: DateAdapter<unknown>) {
   return parent || new NtRangeDateSelectionModel(adapter);
 }
@@ -188,5 +188,5 @@ export function NT_RANGE_DATE_SELECTION_MODEL_FACTORY(
 export const NC_RANGE_DATE_SELECTION_MODEL_PROVIDER: FactoryProvider = {
   provide: NcDateSelectionModel,
   deps: [[new Optional(), new SkipSelf(), NcDateSelectionModel], DateAdapter],
-  useFactory: NT_RANGE_DATE_SELECTION_MODEL_FACTORY,
+  useFactory: NC_RANGE_DATE_SELECTION_MODEL_FACTORY,
 };

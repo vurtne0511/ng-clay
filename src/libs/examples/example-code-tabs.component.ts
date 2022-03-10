@@ -16,22 +16,22 @@ import {
 @Component({
   selector: 'nc-example-code-tabs',
   template: `
-    <span class="nt-example-code-shown"
+    <span class="nc-example-code-shown"
       (click)="shown=!shown">
       <fa-icon [icon]="faAngular" class="icon" [class.visible]="shown"></fa-icon>代码
     </span>
-    <div class="nt-example-code-tabs">
-      <span class="nt-example-tabs-title" *ngFor="let pane of panes" [class.is-active]="activeTab === pane.title">
+    <div class="nc-example-code-tabs">
+      <span class="nc-example-tabs-title" *ngFor="let pane of panes" [class.is-active]="activeTab === pane.title">
         <a (click)="activeTab = pane.title">{{pane?.title}}</a>
       </span>
     </div>
-    <div class="nt-example-code-tabs-content">
+    <div class="nc-example-code-tabs-content">
       <ng-content select="nt-example-code-tabs-panel"></ng-content>
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'nt-example-code-tabs',
+    'class': 'nc-example-code-tabs',
     '[class.shown]': 'shown'
   },
   providers: [

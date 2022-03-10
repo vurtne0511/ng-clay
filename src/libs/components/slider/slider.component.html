@@ -11,7 +11,7 @@
     [ngStyle]="_trackStepmarkStyles(mark)">
   </span>
 </div>
-<nt-overlay
+<nc-overlay
   overlayClass="nt-slider-tooltip-overlay"
   arrow
   [origin]="_origin"
@@ -19,4 +19,4 @@
   (overlayEnter)="_overlay.markOpen()"
   (overlayLeave)="_overlay.markClose()">
   <div class="nt-slider-tooltip">{{ displayValue }}</div>
-</nt-overlay>
+</nc-overlay>

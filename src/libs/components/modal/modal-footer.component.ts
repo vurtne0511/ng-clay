@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'nc-modal-footer',
   template: `<ng-content></ng-content>`,
   host: {
-    'class': 'nt-modal-footer'
+    'class': 'nc-modal-footer'
   }
 })
 export class NcModalFooterComponent  { }

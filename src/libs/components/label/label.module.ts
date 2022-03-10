@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { NtLabelComponent } from './label.component';
+import { NcLabelComponent } from './label.component';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [NtLabelComponent],
-  exports: [NtLabelComponent]
+  declarations: [NcLabelComponent],
+  exports: [NcLabelComponent]
 })
 export class NcLabelModule { }

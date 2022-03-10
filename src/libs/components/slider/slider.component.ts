@@ -1,5 +1,5 @@
 import { FocusMonitor, FocusOrigin } from '@angular/cdk/a11y';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   DOWN_ARROW,
   END,
@@ -39,13 +39,13 @@ import {
   RIGHT_CENTER,
   TOP_CENTER
 } from '@ng-clay/components/overlay';
-import { NtFormFieldControl } from '@ng-clay/components/forms';
+import { NcFormFieldControl } from '@ng-clay/components/forms';
 
 const activeEveNcOptions: AddEventListenerOptions = { passive: false };
 
 export class NcSliderChange {
-  value: number;
-  source: NcSliderComponent;
+  value!: number;
+  source!: NcSliderComponent;
 }
 
 interface NcSliderStepmark {
@@ -67,7 +67,7 @@ interface NcSliderStepmark {
     '(mouseenter)': '_onMouseenter()',
     '(selectstart)': '$event.preventDefault()',
 
-    'class': 'nt-slider',
+    'class': 'nc-slider',
     'role': 'slider',
     '[tabIndex]': 'tabIndex',
     '[class.is-sliding]': '_isSliding',
@@ -75,10 +75,10 @@ interface NcSliderStepmark {
     '[class.invert]': 'invert'
   },
   providers: [
-    { provide: NtFormFieldControl, useExisting: NcSliderComponent, multi: true }
+    { provide: NcFormFieldControl, useExisting: NcSliderComponent, multi: true }
   ]
 })
-export class NcSliderComponent implements ControlValueAccessor, OnInit, OnDestroy, NtFormFieldControl<number> {
+export class NcSliderComponent implements ControlValueAccessor, OnInit, OnDestroy, NcFormFieldControl<number> {
 
   tabIndex: number;
 
@@ -158,7 +158,7 @@ export class NcSliderComponent implements ControlValueAccessor, OnInit, OnDestro
 
   @Input()
   get disabled() { return this._disabled; }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
   }
 
@@ -166,7 +166,7 @@ export class NcSliderComponent implements ControlValueAccessor, OnInit, OnDestro
 
   @Input()
   get invert(): boolean { return this._invert; }
-  set invert(value: boolean) {
+  set invert(value: BooleanInput) {
     this._invert = coerceBooleanProperty(value);
   }
 
@@ -174,7 +174,7 @@ export class NcSliderComponent implements ControlValueAccessor, OnInit, OnDestro
 
   @Input()
   get stepmark() { return this._stepmark; }
-  set stepmark(value: boolean) {
+  set stepmark(value: BooleanInput) {
     this._stepmark = coerceBooleanProperty(value);
     if (this._stepmark) {
       this._stepmarkValues = this._calculateStepmarks();
@@ -187,7 +187,7 @@ export class NcSliderComponent implements ControlValueAccessor, OnInit, OnDestro
 
   @Input()
   get vertical() { return this._vertical; }
-  set vertical(value: boolean) {
+  set vertical(value: BooleanInput) {
     this._vertical = coerceBooleanProperty(value);
   }
 
@@ -197,26 +197,26 @@ export class NcSliderComponent implements ControlValueAccessor, OnInit, OnDestro
 
   @Output() readonly valueChange: EventEmitter<number | null> = new EventEmitter<number | null>();
 
-  @ViewChild('sliderHandle', { static: true, read: ElementRef }) _sliderHandle: ElementRef;
+  @ViewChild('sliderHandle', { static: true, read: ElementRef }) _sliderHandle!: ElementRef;
 
-  @ViewChild(NcOverlayComponent, { static: true }) _overlay: NcOverlayComponent;
+  @ViewChild(NcOverlayComponent, { static: true }) _overlay!: NcOverlayComponent;
 
   private _onChange: (value: any) => void = () => { };
   private _onTouched = () => { };
 
-  private _sliderDimensions: ClientRect | null = null;
+  private _sliderDimensions: DOMRect | null = null;
 
-  private _roundToDecimal: number;
+  private _roundToDecimal!: number;
 
-  private _valueOnSlideStart: number | null;
+  private _valueOnSlideStart!: number | null;
 
-  private _pointerPositionOnStart: { x: number, y: number } | null;
+  private _pointerPositionOnStart!: { x: number, y: number } | null;
 
-  private _lastPointerEvent: MouseEvent | TouchEvent | null;
+  private _lastPointerEvent!: MouseEvent | TouchEvent | null;
 
   protected _document?: Document;
 
-  _origin: CdkOverlayOrigin;
+  _origin!: CdkOverlayOrigin;
 
   _isSliding: boolean = false;
 

@@ -13,7 +13,7 @@ export class NcFormOrientationDirective implements OnChanges, OnDestroy {
 
   private _orientation!: NtFormOrientation;
 
-  @Input('ntFormOrientation')
+  @Input('ncFormOrientation')
   get orientation() { return this._orientation; }
   set orientation(value: NtFormOrientation) {
     this._orientation = value;

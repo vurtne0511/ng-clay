@@ -1,4 +1,4 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Attribute,
   Component,
@@ -24,7 +24,7 @@ export class NcRadioChange<T> {
   encapsulation: ViewEncapsulation.None,
   templateUrl: 'radio.component.html',
   host: {
-    'class': 'nt-radio',
+    'class': 'nc-radio',
     '[class.nt-radio-disabled]': 'disabled'
   }
 })
@@ -32,34 +32,47 @@ export class NcRadioComponent<T> implements ControlValueAccessor {
 
   readonly id: string = `nc-radio-${uniqueId++}`;
 
-  private _value: T | null;
-
-  private _disabled = false;
-  private _readonly = false;
-  private _checked = false;
   private _name: string = this.id;
 
   tabIndex: number;
 
+  private _value!: T | null;
+
   @Input()
-  set value(value: T | null) { this._value = value; }
   get value() { return this._value; }
+  set value(value: T | null) {
+    this._value = value;
+  }
+
+  private _disabled = false;
 
   @Input()
-  set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
   get disabled() { return this._disabled; }
+  set disabled(value: BooleanInput) {
+    this._disabled = coerceBooleanProperty(value);
+  }
+
+  private _readonly = false;
 
   @Input()
-  set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
   get readonly() { return this._readonly; }
+  set readonly(value: BooleanInput) {
+    this._readonly = coerceBooleanProperty(value);
+  }
+
+  private _checked = false;
 
   @Input()
   get checked(): boolean { return this._checked; }
-  set checked(value: boolean) { this._checked = coerceBooleanProperty(value); }
+  set checked(value: BooleanInput) {
+    this._checked = coerceBooleanProperty(value);
+  }
 
   @Input()
-  set name(value: string) { this._name = value; }
   get name(): string { return this._name; }
+  set name(value: string) {
+    this._name = value;
+  }
 
   @Output() readonly change = new EventEmitter<NcRadioChange<T>>();
 

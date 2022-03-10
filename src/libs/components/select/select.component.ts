@@ -1,9 +1,6 @@
-import { defer, merge, Observable, Subject } from 'rxjs';
-import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
-
 import { transition, trigger } from '@angular/animations';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   DOWN_ARROW,
@@ -46,18 +43,18 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
 
   fadeIn,
-  fadeOut,
-  NC_OPTION_PARENT_COMPONENT,
-  NcOptionComponent,
+  fadeOut, NcOptionComponent,
   NcOptionParentComponent,
-  NcOptionSelectionChange,
-
+  NcOptionSelectionChange, NC_OPTION_PARENC_COMPONENT
 } from '@ng-clay/components/core';
-
+import { NcFormFieldControl } from '@ng-clay/components/forms';
 import { BOTTOM_LEFT, NcOverlayComponent, TOP_LEFT } from '@ng-clay/components/overlay';
-import { NtFormFieldControl } from '@ng-clay/components/forms';
+import { defer, merge, Observable, Subject } from 'rxjs';
+import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
+import { DEFAULT_SELECT_ICONS, NcSelectIcons, NC_SELECT_ICONS } from './select-icons';
 
-import { DEFAULT_SELECT_ICONS, NT_SELECT_ICONS, NcSelectIcons } from './select-icons';
+
+
 
 export function getNcSelectDynamicMultipleError() {
   return Error('Cannot change `multiple` mode of select after initialization.');
@@ -79,8 +76,8 @@ export class NcSelectChange {
   selector: 'nc-select',
   templateUrl: 'select.component.html',
   providers: [
-    { provide: NC_OPTION_PARENT_COMPONENT, useExisting: NcSelectComponent },
-    { provide: NtFormFieldControl, useExisting: NcSelectComponent }
+    { provide: NC_OPTION_PARENC_COMPONENT, useExisting: NcSelectComponent },
+    { provide: NcFormFieldControl, useExisting: NcSelectComponent }
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -91,18 +88,18 @@ export class NcSelectChange {
     ])
   ],
   host: {
-    'class': 'nt-select',
+    'class': 'nc-select',
     '(window:resize)': 'onResize()'
   }
 })
 export class NcSelectComponent
-  implements AfterContentInit, ControlValueAccessor, NcOptionParentComponent, OnDestroy,  NtFormFieldControl<any> {
+  implements AfterContentInit, ControlValueAccessor, NcOptionParentComponent, OnDestroy,  NcFormFieldControl<any> {
 
   private readonly _destroy = new Subject<void>();
 
   readonly origin: CdkOverlayOrigin;
 
-  private _selectionModel: SelectionModel<NcOptionComponent>;
+  private _selectionModel!: SelectionModel<NcOptionComponent>;
 
   _positionPairs: ConnectionPositionPair[] = [BOTTOM_LEFT, TOP_LEFT];
 
@@ -141,36 +138,44 @@ export class NcSelectComponent
   private _disabled = false;
 
   @Input()
-  set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
-  get disabled() { return this._disabled; }
+  get disabled(): boolean { return this._disabled; }
+  set disabled(value: BooleanInput) {
+    this._disabled = coerceBooleanProperty(value);
+  }
 
   private _required = false;
 
   @Input()
   get required(): boolean { return this._required; }
-  set required(value: boolean) { this._required = coerceBooleanProperty(value); }
+  set required(value: BooleanInput) {
+    this._required = coerceBooleanProperty(value);
+  }
 
   private _state = '';
 
   get state() { return this._state; }
 
-  private _width: number;
+  private _width!: number;
 
   get width() { return this._width; }
 
   private _clearable = false;
 
   @Input()
-  set clearable(value: boolean) { this._clearable = coerceBooleanProperty(value); }
   get clearable() { return this._clearable; }
+  set clearable(value: BooleanInput) {
+    this._clearable = coerceBooleanProperty(value);
+  }
 
   private _multiple = false;
 
   @Input()
-  set multiple(value: boolean) { this._multiple = coerceBooleanProperty(value); }
-  get multiple() { return this._multiple; }
+  get multiple(): boolean { return this._multiple; }
+  set multiple(value: BooleanInput) {
+    this._multiple = coerceBooleanProperty(value);
+  }
 
-  private _filter: (keyword: string, option: NcOptionComponent) => boolean;
+  private _filter!: (keyword: string, option: NcOptionComponent) => boolean;
 
   @Input()
   get filter() { return this._filter; }
@@ -207,14 +212,14 @@ export class NcSelectComponent
     return typeof this.filter === 'function' ? this.displayValue : this._placeholder;
   }
 
-  _keyManager: ActiveDescendantKeyManager<NcOptionComponent>;
+  _keyManager!: ActiveDescendantKeyManager<NcOptionComponent>;
 
-  @ViewChild('inputElement', { static: false }) inputElement: ElementRef;
+  @ViewChild('inputElement', { static: false }) inputElement!: ElementRef;
 
-  @ViewChild('paneElement', { static: true }) paneElement: ElementRef;
+  @ViewChild('paneElement', { static: true }) paneElement!: ElementRef;
 
-  @ViewChild(NcOverlayComponent, { static: true }) overlay: NcOverlayComponent;
-  @ContentChildren(NcOptionComponent) options: QueryList<NcOptionComponent>;
+  @ViewChild(NcOverlayComponent, { static: true }) overlay!: NcOverlayComponent;
+  @ContentChildren(NcOptionComponent) options!: QueryList<NcOptionComponent>;
 
   @Output() afterOpen = new EventEmitter<any>();
   @Output() afterClosed = new EventEmitter<any>();
@@ -241,8 +246,14 @@ export class NcSelectComponent
   }
 
   readonly optionSelectionChanges: Observable<NcOptionSelectionChange> = defer(() => {
-    if (this.options) {
-      return merge<NcOptionSelectionChange>(...this.options.map(option => option.selectionChange));
+
+    const options = this.options;
+
+    if (options) {
+      return options.changes.pipe(
+        startWith(options),
+        switchMap(() => merge(...options.map(item => item.selectionChange))),
+      );
     }
 
     return this._ngZone.onStable
@@ -256,7 +267,7 @@ export class NcSelectComponent
     private _changeDetectorRef: ChangeDetectorRef,
     @Attribute('tabindex') tabIndex: string,
     @Optional() @Self() public ngControl: NgControl,
-    @Optional() @Inject(NT_SELECT_ICONS) public icons: NcSelectIcons) {
+    @Optional() @Inject(NC_SELECT_ICONS) public icons: NcSelectIcons) {
 
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;

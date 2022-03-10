@@ -14,11 +14,11 @@ import {
 import { NcOverlayComponent, NcOverlayPosition } from '@ng-clay/components/overlay';
 
 @Component({
-  selector: 'nc-tooltip, [nt-tooltip]',
+  selector: 'nc-tooltip, [nc-tooltip]',
   templateUrl: 'tooltip.component.html',
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'nt-tooltip',
+    'class': 'nc-tooltip',
     '[class.nt-tooltip-trigger]': '!_isDirective',
     '(mouseenter)': 'overlay.markOpen()',
     '(mouseleave)': 'overlay.markClose()'
@@ -52,7 +52,7 @@ export class NcTooltipComponent implements OnChanges {
 
   get _isDirective() {
     const attributes = this._elementRef.nativeElement.attributes;
-    return attributes && attributes['nt-tooltip'];
+    return attributes && attributes['nc-tooltip'];
   }
 
   @Input() position: NcOverlayPosition = NcOverlayPosition.Top;

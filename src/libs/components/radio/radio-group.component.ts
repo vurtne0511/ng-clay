@@ -1,7 +1,7 @@
 import { defer, merge, Observable, Subject } from 'rxjs';
 import { startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -19,7 +19,7 @@ import {
   Output
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { NtFormFieldControl } from '@ng-clay/components/forms';
+import { NcFormFieldControl } from '@ng-clay/components/forms';
 
 import { NcRadioChange, NcRadioComponent } from './radio.component';
 
@@ -35,20 +35,20 @@ let uniqueId = 0;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    { provide: NtFormFieldControl, useExisting: NcRadioGroupComponent }
+    { provide: NcFormFieldControl, useExisting: NcRadioGroupComponent }
   ],
   host: {
-    'class': 'nt-radio-group'
+    'class': 'nc-radio-group'
   }
 })
 export class NcRadioGroupComponent<T>
-  implements ControlValueAccessor, AfterViewInit, OnDestroy,  NtFormFieldControl<T> {
+  implements ControlValueAccessor, AfterViewInit, OnDestroy,  NcFormFieldControl<T> {
 
   readonly id: string = `nc-radio-group-${uniqueId++}`;
 
   private readonly _destroy = new Subject<void>();
 
-  private _value: T | null;
+  private _value: T | null | undefined;
   private _disabled = false;
   private _readonly = false;
   private _required = false;
@@ -58,15 +58,15 @@ export class NcRadioGroupComponent<T>
   get value() { return this._value; }
 
   @Input()
-  set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
+  set disabled(value: BooleanInput) { this._disabled = coerceBooleanProperty(value); }
   get disabled() { return this._disabled; }
 
   @Input()
   get required(): boolean { return this._required; }
-  set required(value: boolean) { this._required = coerceBooleanProperty(value); }
+  set required(value: BooleanInput) { this._required = coerceBooleanProperty(value); }
 
   @Input()
-  set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
+  set readonly(value: BooleanInput) { this._readonly = coerceBooleanProperty(value); }
   get readonly() { return this._readonly; }
 
   @Input()
@@ -76,7 +76,7 @@ export class NcRadioGroupComponent<T>
     this._updateRadioButtonNames();
   }
 
-  @ContentChildren(NcRadioComponent) radios: QueryList<NcRadioComponent<T>>;
+  @ContentChildren(NcRadioComponent) radios!: QueryList<NcRadioComponent<T>>;
 
   private _compareWith = (o1: any, o2: any) => o1 === o2;
 
@@ -90,8 +90,13 @@ export class NcRadioGroupComponent<T>
   }
 
   @Output() readonly checkedChanges: Observable<NcRadioChange<T>> = defer(() => {
-    if (this.radios) {
-      return merge<NcRadioChange<T>>(...this.radios.map(item => item.change));
+    const radios = this.radios;
+
+    if (radios) {
+      return radios.changes.pipe(
+        startWith(radios),
+        switchMap(() => merge(...radios.map(item => item.change))),
+      );
     }
 
     return this._ngZone.onStable

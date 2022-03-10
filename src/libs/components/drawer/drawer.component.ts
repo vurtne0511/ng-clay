@@ -2,7 +2,7 @@ import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { AnimationEvent, transition, trigger } from '@angular/animations';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
@@ -64,7 +64,7 @@ let uniqueId = 0;
     ])
   ],
   host: {
-    'class': 'nt-drawer',
+    'class': 'nc-drawer',
     '[class.opened]': 'state !== "closed"',
     '[class.backdrop]': 'backdrop',
     '[@slide]': 'state',
@@ -88,7 +88,7 @@ export class NcDrawerComponent implements AfterViewInit, OnDestroy {
 
   @Input()
   get backdrop() { return this._backdrop; }
-  set backdrop(value: boolean) {
+  set backdrop(value: BooleanInput) {
     this._backdrop = coerceBooleanProperty(value);
     if (this._backdrop) {
       this._createBackdropOverlay();
@@ -109,7 +109,7 @@ export class NcDrawerComponent implements AfterViewInit, OnDestroy {
 
   @Input()
   get touchmode() { return this._touchmode; }
-  set touchmode(value: boolean) {
+  set touchmode(value: BooleanInput) {
     this._touchmode = coerceBooleanProperty(value);
   }
 
@@ -201,7 +201,7 @@ export class NcDrawerComponent implements AfterViewInit, OnDestroy {
   /** 创建遮罩层元素对象，当 backdrop 属性是 true 的时候才会创建 */
   private _createBackdropOverlay() {
     this._backdropElement = this._renderer.createElement('div');
-    this._renderer.addClass(this._backdropElement, 'nt-drawer-backdrop');
+    this._renderer.addClass(this._backdropElement, 'nc-drawer-backdrop');
     this._renderer.addClass(this._backdropElement, `${this.id}-backdrop`);
   }
 
@@ -215,7 +215,7 @@ export class NcDrawerComponent implements AfterViewInit, OnDestroy {
   private _attachBackdropOverlay() {
     if (this.backdrop && this._backdropElement) {
       this._renderer.appendChild(this._container, this._backdropElement);
-      this._renderer.addClass(this._container, 'nt-drawer-scrollblock');
+      this._renderer.addClass(this._container, 'nc-drawer-scrollblock');
     }
   }
 
@@ -223,7 +223,7 @@ export class NcDrawerComponent implements AfterViewInit, OnDestroy {
   private _disattachBackdropOverlay() {
     if (this._backdropElement) {
       this._renderer.removeChild(this._container, this._backdropElement);
-      this._renderer.removeClass(this._container, 'nt-drawer-scrollblock');
+      this._renderer.removeClass(this._container, 'nc-drawer-scrollblock');
     }
   }
 

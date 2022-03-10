@@ -3,7 +3,7 @@
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   Directive,
   ElementRef,
@@ -51,7 +51,7 @@ export class NcFileSelectDirective implements OnInit, OnChanges, OnDestroy {
 
   @Input()
   get multiple() { return this._multiple; }
-  set multiple(value: boolean) {
+  set multiple(value: BooleanInput) {
     this._multiple = coerceBooleanProperty(value);
   }
 
@@ -59,7 +59,7 @@ export class NcFileSelectDirective implements OnInit, OnChanges, OnDestroy {
 
   @Input()
   get disabled() { return this._disabled; }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
   }
 

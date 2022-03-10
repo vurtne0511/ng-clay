@@ -1,7 +1,7 @@
 
 
 import { transition, trigger } from '@angular/animations';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
   Attribute,
@@ -25,7 +25,7 @@ import {
   NC_DATE_FORMATS,
   NcDateFormats
 } from '@ng-clay/components/core';
-import { NtFormFieldControl } from '@ng-clay/components/forms';
+import { NcFormFieldControl } from '@ng-clay/components/forms';
 
 import {
   NC_DATE_RANGE_PICKER_PARENT,
@@ -35,11 +35,11 @@ import {
 } from './date-range-parts.directive';
 import { NcDatePickerBase } from './datepicker-base';
 import { NC_DATE_PICKER_CONTROL } from './datepicker-control';
-import { NT_DATEPICKER_ICONS, NcDatePickerIcons } from './datepicker-icons';
+import { NC_DATEPICKER_ICONS, NcDatePickerIcons } from './datepicker-icons';
 import {
   DateRange,
-  NT_CALENDAR_RANGE_STRATEGY_PROVIDER,
-  NT_RANGE_DATE_SELECTION_MODEL_PROVIDER,
+  NC_CALENDAR_RANGE_STRATEGY_PROVIDER,
+  NC_RANGE_DATE_SELECTION_MODEL_PROVIDER,
   NcDateSelectionModel
 } from './selections';
 
@@ -51,7 +51,7 @@ let datepickerUid = 0;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'nt-datepicker nt-date-range-picker',
+    'class': 'nc-datepicker nt-date-range-picker',
     '(click)': '_onClick($event)',
   },
   animations: [
@@ -61,15 +61,15 @@ let datepickerUid = 0;
     ])
   ],
   providers: [
-    { provide: NtFormFieldControl, useExisting: NcDateRangePicker },
+    { provide: NcFormFieldControl, useExisting: NcDateRangePicker },
     { provide: NC_DATE_PICKER_CONTROL, useExisting: NcDateRangePicker },
     { provide: NC_DATE_RANGE_PICKER_PARENT, useExisting: NcDateRangePicker },
-    NT_RANGE_DATE_SELECTION_MODEL_PROVIDER,
-    NT_CALENDAR_RANGE_STRATEGY_PROVIDER
+    NC_RANGE_DATE_SELECTION_MODEL_PROVIDER,
+    NC_CALENDAR_RANGE_STRATEGY_PROVIDER
   ]
 })
 export class NcDateRangePicker<D> extends NcDatePickerBase<DateRange<D>, D>
-  implements NcDateRangePickerParent<D>, NtFormFieldControl<DateRange<D>>, AfterContentInit, OnChanges {
+  implements NcDateRangePickerParent<D>, NcFormFieldControl<DateRange<D>>, AfterContentInit, OnChanges {
 
   id: string = `nc-date-range-picker-${datepickerUid++}`;
 
@@ -89,15 +89,15 @@ export class NcDateRangePicker<D> extends NcDatePickerBase<DateRange<D>, D>
 
   @Input()
   get disabled() { return this._disabled; }
-  set disabled(value: boolean) {
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
   }
 
   private _required = false;
 
   @Input()
-  get required(): boolean { return this._startDate.required || this._endDate.required || this._required; }
-  set required(value: boolean) {
+  get required() { return this._startDate.required || this._endDate.required || this._required; }
+  set required(value: BooleanInput) {
     this._required = coerceBooleanProperty(value);
   }
 
@@ -105,18 +105,18 @@ export class NcDateRangePicker<D> extends NcDatePickerBase<DateRange<D>, D>
 
   @Input()
   get readonly() { return this._readonly; }
-  set readonly(value: boolean) {
+  set readonly(value: BooleanInput) {
     this._readonly = coerceBooleanProperty(value);
   }
 
-  @ContentChild(NcDateRangeStart) _startDate: NcDateRangeStart<D>;
+  @ContentChild(NcDateRangeStart) _startDate!: NcDateRangeStart<D>;
 
-  @ContentChild(NcDateRangeEnd) _endDate: NcDateRangeEnd<D>;
+  @ContentChild(NcDateRangeEnd) _endDate!: NcDateRangeEnd<D>;
 
   constructor(
     elementRef: ElementRef,
     @Attribute('tabindex') tabIndex: string,
-    @Optional() @Inject(NT_DATEPICKER_ICONS) icons: NcDatePickerIcons,
+    @Optional() @Inject(NC_DATEPICKER_ICONS) icons: NcDatePickerIcons,
     @Inject(NC_DATE_FORMATS) dateFormats: NcDateFormats,
     changeDetectorRef: ChangeDetectorRef,
     dateAdapter: DateAdapter<D>,

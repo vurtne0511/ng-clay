@@ -2,7 +2,7 @@ import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { transition, trigger } from '@angular/animations';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   CdkOverlayOrigin,
   ConnectedOverlayPositionChange,
@@ -36,7 +36,7 @@ import {
   NC_DATE_FORMATS,
   NcDateFormats
 } from '@ng-clay/components/core';
-import { NtFormFieldControl } from '@ng-clay/components/forms';
+import { NcFormFieldControl } from '@ng-clay/components/forms';
 import { BOTTOM_LEFT, NcOverlayComponent, TOP_LEFT } from '@ng-clay/components/overlay';
 
 import { NcCalendarCellClassFunction } from './calendar-body.component';
@@ -44,11 +44,11 @@ import { NcDatePickerContent } from './datepicker-content.component';
 import { DateFilterFn, NC_DATE_PICKER_CONTROL, NcDatePickerControl } from './datepicker-control';
 import {
   DEFAULT_DATEPICKER_ICONS,
-  NT_DATEPICKER_ICONS,
+  NC_DATEPICKER_ICONS,
   NcDatePickerIcons
 } from './datepicker-icons';
 import { NcDatePickerInputBase } from './datepicker-input-base';
-import { NT_SINGLE_DATE_SELECTION_MODEL_PROVIDER, NcDateSelectionModel } from './selections';
+import { NC_SINGLE_DATE_SELECTION_MODEL_PROVIDER, NcDateSelectionModel } from './selections';
 
 let datepickerUid = 0;
 
@@ -61,7 +61,7 @@ let datepickerUid = 0;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'nt-datepicker',
+    'class': 'nc-datepicker',
     '(click)': '_onClick($event)',
   },
   animations: [
@@ -71,13 +71,13 @@ let datepickerUid = 0;
     ])
   ],
   providers: [
-    { provide: NtFormFieldControl, useExisting: NcDatePicker },
+    { provide: NcFormFieldControl, useExisting: NcDatePicker },
     { provide: NC_DATE_PICKER_CONTROL, useExisting: NcDatePicker },
-    NT_SINGLE_DATE_SELECTION_MODEL_PROVIDER
+    NC_SINGLE_DATE_SELECTION_MODEL_PROVIDER
   ]
 })
 export class NcDatePicker<D> extends NcDatePickerInputBase<D | null, D>
-  implements NtFormFieldControl<D>, NcDatePickerControl<D>, AfterViewInit, OnChanges, OnDestroy {
+  implements NcFormFieldControl<D>, NcDatePickerControl<D>, AfterViewInit, OnChanges, OnDestroy {
 
   private _overlayToggle = new Subject<boolean>();
 
@@ -87,27 +87,27 @@ export class NcDatePicker<D> extends NcDatePickerInputBase<D | null, D>
 
   tabIndex: number;
 
-  _portal: Portal<any>;
+  _portal!: Portal<any>;
 
   _positionPairs: ConnectionPositionPair[] = [BOTTOM_LEFT, TOP_LEFT];
 
-  private _startAt: D | null;
+  private _startAt!: D | null;
 
   @Input()
   get startAt(): D | null { return this._startAt || this._getStartValue(); }
   set startAt(value: D | null) { this._startAt = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(value)); }
 
-  private _min: D | null;
+  private _min!: D | null;
 
   @Input()
-  get min(): D | null { return this._min; }
+  get min(): D | null  { return this._min; }
   set min(value: D | null) { this._min = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(value)); }
 
-  private _max: D | null;
+  private _max!: D | null;
 
   @Input()
   get max(): D | null { return this._max; }
-  set max(value: D | null) { this._max = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(value)); }
+  set max(value: D | null| undefined ) { this._max = this._dateAdapter.getValidDateOrNull(this._dateAdapter.deserialize(value)); }
 
   private _placeholder = '';
 
@@ -118,13 +118,13 @@ export class NcDatePicker<D> extends NcDatePickerInputBase<D | null, D>
   private _readonly = false;
 
   @Input()
-  set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
+  set readonly(value: BooleanInput) { this._readonly = coerceBooleanProperty(value); }
   get readonly() { return this._readonly; }
 
     /** Function that can be used to add custom CSS classes to dates. */
-  @Input() dateClass: NcCalendarCellClassFunction<D>;
+  @Input() dateClass!: NcCalendarCellClassFunction<D>;
 
-  @Input() dateFilter: (date: D) => boolean;
+  @Input() dateFilter!: DateFilterFn<D>;
 
   @Output() afterOpen = new EventEmitter<any>();
   @Output() afterClosed = new EventEmitter<any>();
@@ -134,11 +134,11 @@ export class NcDatePicker<D> extends NcDatePickerInputBase<D | null, D>
 
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
-  @ViewChild(NcOverlayComponent, { static: true }) overlay: NcOverlayComponent;
+  @ViewChild(NcOverlayComponent, { static: true }) overlay!: NcOverlayComponent;
 
-  @ViewChild(CdkPortalOutlet, { static: true }) _portalOutlet: CdkPortalOutlet;
+  @ViewChild(CdkPortalOutlet, { static: true }) _portalOutlet!: CdkPortalOutlet;
 
-  _validator: ValidatorFn;
+  _validator!: ValidatorFn;
 
   readonly origin: CdkOverlayOrigin;
 
@@ -147,12 +147,12 @@ export class NcDatePicker<D> extends NcDatePickerInputBase<D | null, D>
   constructor(
     public _elementRef: ElementRef,
     @Attribute('tabindex') tabIndex: string,
-    @Optional() @Inject(NT_DATEPICKER_ICONS) public  icons: NcDatePickerIcons,
+    @Optional() @Inject(NC_DATEPICKER_ICONS) public  icons: NcDatePickerIcons,
     @Inject(NC_DATE_FORMATS) private  _dateFormats: NcDateFormats,
     private _changeDetectorRef: ChangeDetectorRef,
     dateAdapter: DateAdapter<D>,
-    _model: NcDateSelectionModel<D, D>,
-    @Optional() @Self() public ngControl: NgControl) {
+    _model: NcDateSelectionModel<D | null, D>,
+    @Optional() @Self() public override ngControl: NgControl) {
 
     super(dateAdapter);
 
@@ -194,14 +194,14 @@ export class NcDatePicker<D> extends NcDatePickerInputBase<D | null, D>
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const change = changes.value || changes.startAt || changes.minDate || changes.maxDate;
+    const change = changes['value'] || changes['startAt'] || changes['minDate'] || changes['maxDate'];
     if(change && !change.firstChange) {
       this._changeDetectorRef.markForCheck();
     }
     this._stateChanges.next(undefined);
   }
 
-  ngOnDestroy() {
+  override ngOnDestroy() {
     this._stateChanges.complete();
   }
 

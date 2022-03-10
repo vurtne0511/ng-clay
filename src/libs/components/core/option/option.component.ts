@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs';
 
 import { Highlightable, ListKeyManagerOption } from '@angular/cdk/a11y';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterViewChecked,
   ChangeDetectorRef,
@@ -27,14 +27,14 @@ export class NcOptionSelectionChange {
     public isUserInput = false) { }
 }
 
-export const NC_OPTION_PARENT_COMPONENT = new InjectionToken<NcOptionParentComponent>('nc-option-parent-component');
+export const NC_OPTION_PARENC_COMPONENT = new InjectionToken<NcOptionParentComponent>('nc-option-parent-component');
 
 @Component({
   selector: 'nc-option',
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'nt-option',
+    'class': 'nc-option',
     '[class.nt-option-selected]': 'selected',
     '[class.nt-option-disabled]': 'disabled',
     '[class.nt-option-active]': '_isActive',
@@ -44,15 +44,11 @@ export const NC_OPTION_PARENT_COMPONENT = new InjectionToken<NcOptionParentCompo
 })
 export class NcOptionComponent implements AfterViewChecked, Highlightable, ListKeyManagerOption {
 
-  private _value: any;
-  private _selected = false;
-  private _disabled = false;
-  private _label = '';
-  private _hidden = false;
-
   private _mostRecentViewValue = '';
 
   _isActive = false;
+
+  private _label = '';
 
   @Input()
   set label(value: string) { this._label = value; }
@@ -65,20 +61,28 @@ export class NcOptionComponent implements AfterViewChecked, Highlightable, ListK
 
   get multiple() { return this._parent && this._parent.multiple; }
 
+  private _value: any;
+
   @Input()
   set value(value: any) { this._value = value; }
   get value() { return this._value; }
 
+  private _disabled = false;
+
   @Input()
-  get disabled() { return this._disabled || this.hidden; }
-  set disabled(value: boolean) {
+  get disabled(): boolean { return this._disabled || this.hidden; }
+  set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
   }
 
-  set hidden(value: boolean) {
+  private _hidden = false;
+
+  get hidden(): boolean { return this._hidden; }
+  set hidden(value: BooleanInput) {
     this._hidden = coerceBooleanProperty(value);
   }
-  get hidden() { return this._hidden; }
+
+  private _selected = false;
 
   get selected() { return this._selected; }
 
@@ -89,7 +93,7 @@ export class NcOptionComponent implements AfterViewChecked, Highlightable, ListK
   constructor(
     private _element: ElementRef,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Optional() @Inject(NC_OPTION_PARENT_COMPONENT) private _parent: NcOptionParentComponent) { }
+    @Optional() @Inject(NC_OPTION_PARENC_COMPONENT) private _parent: NcOptionParentComponent) { }
 
   ngAfterViewChecked() {
     if (this._selected) {

@@ -15,10 +15,10 @@ export interface NcPopoverParentComponent {
   overlay: NcOverlayComponent;
 }
 
-export const NC_POPOVER_PARENT_COMPONENT = new InjectionToken<NcPopoverParentComponent>('nc-popover-parent-component');
+export const NC_POPOVER_PARENC_COMPONENT = new InjectionToken<NcPopoverParentComponent>('nc-popover-parent-component');
 
 @Component({
-  selector: 'nc-popover-pane, [nt-popover-pane]',
+  selector: 'nc-popover-pane, [nc-popover-pane]',
   template: `
     <ng-content></ng-content>
   `,
@@ -41,7 +41,7 @@ export class NcPopoverPaneComponent implements AfterContentInit {
   constructor(
     private _contentObserver: ContentObserver,
     private _elementRef: ElementRef,
-    @Inject(NT_POPOVER_PARENT_COMPONENT) private _parent: NcPopoverParentComponent) {
+    @Inject(NC_POPOVER_PARENC_COMPONENT) private _parent: NcPopoverParentComponent) {
   }
 
   ngAfterContentInit() {

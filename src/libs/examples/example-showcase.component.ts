@@ -5,7 +5,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'nt-example-showcase'
+    'class': 'nc-example-showcase'
   }
 })
 export class NcExampleShowcaseComponent { }

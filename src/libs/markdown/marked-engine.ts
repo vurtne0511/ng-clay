@@ -6,7 +6,7 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { Inject, Injectable, Optional } from '@angular/core';
 
 import { NcMarkdownEngine } from './markdown-engine';
-import { NT_MARKED_OPTIONS } from './marked-engine-options';
+import { NC_MARKED_OPTIONS } from './marked-engine-options';
 
 @Injectable()
 export class NcMarkedEngine implements NcMarkdownEngine {
@@ -17,7 +17,7 @@ export class NcMarkedEngine implements NcMarkdownEngine {
 
   constructor(
     private http: HttpClient,
-    @Optional() @Inject(NT_MARKED_OPTIONS) options: marked.MarkedOptions = {}) {
+    @Optional() @Inject(NC_MARKED_OPTIONS) options: marked.MarkedOptions = {}) {
     this.extendRenderer();
     this.setMarkedOptions(options);
   }

@@ -1,5 +1,5 @@
 import { transition, trigger } from '@angular/animations';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { fadeIn, fadeOut } from '@ng-clay/components/core';
 
@@ -19,9 +19,10 @@ export class NcScrimComponent {
   private _isOpen = false;
 
   @Input() text = '';
-
-  set isOpen(value: boolean) { this._isOpen = coerceBooleanProperty(value); }
   get isOpen() { return this._isOpen; }
+  set isOpen(value: BooleanInput) {
+    this._isOpen = coerceBooleanProperty(value);
+  }
 
   constructor() { }
 }

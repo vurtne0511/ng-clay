@@ -2,7 +2,7 @@ import { defer, Observable, of, Subject } from 'rxjs';
 import { filter, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { transition, trigger } from '@angular/animations';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -26,7 +26,7 @@ import { fadeIn, fadeOut } from '@ng-clay/components/core';
 
 import { NcFormFieldControl } from './form-field-control';
 import { NcFormLabelWidthDirective } from './form-label-width.directive';
-import { NtFormOrientation, NcFormOrientationDirective } from './form-orientation.directive';
+import { NcFormOrientation, NcFormOrientationDirective } from './form-orientation.directive';
 
 @Component({
   selector: 'nc-form-field',
@@ -82,7 +82,7 @@ export class NcFormFieldComponent implements AfterContentInit, OnDestroy {
 
   @Input()
   get labelVisible() { return this._labelVisible; }
-  set labelVisible(value: boolean) {
+  set labelVisible(value: BooleanInput) {
     this._labelVisible = coerceBooleanProperty(value);
   }
 
@@ -115,7 +115,7 @@ export class NcFormFieldComponent implements AfterContentInit, OnDestroy {
 
   @Input()
   get markVisible() { return this._markVisible; }
-  set markVisible(value: boolean) {
+  set markVisible(value: BooleanInput) {
     this._markVisible = coerceBooleanProperty(value);
   }
 

@@ -2,7 +2,7 @@ import { Subject, Subscription, SubscriptionLike } from 'rxjs';
 import { debounceTime, delay, filter, switchMap, take, takeUntil } from 'rxjs/operators';
 
 import { AnimationEvent, transition, trigger } from '@angular/animations';
-import { coerceArray, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceArray, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ESCAPE } from '@angular/cdk/keycodes';
 import {
   CdkConnectedOverlay,
@@ -30,12 +30,12 @@ import {
 import { fadeIn, fadeOut, fromOutsideClick } from '@ng-clay/components/core';
 import {
   getPositionClassName,
-  NT_OVERLAY_POSITION_PAIRS,
+  NC_OVERLAY_POSITION_PAIRS,
   NcOverlayPosition
 } from './overlay-positions';
 
 @Component({
-  selector: 'nc-overlay, [nt-overlay]',
+  selector: 'nc-overlay, [nc-overlay]',
   templateUrl: 'overlay.component.html',
   animations: [
     trigger('fade', [
@@ -50,13 +50,13 @@ export class NcOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   private readonly _destroy = new Subject<void>();
 
-  private _debounceClose = new EventEmitter<any>();
+  private _debounceClose = new EventEmitter<void>();
 
   private _positionChange = new EventEmitter<string>();
 
   private _locationChanges: SubscriptionLike = Subscription.EMPTY;
 
-  private _outsideClickSubscription: Subscription | null;
+  private _outsideClickSubscription!: Subscription | null;
 
   private _opened = false;
 
@@ -64,7 +64,7 @@ export class NcOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   private _markClosed = true;
 
-  private _origin: CdkOverlayOrigin;
+  private _origin!: CdkOverlayOrigin;
 
   @Input()
   set origin(value: CdkOverlayOrigin) { this._origin = value; }
@@ -76,13 +76,13 @@ export class NcOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
   set position(value: NcOverlayPosition) {
     if (value) {
       this._position = value;
-      this._positionPairs = NT_OVERLAY_POSITION_PAIRS[value];
+      this._positionPairs = NC_OVERLAY_POSITION_PAIRS[value];
     } else {
       this._position = NcOverlayPosition.BottomLeft;
     }
   }
 
-  private _positionPairs: ConnectionPositionPair[] = NT_OVERLAY_POSITION_PAIRS[this._position];
+  private _positionPairs: ConnectionPositionPair[] = NC_OVERLAY_POSITION_PAIRS[this._position];
 
   @Input()
   get positionPairs() { return this._positionPairs; }
@@ -98,7 +98,7 @@ export class NcOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   @Input()
   get fixed() { return this._fixed; }
-  set fixed(value: boolean) {
+  set fixed(value: BooleanInput) {
     this._fixed = coerceBooleanProperty(value);
   }
 
@@ -106,7 +106,7 @@ export class NcOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   @Input()
   get arrow() { return this._arrow; }
-  set arrow(value: boolean) {
+  set arrow(value: BooleanInput) {
     this._arrow = coerceBooleanProperty(value);
   }
 
@@ -114,7 +114,7 @@ export class NcOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   @Input()
   get nospacing() { return this._nospacing; }
-  set nospacing(value: boolean) {
+  set nospacing(value: BooleanInput) {
     this._nospacing = coerceBooleanProperty(value);
   }
 
@@ -130,20 +130,20 @@ export class NcOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   @Input()
   get backdrop() { return this._backdrop; }
-  set backdrop(value: boolean) {
+  set backdrop(value: BooleanInput) {
     this._backdrop = coerceBooleanProperty(value);
   }
 
-  @ViewChild(CdkConnectedOverlay, { static: true }) cdkConnectedOverlay: CdkConnectedOverlay;
+  @ViewChild(CdkConnectedOverlay, { static: true }) cdkConnectedOverlay!: CdkConnectedOverlay;
 
-  @Output() afterOpen = new EventEmitter<any>();
-  @Output() afterClosed = new EventEmitter<any>();
+  @Output() afterOpen = new EventEmitter<void>();
+  @Output() afterClosed = new EventEmitter<void>();
 
-  @Output() beforeOpen = new EventEmitter<any>();
-  @Output() beforeClosed = new EventEmitter<any>();
+  @Output() beforeOpen = new EventEmitter<void>();
+  @Output() beforeClosed = new EventEmitter<void>();
 
-  @Output() overlayEnter = new EventEmitter<any>();
-  @Output() overlayLeave = new EventEmitter<any>();
+  @Output() overlayEnter = new EventEmitter<void>();
+  @Output() overlayLeave = new EventEmitter<void>();
 
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
@@ -201,7 +201,7 @@ export class NcOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const change = changes.position || changes.fixed || changes.positionPairs;
+    const change = changes['position'] || changes['fixed'] || changes['positionPairs'];
     if (change && !change.firstChange) {
       this._setPosition();
     }

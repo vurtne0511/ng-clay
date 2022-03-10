@@ -1,6 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
-export interface NtAttachmentIcons {
+export interface NcAttachmentIcons {
+  [key: string]: any;
   default: string;
   archive: string;
   code: string;
@@ -14,7 +15,7 @@ export interface NtAttachmentIcons {
   csv: string;
 }
 
-export const DEFAULT_ATTACHMENT_ICONS: NtAttachmentIcons = {
+export const DEFAULT_ATTACHMENC_ICONS: NcAttachmentIcons = {
   default: 'far fa-file-alt',
   archive: 'far fa-file-archive',
   code: 'far fa-file-code',
@@ -28,4 +29,4 @@ export const DEFAULT_ATTACHMENT_ICONS: NtAttachmentIcons = {
   csv: 'far fa-file-csv',
 };
 
-export const NC_ATTACHMENT_ICONS = new InjectionToken<NtAttachmentIcons>('nc-attachment-icons');
+export const NC_ATTACHMENC_ICONS = new InjectionToken<NcAttachmentIcons>('nc-attachment-icons');

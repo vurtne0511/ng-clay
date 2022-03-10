@@ -35,7 +35,7 @@ export class NcModal {
 
   constructor(
     @Optional() private _location: Location,
-    @Optional() @Inject(NT_MODAL_DEFAULT_CONFIG) private _defaultConfig: NcModalConfig,
+    @Optional() @Inject(NC_MODAL_DEFAULT_CONFIG) private _defaultConfig: NcModalConfig,
     private _overlay: Overlay,
     private _injector: Injector) { }
 
@@ -116,7 +116,7 @@ export class NcModal {
     const injectionTokens = new WeakMap();
     injectionTokens.set(NcModalRef, modalRef);
     injectionTokens.set(NcModalComponent, modalContainer);
-    injectionTokens.set(NT_MODAL_DATA, config.data);
+    injectionTokens.set(NC_MODAL_DATA, config.data);
     return new PortalInjector(injector || this._injector, injectionTokens);
   }
 

@@ -34,6 +34,7 @@ import {
 import { DateAdapter, NC_DATE_FORMATS, NcDateFormats } from '@ng-clay/components/core';
 import { BOTTOM_LEFT, NcOverlayComponent, TOP_LEFT } from '@ng-clay/components/overlay';
 
+import { DateFilterFn } from './';
 import { NcCalendarCellClassFunction } from './calendar-body.component';
 import { NcDatePickerContent } from './datepicker-content.component';
 import { NcDatePickerControl } from './datepicker-control';
@@ -87,7 +88,7 @@ export abstract class NcDatePickerBase<S, D = ExtractDateTypeFromSelection<S>>
   /** Function that can be used to add custom CSS classes to dates. */
   @Input() dateClass!: NcCalendarCellClassFunction<D>;
 
-  @Input() dateFilter: (date: D) => boolean;
+  @Input() dateFilter!: DateFilterFn<D>;
 
   @Output() afterOpen = new EventEmitter<any>();
   @Output() afterClosed = new EventEmitter<any>();

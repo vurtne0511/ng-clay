@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { transition, trigger } from '@angular/animations';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   Component,
   EventEmitter,
@@ -75,7 +75,7 @@ export class NcPictureRef<T> extends NcUploadRef<T> {
   selector: 'nc-picture',
   templateUrl: 'picture.component.html',
   host: {
-    'class': 'nt-picture',
+    'class': 'nc-picture',
     '[class.disabled]': 'disabled',
     '[class.readonly]': 'readonly'
   },
@@ -113,13 +113,13 @@ export class NcPictureComponent<T> implements OnInit, ControlValueAccessor, NcFo
 
   @Input()
   get disabled() { return this._disabled; }
-  set disabled(value: boolean) { this._disabled = coerceBooleanProperty(value); }
+  set disabled(value: BooleanInput) { this._disabled = coerceBooleanProperty(value); }
 
   private _readonly = false;
 
   @Input()
   get readonly() { return this._readonly; }
-  set readonly(value: boolean) { this._readonly = coerceBooleanProperty(value); }
+  set readonly(value: BooleanInput) { this._readonly = coerceBooleanProperty(value); }
 
   private _notrigger = false;
 
@@ -128,13 +128,13 @@ export class NcPictureComponent<T> implements OnInit, ControlValueAccessor, NcFo
    */
   @Input()
   get notrigger() { return this._notrigger; }
-  set notrigger(value: boolean) { this._notrigger = coerceBooleanProperty(value); }
+  set notrigger(value: BooleanInput) { this._notrigger = coerceBooleanProperty(value); }
 
   private _required = false;
 
   @Input()
   get required(): boolean { return this._required; }
-  set required(value: boolean) { this._required = coerceBooleanProperty(value); }
+  set required(value: BooleanInput) { this._required = coerceBooleanProperty(value); }
 
   @Input()
   get accept() { return this._accept; }
