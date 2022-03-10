@@ -5,28 +5,29 @@ import {
   CdkHeaderRow,
   CdkHeaderRowDef,
   CdkRow,
-  CdkRowDef
+  CdkRowDef,
+  CdkNoDataRow
 } from '@angular/cdk/table';
 import { ChangeDetectionStrategy, Component, Directive, ViewEncapsulation } from '@angular/core';
 
 @Directive({
   selector: '[ncHeaderRowDef]',
-  providers: [{ provide: CdkHeaderRowDef, useExisting: NtHeaderRowDefDirective }],
-  inputs: ['columns: ntHeaderRowDef', 'sticky: ntHeaderRowDefSticky'],
+  providers: [{ provide: CdkHeaderRowDef, useExisting: NcHeaderRowDefDirective }],
+  inputs: ['columns: ncHeaderRowDef', 'sticky: ncHeaderRowDefSticky'],
 })
 export class NcHeaderRowDefDirective extends CdkHeaderRowDef { }
 
 @Directive({
   selector: '[ncFooterRowDef]',
   providers: [{ provide: CdkFooterRowDef, useExisting: NcFooterRowDefDirective }],
-  inputs: ['columns: NcFooterRowDef', 'sticky: NcFooterRowDefSticky'],
+  inputs: ['columns: ncFooterRowDef', 'sticky: ncFooterRowDefSticky'],
 })
 export class NcFooterRowDefDirective extends CdkFooterRowDef { }
 
 @Directive({
   selector: '[ncRowDef]',
-  providers: [{ provide: CdkRowDef, useExisting: NtRowDefDirective }],
-  inputs: ['columns: ntRowDefColumns', 'when: ntRowDefWhen'],
+  providers: [{ provide: CdkRowDef, useExisting: NcRowDefDirective }],
+  inputs: ['columns: ncRowDefColumns', 'when: ncRowDefWhen'],
 })
 export class NcRowDefDirective<T> extends CdkRowDef<T> { }
 
@@ -40,7 +41,7 @@ export class NcRowDefDirective<T> extends CdkRowDef<T> { }
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ncHeaderRow',
-  providers: [{ provide: CdkHeaderRow, useExisting: NtHeaderRowComponent }],
+  providers: [{ provide: CdkHeaderRow, useExisting: NcHeaderRowComponent }],
 })
 export class NcHeaderRowComponent extends CdkHeaderRow { }
 
@@ -68,6 +69,12 @@ export class NcFooterRowComponent extends CdkFooterRow { }
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ncRow',
-  providers: [{ provide: CdkRow, useExisting: NtRowComponent }],
+  providers: [{ provide: CdkRow, useExisting: NcRowComponent }],
 })
 export class NcRowComponent extends CdkRow { }
+
+@Directive({
+  selector: 'ng-template[ncNoDataRow]',
+  providers: [{provide: CdkNoDataRow, useExisting: NcNoDataRowComponent}],
+})
+export class NcNoDataRowComponent extends CdkNoDataRow { }

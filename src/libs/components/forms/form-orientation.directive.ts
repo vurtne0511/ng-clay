@@ -2,20 +2,20 @@ import { Subject } from 'rxjs';
 
 import { Directive, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 
-export declare type NtFormOrientation = 'vertical' | 'horizontal';
+export declare type NcFormOrientation = 'vertical' | 'horizontal';
 
 @Directive({
   selector: 'form[ncFormOrientation]',
 })
 export class NcFormOrientationDirective implements OnChanges, OnDestroy {
 
-  private readonly _orientationChange = new Subject<NtFormOrientation>();
+  private readonly _orientationChange = new Subject<NcFormOrientation>();
 
-  private _orientation!: NtFormOrientation;
+  private _orientation!: NcFormOrientation;
 
   @Input('ncFormOrientation')
   get orientation() { return this._orientation; }
-  set orientation(value: NtFormOrientation) {
+  set orientation(value: NcFormOrientation) {
     this._orientation = value;
   }
 

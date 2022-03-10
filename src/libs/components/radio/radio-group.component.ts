@@ -13,10 +13,10 @@ import {
   NgZone,
   OnDestroy,
   Optional,
+  Output,
   QueryList,
   Self,
-  ViewEncapsulation,
-  Output
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { NcFormFieldControl } from '@ng-clay/components/forms';

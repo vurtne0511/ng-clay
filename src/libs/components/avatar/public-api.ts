@@ -1,3 +1,3 @@
 
-export { NtAvatarModule } from './avatar.module';
-export { NtAvatarComponent } from './avatar.component';
+export { NcAvatarModule } from './avatar.module';
+export { NcAvatarComponent } from './avatar.component';

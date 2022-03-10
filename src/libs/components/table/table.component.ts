@@ -1,18 +1,45 @@
 import { defer, merge, Observable, Subject } from 'rxjs';
 import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
 
-import { CDK_TABLE, CDK_TABLE_TEMPLATE, CdkTable } from '@angular/cdk/table';
+import { Directionality } from '@angular/cdk/bidi';
+import {
+  _DisposeViewRepeaterStrategy,
+  _VIEW_REPEATER_STRATEGY,
+  _ViewRepeater
+} from '@angular/cdk/collections';
+import { Platform } from '@angular/cdk/platform';
+import { ViewportRuler } from '@angular/cdk/scrolling';
+import {
+  _COALESCED_STYLE_SCHEDULER,
+  _CoalescedStyleScheduler,
+  CDK_TABLE,
+  CDK_TABLE_TEMPLATE,
+  CdkTable,
+  RenderRow,
+  RowContext,
+  STICKY_POSITIONING_LISTENER,
+  StickyPositioningListener
+} from '@angular/cdk/table';
+import { DOCUMENT } from '@angular/common';
 import {
   AfterContentInit,
+  Attribute,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
+  ElementRef,
   EventEmitter,
+  Inject,
   Input,
+  IterableDiffers,
+  NgZone,
   OnChanges,
+  Optional,
   Output,
   QueryList,
   SimpleChanges,
+  SkipSelf,
   ViewEncapsulation
 } from '@angular/core';
 
@@ -24,8 +51,9 @@ import { NcColumnDirective, NcColumnSort, NcColumnSortChange } from './cell.dire
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    { provide: CdkTable, useExisting: NcTableComponent },
     { provide: CDK_TABLE, useExisting: NcTableComponent },
+    { provide: _VIEW_REPEATER_STRATEGY, useClass: _DisposeViewRepeaterStrategy },
+    { provide: _COALESCED_STYLE_SCHEDULER, useClass: _CoalescedStyleScheduler},
   ],
   host: {
     'class': 'nc-table'
@@ -48,7 +76,7 @@ export class NcTableComponent<T> extends CdkTable<T> implements AfterContentInit
       );
     }
 
-    return super._ngZone!.onStable
+    return this._ngZone!.onStable
       .asObservable()
       .pipe(take(1), switchMap(() => this.columSortChanges));
   });
@@ -64,6 +92,33 @@ export class NcTableComponent<T> extends CdkTable<T> implements AfterContentInit
   @ContentChildren(NcColumnDirective) _contentColumns!: QueryList<NcColumnDirective>;
 
   @Output() readonly sortChange: EventEmitter<NcColumnSortChange | NcColumnSortChange[]> = new EventEmitter();
+
+  constructor(
+    protected override _ngZone: NgZone,
+    protected override _differs: IterableDiffers,
+    protected override _changeDetectorRef: ChangeDetectorRef,
+    protected override _elementRef: ElementRef,
+    @Attribute('role') _role: string,
+    @Optional() protected override readonly _dir: Directionality,
+    @Inject(DOCUMENT) _document: any,
+    _platform: Platform,
+    @Inject(_VIEW_REPEATER_STRATEGY) _viewRepeater: _ViewRepeater<T, RenderRow<T>, RowContext<T>>,
+    @Inject(_COALESCED_STYLE_SCHEDULER) _coalescedStyleScheduler: _CoalescedStyleScheduler,
+     _viewportRuler: ViewportRuler,
+     @Optional() @SkipSelf() @Inject(STICKY_POSITIONING_LISTENER) _stickyPositioningListener: StickyPositioningListener) {
+    super(_differs,
+          _changeDetectorRef,
+          _elementRef,
+          _role,
+          _dir,
+          _document,
+          _platform,
+          _viewRepeater,
+          _coalescedStyleScheduler,
+          _viewportRuler,
+          _stickyPositioningListener);
+  }
+
 
   ngAfterContentInit() {
     this._contentColumns.changes.pipe(startWith(null), takeUntil(this._destroy)).subscribe(() => {

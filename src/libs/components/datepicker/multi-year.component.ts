@@ -23,8 +23,8 @@ import {
   NcCalendarUserEvent
 } from './calendar-body.component';
 import { getActiveOffset, isSameMultiYearView, yearsPerPage, yearsPerRow } from './calendar-utils';
-import { DateRange } from './selections';
 import { createMissingDateImplError } from './datepicker-errors';
+import { DateRange } from './selections';
 
 @Component({
   selector: 'nc-calendar-multi-year',
@@ -58,11 +58,11 @@ export class NcCalendarMultiYear<D> implements AfterContentInit, OnDestroy {
   }
 
   /** The currently selected date. */
-  private _selected!: D | null;
+  private _selected!: D | DateRange<D> |null;
 
   @Input()
-  get selected(): D | null { return this._selected; }
-  set selected(value: D | null) {
+  get selected(): D | DateRange<D> |null { return this._selected; }
+  set selected(value: D | DateRange<D> |null) {
     if (value instanceof DateRange) {
       this._selected = value;
     } else {

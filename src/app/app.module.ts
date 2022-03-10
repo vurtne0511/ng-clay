@@ -3,11 +3,11 @@ import locale from '@angular/common/locales/zh';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-// import { NcNativeDateModule } from '@ng-clay/components/core';
-// import { NcFormsModule } from '@ng-clay/components/forms';
-// import { NcNoopUploadModule } from '@ng-clay/components/noop-upload';
-// import { NcNotifierModule } from '@ng-clay/components/notifier';
-// import { NcMarkedEngineModule } from '@ng-clay/markdown';
+import { NcNativeDateModule } from '@ng-clay/components/core';
+import { NcFormsModule } from '@ng-clay/components/forms';
+import { NcNoopUploadModule } from '@ng-clay/components/noop-upload';
+import { NcNotifierModule } from '@ng-clay/components/notifier';
+import { NcMarkedEngineModule } from '@ng-clay/markdown';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found.component';
@@ -29,11 +29,11 @@ const ROUTES: Routes = [
     }),
     CommonModule,
     HeaderModule,
-    // NtFormsModule.forRoot(),
-    // NtNoopUploadModule,
-    // NtNativeDateModule,
-    // NcNotifierModule,
-    // NtMarkedEngineModule,
+    NcFormsModule.forRoot(),
+    NcNoopUploadModule,
+    NcNativeDateModule,
+    NcNotifierModule,
+    NcMarkedEngineModule,
     RouterModule.forRoot(ROUTES, {
       initialNavigation: 'enabled',
       paramsInheritanceStrategy: 'always'

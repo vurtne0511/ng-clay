@@ -9,8 +9,7 @@ import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import { Location } from '@angular/common';
 import { ComponentRef, Directive, ElementRef, Input, Optional, TemplateRef } from '@angular/core';
 
-import { NcContextMenuRef } from './contextmenu-ref';
-import { NcContextMenuComponent } from './contextmenu.component';
+
 
 @Directive({
   selector: '[ncContextMenu]',

@@ -1,2 +1,2 @@
-export { NtBadgeModule } from './badge.module';
-export { NtBadgeComponent } from './badge.component';
+export { NcBadgeModule } from './badge.module';
+export { NcBadgeComponent } from './badge.component';

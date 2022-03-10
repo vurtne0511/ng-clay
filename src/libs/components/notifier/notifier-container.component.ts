@@ -1,11 +1,12 @@
 import { Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   OnDestroy,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { NcNotifierAction } from './notifier-action';
@@ -14,7 +15,6 @@ import { NcNotifierQueue } from './notifier-queue';
 import { NcNotifierRef } from './notifier-ref';
 import { NcNotifierComponent } from './notifier.component';
 import { NcNotifier } from './notifier.service';
-import { switchMap } from 'rxjs/operators';
 
 /**
  * Notifier container component
@@ -130,7 +130,14 @@ export class NcNotifierContainerComponent implements OnDestroy {
    * @param   action Action object
    * @returns Promise, resolved when done
    */
-  private _handleAction(action: NcNotifierAction): Promise<NcNotifierRef | undefined> {
+  private _handleAction(action: NcNotifierAction | undefined): Promise<NcNotifierRef | undefined> {
+    if(!action) {
+      return new Promise<undefined>(
+        (resolve: (value?: any) => void, reject: () => void) => {
+          resolve(); // Ignore unknown action types
+        }
+      );
+    }
     switch (action.type) {
       case 'SHOW':
         return this._handleShowAction(action);

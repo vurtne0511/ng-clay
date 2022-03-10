@@ -27,7 +27,7 @@ export class NcPopConfirmComponent implements OnChanges {
 
   private _title: string = '';
 
-  private _template: TemplateRef<any> | null;
+  private _template!: TemplateRef<any> | null;
 
   @Input()
   set title(value: string) { this._title = value; }
@@ -47,7 +47,7 @@ export class NcPopConfirmComponent implements OnChanges {
     }
   }
 
-  @Input() position: NcOverlayPosition = NcOverlayPosition.Top;
+  @Input() position: NcOverlayPosition | string = NcOverlayPosition.Top;
 
   @Input() confirmText = '确认';
   @Input() cancelText = '取消';
@@ -63,7 +63,7 @@ export class NcPopConfirmComponent implements OnChanges {
 
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
-  @ViewChild(NcOverlayComponent, { static: true }) overlay: NcOverlayComponent;
+  @ViewChild(NcOverlayComponent, { static: true }) overlay!: NcOverlayComponent;
 
   constructor(
     private _elementRef: ElementRef) {
@@ -72,7 +72,7 @@ export class NcPopConfirmComponent implements OnChanges {
 
 
   ngOnChanges(changes: SimpleChanges) {
-    const change = changes.title || changes.template || changes.popover;
+    const change = changes['title'] || changes['template'] || changes['popover'];
     if (change && !change.firstChange) {
 
       /** 在内容更新之后提示框的位置需要更新，需要延迟执行，因为这时候画面还未渲染 */

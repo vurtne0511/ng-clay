@@ -17,6 +17,7 @@ import {
   NcFooterRowDefDirective,
   NcHeaderRowComponent,
   NcHeaderRowDefDirective,
+  NcNoDataRowComponent,
   NcRowComponent,
   NcRowDefDirective
 } from './row.directive';
@@ -35,6 +36,7 @@ const EXPORTS_DECLARATIONS = [
   NcFooterRowComponent,
   NcFooterRowDefDirective,
   NcHeaderRowComponent,
+  NcNoDataRowComponent,
   NcHeaderRowDefDirective,
   NcRowComponent,
   NcRowDefDirective

@@ -1,7 +1,6 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { isPlatformBrowser } from '@angular/common';
 import {
-  ComponentFactoryResolver,
   ComponentRef,
   Directive,
   ElementRef,
@@ -16,7 +15,7 @@ import {
 import { NcScrimComponent } from './scrim.component';
 
 @Directive({
-  selector: '[NcScrim]'
+  selector: '[ncScrim]'
 })
 export class NcScrimDirective implements OnDestroy {
 
@@ -38,11 +37,9 @@ export class NcScrimDirective implements OnDestroy {
     @Inject(PLATFORM_ID) private platformId: Object,
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
-    private _componentFactoryResolver: ComponentFactoryResolver,
     private _viewContainerRef: ViewContainerRef) {
 
-    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(NcScrimComponent);
-    this._componentRef = this._viewContainerRef.createComponent(componentFactory);
+    this._componentRef = this._viewContainerRef.createComponent(NcScrimComponent);
     if (isPlatformBrowser(this.platformId)) {
       const style = window.getComputedStyle(this._elementRef.nativeElement);
       if (style.position !== 'absolute' || style.position !== 'absolute') {

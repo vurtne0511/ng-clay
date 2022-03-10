@@ -11,17 +11,17 @@ export class NcNotifierRef {
 	/**
 	 * Unique notification ID, can be set manually to control the notification from outside later on
 	 */
-	id: string;
+	id!: string;
 
 	/**
 	 * Notification type, will be used for constructing an appropriate class name
 	 */
-	type: string;
+	type!: string;
 
 	/**
 	 * Notification message
 	 */
-	message: string;
+	message!: string;
 
 	/**
 	 * The template to customize
@@ -32,7 +32,7 @@ export class NcNotifierRef {
 	/**
 	 * Component reference of this notification, created and set during creation time
 	 */
-	component: NcNotifierComponent;
+	component!: NcNotifierComponent;
 
 	/**
 	 * Constructor

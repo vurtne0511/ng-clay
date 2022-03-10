@@ -1,5 +1,5 @@
 import { CdkTreeNodeToggle } from '@angular/cdk/tree';
-import { Directive, Input } from '@angular/core';
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[ncTreeNodeToggle]',

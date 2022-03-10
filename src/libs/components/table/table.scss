@@ -1,13 +1,13 @@
-$nt-table-sortable-icon-font-family: 'Font Awesome 5 Free' !default;
-$nt-table-sortable-normal: '\f0dc' !default;
-$nt-table-sortable-asc: '\f0de' !default;
-$nt-table-sortable-desc: '\f0dd' !default;
-$nt-table-sortable-color: get-color(primary) !default;
-$nt-table-sortable-color-symbol: $medium-gray !default;
-$nt-table-sortable-color-active: lighten(get-color(primary), 10%) !default;
-$nt-table-selector-padding: rem-calc(8 10 10) !default;
+$nc-table-sortable-icon-font-family: 'Font Awesome 5 Free' !default;
+$nc-table-sortable-normal: '\f0dc' !default;
+$nc-table-sortable-asc: '\f0de' !default;
+$nc-table-sortable-desc: '\f0dd' !default;
+$nc-table-sortable-color: get-color(primary) !default;
+$nc-table-sortable-color-symbol: $medium-gray !default;
+$nc-table-sortable-color-active: lighten(get-color(primary), 10%) !default;
+$nc-table-selector-padding: rem-calc(8 10 10) !default;
 
-@mixin nt-table-row($stripe: $table-stripe, $is-striped: $table-is-striped) {
+@mixin nc-table-row($stripe: $table-stripe, $is-striped: $table-is-striped) {
 
   .nt-row,
   .nt-header-row,
@@ -59,7 +59,7 @@ $nt-table-selector-padding: rem-calc(8 10 10) !default;
   }
 }
 
-@mixin nt-table-cell {
+@mixin nc-table-cell {
 
   .nt-cell,
   .nt-header-cell,
@@ -81,7 +81,7 @@ $nt-table-selector-padding: rem-calc(8 10 10) !default;
   }
 }
 
-@mixin nt-table-hover {
+@mixin nc-table-hover {
   .nt-row:hover {
     background-color: $table-row-hover;
   }
@@ -95,7 +95,7 @@ $nt-table-selector-padding: rem-calc(8 10 10) !default;
   }
 }
 
-@mixin nt-table-stack($header: $show-header-for-stacked) {
+@mixin nc-table-stack($header: $show-header-for-stacked) {
   @if $header {
     .nt-header-cell {
       display: block;
@@ -125,12 +125,12 @@ $nt-table-selector-padding: rem-calc(8 10 10) !default;
 }
 
 
-@mixin nt-table-selector {
+@mixin nc-table-selector {
 
   .nt-selector-header,
   .nt-selector-cell {
     width: 2em;
-    padding: $nt-table-selector-padding;
+    padding: $nc-table-selector-padding;
 
     input {
       margin-bottom: 0px;
@@ -138,12 +138,12 @@ $nt-table-selector-padding: rem-calc(8 10 10) !default;
   }
 }
 
-@mixin nt-table-sort {
+@mixin nc-table-sort {
   .nt-column-sortable {
     cursor: pointer;
     transition: background-color .2s;
     position: relative;
-    color: $nt-table-sortable-color;
+    color: $nc-table-sortable-color;
 
     $sortable-spacing: get-side($table-padding, 'right') / 3;
 
@@ -155,33 +155,33 @@ $nt-table-selector-padding: rem-calc(8 10 10) !default;
       margin-left: 0.3em;
       font-size: 1em;
       // transform: scale(.8);
-      color: $nt-table-sortable-color-symbol;
+      color: $nc-table-sortable-color-symbol;
       transition: color .2s;
     }
 
     &:after {
       // margin-top: -.35em;
-      font-family: $nt-table-sortable-icon-font-family;
-      content: $nt-table-sortable-normal;
+      font-family: $nc-table-sortable-icon-font-family;
+      content: $nc-table-sortable-normal;
     }
 
     &.asc:after {
-      content: $nt-table-sortable-asc;
+      content: $nc-table-sortable-asc;
     }
 
     &.desc:after {
-      content: $nt-table-sortable-desc;
+      content: $nc-table-sortable-desc;
     }
 
     &.asc:after,
     &.desc:after {
-      color: $nt-table-sortable-color-active;
+      color: $nc-table-sortable-color-active;
     }
   }
 }
 
-@mixin nt-table {
-  .nt-table {
+@mixin nc-table {
+  .nc-table {
 
     display: table;
     width: 100%;
@@ -191,14 +191,14 @@ $nt-table-selector-padding: rem-calc(8 10 10) !default;
     border-radius: $global-radius;
     background: $table-background;
 
-    @include nt-table-selector;
-    @include nt-table-sort;
-    @include nt-table-row;
-    @include nt-table-cell;
+    @include nc-table-selector;
+    @include nc-table-sort;
+    @include nc-table-row;
+    @include nc-table-cell;
 
     &.stack {
       @include breakpoint($table-stack-breakpoint down) {
-        @include nt-table-stack;
+        @include nc-table-stack;
       }
     }
 
@@ -207,14 +207,14 @@ $nt-table-selector-padding: rem-calc(8 10 10) !default;
     }
 
     &.hover {
-      @include nt-table-hover;
+      @include nc-table-hover;
     }
   }
 
   .table-scroll {
     overflow-x: auto;
 
-    .nt-table {
+    .nc-table {
       width: auto;
     }
   }

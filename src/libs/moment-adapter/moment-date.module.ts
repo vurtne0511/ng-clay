@@ -8,24 +8,24 @@
 import { NgModule } from '@angular/core';
 import { DateAdapter, NC_DATE_FORMATS, NC_DATE_LOCALE } from '@ng-clay/components/core';
 
-import { MomeNcDateAdapter, NC_MOMENC_DATE_ADAPTER_OPTIONS } from './moment-date-adapter';
-import { NC_MOMENC_DATE_FORMATS } from './moment-date-formats';
+import { MomentDateAdapter, NC_MOMENTDATE_ADAPTER_OPTIONS } from './moment-date-adapter';
+import { NC_MOMENT_DATE_FORMATS } from './moment-date-formats';
 
 @NgModule({
   providers: [
     {
       provide: DateAdapter,
-      useClass: MomeNcDateAdapter,
-      deps: [NC_DATE_LOCALE, NC_MOMENC_DATE_ADAPTER_OPTIONS]
+      useClass: MomentDateAdapter,
+      deps: [NC_DATE_LOCALE, NC_MOMENTDATE_ADAPTER_OPTIONS]
     }
   ],
 })
-export class MomeNcDateModule { }
+export class MomentDateModule { }
 
 @NgModule({
-  imports: [MomeNcDateModule],
+  imports: [MomentDateModule],
   providers: [
-    { provide: NC_DATE_FORMATS, useValue: NC_MOMENC_DATE_FORMATS }
+    { provide: NC_DATE_FORMATS, useValue: NC_MOMENT_DATE_FORMATS }
   ],
 })
-export class NcMomeNcDateModule { }
+export class NcMomentDateModule { }

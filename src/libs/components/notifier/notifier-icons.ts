@@ -1,6 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
 export interface NcNotifierIcons {
+  [key: string]: any;
   info: string;
   success: string;
   warning: string;

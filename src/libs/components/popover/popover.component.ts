@@ -50,7 +50,7 @@ export class NcPopoverComponent implements NcPopoverParentComponent {
     }
   }
 
-  @Input() position: NcOverlayPosition = NcOverlayPosition.Top;
+  @Input() position: NcOverlayPosition | string = NcOverlayPosition.Top;
 
   @Output() confirm = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();

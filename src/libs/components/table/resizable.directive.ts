@@ -1,11 +1,11 @@
 import { Directive } from '@angular/core';
 
 @Directive({
-  selector: 'table[ntTableResizable], nt-table[ntTableResizable]'
+  selector: 'table[ncTableResizable], nc-table[ncTableResizable]'
 })
 export class NcTableResizable {
 
-  private _isNativeTable: boolean;
+  private _isNativeTable!: boolean;
 
   constructor() { }
 }

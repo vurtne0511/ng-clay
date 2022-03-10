@@ -87,12 +87,11 @@ export class NcTreeFlatDataSource<T, F> extends DataSource<F> {
   }
 
   connect(collectionViewer: CollectionViewer): Observable<F[]> {
-    const changes = [
+    return merge(
       collectionViewer.viewChange,
       this.treeControl.expansionModel.changed,
       this._flattenedData
-    ];
-    return merge(...changes).pipe(map(() => {
+    ).pipe(map(() => {
       this._expandedData.next(
         this.treeFlattener.expandFlattenedNodes(this._flattenedData.value, this.treeControl)
       );

@@ -104,11 +104,11 @@ export class NcFormFieldComponent implements AfterContentInit, OnDestroy {
 
   @Input() messages!: { [key: string]: string };
 
-  private _orientation: NtFormOrientation = 'vertical';
+  private _orientation: NcFormOrientation = 'vertical';
 
   @Input()
   get orientation() { return this._orientation; }
-  set orientation(value: NtFormOrientation) {
+  set orientation(value: NcFormOrientation) {
     this._orientation = value;
     this._setHorizontalStyles();
   }

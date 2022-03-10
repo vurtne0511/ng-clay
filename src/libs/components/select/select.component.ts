@@ -1,3 +1,6 @@
+import { defer, merge, Observable, Subject } from 'rxjs';
+import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
+
 import { transition, trigger } from '@angular/animations';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -41,20 +44,17 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import {
-
   fadeIn,
-  fadeOut, NcOptionComponent,
+  fadeOut,
+  NC_OPTION_PARENC_COMPONENT,
+  NcOptionComponent,
   NcOptionParentComponent,
-  NcOptionSelectionChange, NC_OPTION_PARENC_COMPONENT
+  NcOptionSelectionChange
 } from '@ng-clay/components/core';
 import { NcFormFieldControl } from '@ng-clay/components/forms';
 import { BOTTOM_LEFT, NcOverlayComponent, TOP_LEFT } from '@ng-clay/components/overlay';
-import { defer, merge, Observable, Subject } from 'rxjs';
-import { filter, startWith, switchMap, take, takeUntil } from 'rxjs/operators';
-import { DEFAULT_SELECT_ICONS, NcSelectIcons, NC_SELECT_ICONS } from './select-icons';
 
-
-
+import { DEFAULT_SELECT_ICONS, NC_SELECT_ICONS, NcSelectIcons } from './select-icons';
 
 export function getNcSelectDynamicMultipleError() {
   return Error('Cannot change `multiple` mode of select after initialization.');

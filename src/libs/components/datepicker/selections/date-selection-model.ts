@@ -17,7 +17,7 @@ export class DateRange<D> {
    * expects a `DateRange`
    */
   // tslint:disable-next-line:no-unused-variable
-  private _disableStructuralEquivalency: never;
+  private _disableStructuralEquivalency!: never;
 
   constructor(
     readonly start: D | null,
@@ -166,8 +166,8 @@ export class NcRangeDateSelectionModel<D> extends NcDateSelectionModel<DateRange
 
 /** @docs-private */
 export function NC_SINGLE_DATE_SELECTION_MODEL_FACTORY(
-    parent: NtSingleDateSelectionModel<unknown>, adapter: DateAdapter<unknown>) {
-  return parent || new NtSingleDateSelectionModel(adapter);
+    parent: NcSingleDateSelectionModel<unknown>, adapter: DateAdapter<unknown>) {
+  return parent || new NcSingleDateSelectionModel(adapter);
 }
 
 /** Used to provide a single selection model to a component. */
@@ -180,8 +180,8 @@ export const NC_SINGLE_DATE_SELECTION_MODEL_PROVIDER: FactoryProvider = {
 
 /** @docs-private */
 export function NC_RANGE_DATE_SELECTION_MODEL_FACTORY(
-    parent: NtSingleDateSelectionModel<unknown>, adapter: DateAdapter<unknown>) {
-  return parent || new NtRangeDateSelectionModel(adapter);
+    parent: NcSingleDateSelectionModel<unknown>, adapter: DateAdapter<unknown>) {
+  return parent || new NcRangeDateSelectionModel(adapter);
 }
 
 /** Used to provide a range selection model to a component. */

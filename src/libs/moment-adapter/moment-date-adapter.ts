@@ -15,12 +15,12 @@
 // import { Moment } from 'moment';
 import * as moment from 'moment';
 
-import { Moment } from 'moment';
+import { default as _rollupMoment, Moment } from 'moment';
 import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { DateAdapter, NC_DATE_LOCALE } from '@ng-clay/components/core';
 
-/** Configurable options for {@see MomeNcDateAdapter}. */
-export interface NcMomeNcDateAdapterOptions {
+/** Configurable options for {@see MomentDateAdapter}. */
+export interface NcMomentDateAdapterOptions {
   /**
    * Turns the use of utc dates on or off.
    * Changing this will change how Angular Material components like DatePicker output dates.
@@ -30,14 +30,14 @@ export interface NcMomeNcDateAdapterOptions {
 }
 
 /** InjectionToken for moment date adapter to configure options. */
-export const NC_MOMENC_DATE_ADAPTER_OPTIONS = new InjectionToken<NcMomeNcDateAdapterOptions>(
+export const NC_MOMENTDATE_ADAPTER_OPTIONS = new InjectionToken<NcMomentDateAdapterOptions>(
   'nc-moment-date-adapter-options', {
     providedIn: 'root',
-    factory: NC_MOMENC_DATE_ADAPTER_OPTIONS_FACTORY
+    factory: NC_MOMENTDATE_ADAPTER_OPTIONS_FACTORY
   });
 
 /** @docs-private */
-export function NC_MOMENC_DATE_ADAPTER_OPTIONS_FACTORY(): NcMomeNcDateAdapterOptions {
+export function NC_MOMENTDATE_ADAPTER_OPTIONS_FACTORY(): NcMomentDateAdapterOptions {
   return {
     useUtc: false
   };
@@ -53,7 +53,7 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
 }
 
 @Injectable()
-export class MomeNcDateAdapter extends DateAdapter<Moment> {
+export class MomentDateAdapter extends DateAdapter<Moment> {
   // Note: all of the methods that accept a `Moment` input parameter immediately call `this.clone`
   // on it. This is to ensure that we're working with a `Moment` that has the correct locale setting
   // while avoiding mutating the original object passed to us. Just calling `.locale(...)` on the
@@ -71,8 +71,8 @@ export class MomeNcDateAdapter extends DateAdapter<Moment> {
 
   constructor(
     @Optional() @Inject(NC_DATE_LOCALE) dateLocale: string,
-    @Optional() @Inject(NC_MOMENC_DATE_ADAPTER_OPTIONS)
-    private options?: NcMomeNcDateAdapterOptions) {
+    @Optional() @Inject(NC_MOMENTDATE_ADAPTER_OPTIONS)
+    private options?: NcMomentDateAdapterOptions) {
     super();
     this.setLocale(dateLocale || moment.locale());
   }
@@ -182,7 +182,7 @@ export class MomeNcDateAdapter extends DateAdapter<Moment> {
   format(date: Moment, displayFormat: string): string {
     date = this.clone(date);
     if (!this.isValid(date)) {
-      throw Error('MomeNcDateAdapter: Cannot format invalid date.');
+      throw Error('MomentDateAdapter: Cannot format invalid date.');
     }
     return date.format(displayFormat);
   }

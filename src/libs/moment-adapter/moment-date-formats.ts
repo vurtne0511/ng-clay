@@ -1,6 +1,6 @@
 import { NcDateFormats } from '@ng-clay/components/core';
 
-export const NC_MOMENC_DATE_FORMATS: NcDateFormats = {
+export const NC_MOMENT_DATE_FORMATS: NcDateFormats = {
   parse: {
     dateInput: 'l',
   },

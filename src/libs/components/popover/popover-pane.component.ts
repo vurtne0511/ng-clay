@@ -26,7 +26,7 @@ export const NC_POPOVER_PARENC_COMPONENT = new InjectionToken<NcPopoverParentCom
 })
 export class NcPopoverPaneComponent implements AfterContentInit {
 
-  private _contentSubscription: Subscription;
+  private _contentSubscription!: Subscription;
 
   private _contentChange = new Subject();
 

@@ -20,7 +20,7 @@ import { NcNotifierRef } from './notifier-ref';
 import { NcNotifierTimer } from './notifier-timer';
 import { NcNotifier } from './notifier.service';
 
-const TYPE_COLORS_MAP = {
+const TYPE_COLORS_MAP: { [key: string]: any } = {
   default: 'secondary',
   info: 'primary',
   success: 'success',
@@ -53,7 +53,7 @@ export class NcNotifierComponent implements AfterViewInit {
 	/**
 	 * Input: Notification object, contains all details necessary to construct the notification
 	 */
-	@Input() notification: NcNotifierRef;
+	@Input() notification!: NcNotifierRef;
 
 	/**
 	 * Output: Ready event, handles the initialization success by emitting a reference to this notification component
@@ -78,12 +78,12 @@ export class NcNotifierComponent implements AfterViewInit {
 	/**
 	 * Current notification height, calculated and cached here (#perfmatters)
 	 */
-	private _elementHeight: number;
+	private _elementHeight!: number;
 
 	/**
 	 * Current notification width, calculated and cached here (#perfmatters)
 	 */
-	private _elementWidth: number;
+	private _elementWidth!: number;
 
 	/**
 	 * Current notification shift, calculated and cached here (#perfmatters)
@@ -157,7 +157,7 @@ export class NcNotifierComponent implements AfterViewInit {
 	 * @returns Promise, resolved when done
 	 */
 	show(): Promise<undefined> {
-		return new Promise<undefined>((resolve: () => void, reject: () => void) => {
+		return new Promise<undefined>((resolve: (value?: any) => void, reject: () => void) => {
 			// Are animations enabled?
 			if (this.config.animations.enabled && this.config.animations.show.speed > 0) {
 				// Get animation data
@@ -201,7 +201,7 @@ export class NcNotifierComponent implements AfterViewInit {
 	 * @returns Promise, resolved when done
 	 */
 	hide(): Promise<undefined> {
-		return new Promise<undefined>((resolve: () => void, reject: () => void) => {
+		return new Promise<undefined>((resolve: (value?: any) => void, reject: () => void) => {
 			this._stopHideTimer();
 
 			// Are animations enabled?
@@ -232,7 +232,7 @@ export class NcNotifierComponent implements AfterViewInit {
 	 * @returns Promise, resolved when done
 	 */
 	shift(distance: number, shiftToMakePlace: boolean): Promise<undefined> {
-		return new Promise<undefined>((resolve: () => void, reject: () => void) => {
+		return new Promise<undefined>((resolve: (value?: any) => void, reject: () => void) => {
 			// Calculate new position (position after the shift)
 			let newElementShift: number;
 			if (

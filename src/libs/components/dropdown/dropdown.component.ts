@@ -36,7 +36,7 @@ export class NcDropdownComponent implements NcDropdownParentComponent {
 
   readonly origin: CdkOverlayOrigin;
 
-  @Input() position: NcOverlayPosition = NcOverlayPosition.BottomLeft;
+  @Input() position: NcOverlayPosition | string = NcOverlayPosition.BottomLeft;
 
   @Input() trigger: NcDropdownTriggerType = 'hover';
 
@@ -48,9 +48,9 @@ export class NcDropdownComponent implements NcDropdownParentComponent {
 
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
-  @ViewChild(NcOverlayComponent, { static: true }) overlay: NcOverlayComponent;
+  @ViewChild(NcOverlayComponent, { static: true }) overlay!: NcOverlayComponent;
 
-  @ContentChild(NcDropdownPaneComponent) pane: NcDropdownPaneComponent;
+  @ContentChild(NcDropdownPaneComponent) pane!: NcDropdownPaneComponent;
 
   constructor(_elementRef: ElementRef) {
     this.origin = new CdkOverlayOrigin(_elementRef);

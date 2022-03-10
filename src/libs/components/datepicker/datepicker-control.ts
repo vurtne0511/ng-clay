@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
 
 import { InjectionToken } from '@angular/core';
-
 import { NcOverlayComponent } from '@ng-clay/components/overlay';
+
 import { NcCalendarCellClassFunction } from './calendar-body.component';
 
 /** Function that can be used to filter out dates from a calendar. */

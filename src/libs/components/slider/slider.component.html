@@ -7,7 +7,7 @@
 <span class="nt-slider-fill" [ngStyle]="_trackFillStyles"></span>
 <div class="nt-slider-stepmark" *ngIf="stepmark">
   <span *ngFor="let mark of _stepmarkValues"
-    [class.is-passed]="value >= mark.value"
+    [class.is-passed]="!!value && value >= mark.value"
     [ngStyle]="_trackStepmarkStyles(mark)">
   </span>
 </div>

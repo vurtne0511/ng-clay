@@ -6,7 +6,7 @@ import { GlobalPositionStrategy, OverlayRef } from '@angular/cdk/overlay';
 import { Location } from '@angular/common';
 import { TemplateRef } from '@angular/core';
 
-import { NcContextMenuComponent } from './contextmenu.component';
+
 
 let uniqueId = 0;
 

@@ -40,8 +40,8 @@ import { DEFAULT_PICTURE_ICONS, NC_PICTURE_ICONS, NtPictureIcons } from './pictu
  */
 export function zipImage(file: File, option: any = { maxWidth: 1080, orientation: true, canvas: true }): Promise<any> {
   return new Promise((resolve, reject) => {
-    loadImage(file, (canvas: HTMLCanvasElement) => {
-      if (canvas.toBlob) {
+    loadImage(file, (canvas: Event | HTMLCanvasElement | HTMLImageElement) => {
+      if (canvas instanceof HTMLCanvasElement ) {
         canvas.toBlob((blob: any) => {
           let thumbnail = canvas.toDataURL('image/png');
           blob.lastModifiedDate = new Date();

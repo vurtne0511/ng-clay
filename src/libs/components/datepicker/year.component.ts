@@ -1,3 +1,6 @@
+import { Subscription } from 'rxjs';
+import { startWith } from 'rxjs/operators';
+
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -13,12 +16,15 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { DateAdapter, NC_DATE_FORMATS, NcDateFormats } from '@ng-clay/components/core';
-import { Subscription } from 'rxjs';
-import { startWith } from 'rxjs/operators';
-import { NcCalendarBody, NcCalendarCell, NcCalendarCellClassFunction, NcCalendarUserEvent } from './calendar-body.component';
-import { DateRange } from './selections';
 
+import {
+  NcCalendarBody,
+  NcCalendarCell,
+  NcCalendarCellClassFunction,
+  NcCalendarUserEvent
+} from './calendar-body.component';
 import { createMissingDateImplError } from './datepicker-errors';
+import { DateRange } from './selections';
 
 @Component({
   selector: 'nc-calendar-year',
@@ -47,12 +53,12 @@ export class NcCalendarYear<D> implements AfterContentInit, OnDestroy {
     }
   }
 
-  private _selected!: D | null;
+  private _selected!: D | DateRange<D> |  null;
 
   /** The currently selected date. */
   @Input()
-  get selected(): D | null { return this._selected; }
-  set selected(value: D | null) {
+  get selected(): D | DateRange<D> |null { return this._selected; }
+  set selected(value: D | DateRange<D> |null) {
     if (value instanceof DateRange) {
       this._selected = value;
     } else {

@@ -12,7 +12,7 @@ let uniqueId = 0;
 
 export class NcModalRef<T, R = any> {
 
-  componentInstance: T;
+  componentInstance!: T;
 
   closable: boolean | undefined = this._containerInstance.config.closable;
 

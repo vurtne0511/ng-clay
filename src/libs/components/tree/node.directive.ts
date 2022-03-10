@@ -50,7 +50,7 @@ export class NcTreeNodeDirective<T> extends CdkTreeNode<T> {
 @Directive({
   selector: '[ncTreeNodeDef]',
   inputs: [
-    'when: NcTreeNodeDefWhen'
+    'when: ncTreeNodeDefWhen'
   ],
   providers: [{ provide: CdkTreeNodeDef, useExisting: NcTreeNodeDefDirective }]
 })

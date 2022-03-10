@@ -27,7 +27,8 @@
       "@ng-clay/example": ["./src/libs/example"],
       "@ng-clay/components": ["./src/libs/components"],
       "@ng-clay/components/*": ["./src/libs/components/*"],
-      "@ng-clay/markdown": ["./src/libs/markdown"]
+      "@ng-clay/markdown": ["./src/libs/markdown"],
+      "@ng-clay/moment-adapter": ["./src/libs/moment-adapter"]
     },
   },
   "angularCompilerOptions": {

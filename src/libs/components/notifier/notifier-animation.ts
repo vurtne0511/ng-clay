@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { fade } from './fade-animation-preset';
-import { slide } from './slide-animation-preset';
 import {
   NcNotifierAnimationData,
   NcNotifierAnimationPreset,
   NcNotifierAnimationPresetKeyframes
 } from './notifier-animation-data';
 import { NcNotifierRef } from './notifier-ref';
+import { slide } from './slide-animation-preset';
 
 export type AnimationPresetsMap = { [animationPresetName: string]: NcNotifierAnimationPreset };
 

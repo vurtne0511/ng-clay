@@ -20,7 +20,7 @@ export class NcNotifierQueue {
 	/**
 	 * Stream of actions, subscribable from outside
 	 */
-	readonly actionStream: Subject<NcNotifierAction> = new Subject<NcNotifierAction>();
+	readonly actionStream: Subject<NcNotifierAction | undefined> = new Subject<NcNotifierAction | undefined>();
 
 	/**
 	 * Queue of actions

@@ -45,14 +45,13 @@
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js';  // Included with Angular CLI.
-
-
+import 'zone.js'; // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
- import 'prismjs/prism';
- import 'prismjs/components/prism-bash';
- import 'prismjs/components/prism-scss';
- import 'prismjs/components/prism-javascript';
- import 'prismjs/components/prism-typescript';
+import 'prismjs/prism';
+import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-scss';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-typescript';
+

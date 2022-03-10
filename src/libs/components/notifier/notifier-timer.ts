@@ -21,12 +21,12 @@ export class NcNotifierTimer {
 	/**
 	 * Timeout ID, used for clearing the timeout later on
 	 */
-	private _timerId: number;
+	private _timerId!: number;
 
 	/**
 	 * Promise resolve function, eventually getting called once the timer finishes
 	 */
-	private _finishPromiseResolver: () => void;
+	private _finishPromiseResolver!: () => void;
 
 	/**
 	 * Start (or resume) the timer
@@ -35,7 +35,7 @@ export class NcNotifierTimer {
 	 * @returns          Promise, resolved once the timer finishes
 	 */
 	start(duration: number): Promise<undefined> {
-		return new Promise<undefined>((resolve: () => void, reject: () => void) => {
+		return new Promise<undefined>((resolve: (value?: any) => void, reject: () => void) => {
 			// For the first run ...
 			this._remaining = duration;
 

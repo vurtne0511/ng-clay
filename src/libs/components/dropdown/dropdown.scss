@@ -1,36 +1,36 @@
-// $nt-dropdown-toggle-symbol: '\25BC' !default;
+// $nc-dropdown-toggle-symbol: '\25BC' !default;
 
-$nt-dropdown-width: 200px !default;
-$nt-dropdown-background: $white !default;
-$nt-dropdown-padding: $global-padding !default;
-$nt-dropdown-radius: $global-radius !default;
-$nt-dropdown-font-size: $dropdown-font-size !default;
-$nt-dropdown-sizes: $dropdown-sizes !default;
-$nt-dropdown-arrow-gap: 0.75rem !default;
+$nc-dropdown-width: 200px !default;
+$nc-dropdown-background: $white !default;
+$nc-dropdown-padding: $global-padding !default;
+$nc-dropdown-radius: $global-radius !default;
+$nc-dropdown-font-size: $dropdown-font-size !default;
+$nc-dropdown-sizes: $dropdown-sizes !default;
+$nc-dropdown-arrow-gap: 0.75rem !default;
 
-@mixin nt-dropdown {
+@mixin nc-dropdown {
 
-  // .nt-dropdown-toggle::after {
+  // .nc-dropdown-toggle::after {
   //   display: inline-block;
   //   transform: scale(.9);
-  //   content: $nt-dropdown-toggle-symbol;
+  //   content: $nc-dropdown-toggle-symbol;
   // }
 
-  .nt-dropdown-pane {
-    width: $nt-dropdown-width;
-    padding: $nt-dropdown-padding;
-    border-radius: $nt-dropdown-radius;
-    font-size: $nt-dropdown-font-size;
+  .nc-dropdown-pane {
+    width: $nc-dropdown-width;
+    padding: $nc-dropdown-padding;
+    border-radius: $nc-dropdown-radius;
+    font-size: $nc-dropdown-font-size;
     display: block;
 
     &.autosize {
       width: auto;
-      min-width: $nt-dropdown-width;
+      min-width: $nc-dropdown-width;
     }
   }
 
-  @each $name, $size in $nt-dropdown-sizes {
-    .nt-dropdown-pane.#{$name} {
+  @each $name, $size in $nc-dropdown-sizes {
+    .nc-dropdown-pane.#{$name} {
       width: $size;
       &.autosize {
         width: auto;
@@ -39,8 +39,8 @@ $nt-dropdown-arrow-gap: 0.75rem !default;
     }
   }
 
-  .nt-overlay-container.nt-dropdown-overlay {
-    --nt-overlay-container-background: #{$nt-dropdown-background};
-    --nt-overlay-container-arrow-gap: #{$nt-dropdown-arrow-gap};
+  .nt-overlay-container.nc-dropdown-overlay {
+    --nt-overlay-container-background: #{$nc-dropdown-background};
+    --nt-overlay-container-arrow-gap: #{$nc-dropdown-arrow-gap};
   }
 }

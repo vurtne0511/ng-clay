@@ -5,7 +5,7 @@ import { NcTreeNodeOutletDirective } from './outlet.directive';
 
 @Component({
   selector: 'nc-tree, [nc-tree]',
-  template: `<ng-container NcTreeNodeOutlet></ng-container>`,
+  template: `<ng-container ncTreeNodeOutlet></ng-container>`,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

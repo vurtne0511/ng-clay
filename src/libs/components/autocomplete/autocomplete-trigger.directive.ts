@@ -70,7 +70,7 @@ export function getMatAutocompleteMissingPanelError(): Error {
 
 
 @Directive({
-  selector: 'input[NcAutocomplete], textarea[NcAutocomplete]',
+  selector: 'input[ncAutocomplete], textarea[ncAutocomplete]',
   host: {
     'class': 'nc-autocomplete-trigger',
     '(focusin)': '_handleFocus()',

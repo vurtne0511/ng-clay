@@ -49,9 +49,9 @@ export function throwNcModalContentAlreadyAttachedError() {
 })
 export class NcModalComponent extends BasePortalOutlet {
 
-  @ViewChild(CdkPortalOutlet, { static: true }) private _portalOutlet: CdkPortalOutlet;
+  @ViewChild(CdkPortalOutlet, { static: true }) private _portalOutlet!: CdkPortalOutlet;
 
-  _config: NcModalConfig;
+  _config!: NcModalConfig;
 
   set config(value: NcModalConfig) { this._config = value; }
   get config () { return this._config; }

@@ -27,7 +27,7 @@ export const NC_DROPDOWN_PARENC_COMPONENT = new InjectionToken<NcDropdownParentC
   template: '<ng-content></ng-content>',
   encapsulation: ViewEncapsulation.None,
   host: {
-    '[class]': '["nt-dropdown-pane", size].join(" ")',
+    '[class]': '["nc-dropdown-pane", size].join(" ")',
     '[class.autosize]': 'autosize'
   }
 })

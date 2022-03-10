@@ -50,7 +50,7 @@ export const [
 /**
  * 定位策略
  */
-export const NC_OVERLAY_POSITION_PAIRS = {
+export const NC_OVERLAY_POSITION_PAIRS: { [key: string]: any[] } = {
 
   bottom: [
     BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT,

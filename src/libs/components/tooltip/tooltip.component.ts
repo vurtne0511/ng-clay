@@ -55,7 +55,7 @@ export class NcTooltipComponent implements OnChanges {
     return attributes && attributes['nc-tooltip'];
   }
 
-  @Input() position: NcOverlayPosition = NcOverlayPosition.Top;
+  @Input() position: NcOverlayPosition | string = NcOverlayPosition.Top;
 
   @Output() afterOpen = new EventEmitter<any>();
   @Output() afterClosed = new EventEmitter<any>();

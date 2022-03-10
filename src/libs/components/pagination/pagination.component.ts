@@ -1,17 +1,17 @@
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Inject,
   Input,
   OnChanges,
+  OnInit,
   Optional,
   Output,
   SimpleChanges,
-  ViewEncapsulation,
-  OnInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ViewEncapsulation
 } from '@angular/core';
 
 import { NC_PAGINATION_CONFIG, NcPaginationConfig } from './pagination-config';

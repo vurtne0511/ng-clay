@@ -26,8 +26,8 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-
 import { fadeIn, fadeOut, fromOutsideClick } from '@ng-clay/components/core';
+
 import {
   getPositionClassName,
   NC_OVERLAY_POSITION_PAIRS,
@@ -70,10 +70,10 @@ export class NcOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
   set origin(value: CdkOverlayOrigin) { this._origin = value; }
   get origin() { return this._origin; }
 
-  private _position: NcOverlayPosition = NcOverlayPosition.BottomLeft;
+  private _position: NcOverlayPosition | string = NcOverlayPosition.BottomLeft;
 
   @Input()
-  set position(value: NcOverlayPosition) {
+  set position(value: NcOverlayPosition | string) {
     if (value) {
       this._position = value;
       this._positionPairs = NC_OVERLAY_POSITION_PAIRS[value];

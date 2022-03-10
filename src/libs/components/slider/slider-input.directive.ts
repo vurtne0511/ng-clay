@@ -5,11 +5,11 @@ import { Directive, ElementRef, Input } from '@angular/core';
 import { NcSliderChange, NcSliderComponent } from './slider.component';
 
 @Directive({
-  selector: 'input[type="number"][NcSliderInput]'
+  selector: 'input[type="number"][ncSliderInput]'
 })
 export class NcSliderInputDirective {
 
-  private _connection: Subscription;
+  private _connection!: Subscription;
 
   private _input: HTMLInputElement;
 
@@ -19,7 +19,7 @@ export class NcSliderInputDirective {
 
   private _originalMax: any;
 
-  private _slider: NcSliderComponent;
+  private _slider!: NcSliderComponent;
 
   @Input('ncSliderInput')
   get slider() { return this._slider; }

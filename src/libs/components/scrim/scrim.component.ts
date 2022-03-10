@@ -4,7 +4,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { fadeIn, fadeOut } from '@ng-clay/components/core';
 
 @Component({
-  selector: '[nc-scrim], nt-scrim',
+  selector: '[nc-scrim], nc-scrim',
   templateUrl: 'scrim.component.html',
   encapsulation: ViewEncapsulation.None,
   animations: [

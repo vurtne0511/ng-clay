@@ -1,0 +1,24 @@
+<nc-tree class="example-tree"
+  [dataSource]="dataSource"
+  [treeControl]="treeControl">
+  <nc-tree-node class="example-tree-node"
+    *ncTreeNodeDef="let node"
+    ntTreeNodePadding
+    ntTreeNodePaddingIndent="20">
+    {{ node.name }}
+  </nc-tree-node>
+
+  <nc-tree-node class="example-tree-node"
+    *ncTreeNodeDef="let node; when: hasChild"
+    ntTreeNodePadding
+    ntTreeNodePaddingIndent="20">
+    <a class="tree-toggle">
+      <!-- 展开的箭头 -->
+      <span class="tree-caret"
+        [class.expanded]="isExpanded(node)"
+        ntTreeNodeToggle>
+      </span>
+    </a>
+    {{ node.name }}
+  </nc-tree-node>
+</nc-tree>

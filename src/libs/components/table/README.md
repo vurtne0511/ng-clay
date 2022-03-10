@@ -1,4 +1,4 @@
-### NtTableComponent `nt-table`
+### NtTableComponent `nc-table`
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

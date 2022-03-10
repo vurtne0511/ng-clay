@@ -1,7 +1,7 @@
 import { Directive, ElementRef } from '@angular/core';
 
 @Directive({
-  selector: '[NcAutocompleteOrigin]',
+  selector: '[ncAutocompleteOrigin]',
   exportAs: 'ncAutocompleteOrigin',
 })
 export class NcAutocompleteOriginDirective {

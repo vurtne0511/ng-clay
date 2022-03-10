@@ -32,6 +32,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { NcFormFieldControl } from '@ng-clay/components/forms';
 import {
   BOTTOM_CENTER,
   LEFT_CENTER,
@@ -39,7 +40,6 @@ import {
   RIGHT_CENTER,
   TOP_CENTER
 } from '@ng-clay/components/overlay';
-import { NcFormFieldControl } from '@ng-clay/components/forms';
 
 const activeEveNcOptions: AddEventListenerOptions = { passive: false };
 
