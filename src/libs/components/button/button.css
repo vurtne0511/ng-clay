@@ -5,7 +5,9 @@
     @apply inline-flex items-center justify-center;
     @apply px-4 py-2;
     @apply border border-transparent;
-    @apply rounded-md;
+    @apply rounded-md cursor-pointer;
+    @apply text-white;
+    @apply text-base;
     /* color: theme('colors.white'); */
     /* background-color: theme('colors.indigo.600'); */
   }

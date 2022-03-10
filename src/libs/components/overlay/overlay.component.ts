@@ -142,8 +142,8 @@ export class NcOverlayComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Output() beforeOpen = new EventEmitter<void>();
   @Output() beforeClosed = new EventEmitter<void>();
 
-  @Output() overlayEnter = new EventEmitter<void>();
-  @Output() overlayLeave = new EventEmitter<void>();
+  @Output() overlayEnter = new EventEmitter<any>();
+  @Output() overlayLeave = new EventEmitter<any>();
 
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 

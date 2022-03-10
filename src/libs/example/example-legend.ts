@@ -12,7 +12,7 @@ import { NC_MARKDOWN_ENGINE, NcMarkdownEngine } from '@ng-clay/markdown';
 @Component({
   selector: 'nc-example-legend',
   template: `
-    <div class="nc-example-legend-title" *ngIf="title">{{title}}</div>
+    <div class="nc-example-legend-title -top-6 p-1" *ngIf="title">{{title}}</div>
     <div class="nc-example-legend-content" #content>
       <ng-content></ng-content>
     </div>

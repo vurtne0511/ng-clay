@@ -45,7 +45,7 @@ export const COMPONENTS_ROUTES: Routes = [
   },
   {
     path: 'button',
-    // loadChildren: () => import('./button/button.module').then(mod => mod.ButtonDocumentModule),
+    loadChildren: () => import('./button/button.module').then(mod => mod.ButtonDocumentModule),
     data: { title: 'Button', group: COMPONENTS_GROUPS[0] }
   },
   {

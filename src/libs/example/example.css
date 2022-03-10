@@ -1,0 +1,49 @@
+/** example styles */
+.nc-example {
+  @apply block bg-white rounded-md mb-7 overflow-auto shadow-md shadow-gray-500 box-border;
+}
+
+/** example-showcase styles */
+.nc-example-showcase {
+  @apply block p-6;
+}
+
+/** legend-legend styles */
+.nc-example-legend {
+  @apply block relative p-6 border-t border-zinc-500;
+}
+
+.nc-example-legend-title {
+ @apply absolute p-2 bg-white;
+}
+
+.nc-example-legend-content {
+  @apply leading-6;
+}
+
+/** example-code styles */
+.nc-example-code {
+  @apply block relative mt-4;
+}
+
+.nc-example-code-shown {
+  @apply absolute cursor-pointer text-gray-600;
+}
+
+.nc-example-code-source {
+  @apply hidden border-t border-zinc-500 rounded-b-sm break-all;
+  @apply my-0 rounded-t-none rounded-b-sm !important;
+}
+
+/** example-code-tabs styles */
+.nc-example-code-tabs {
+  @apply clear-both m-0 border-t border-zinc-500;
+}
+
+.nc-example-tabs-title {
+  @apply float-left relative;
+}
+
+.nc-example-code-tabs-panel {
+  @apply hidden;
+}

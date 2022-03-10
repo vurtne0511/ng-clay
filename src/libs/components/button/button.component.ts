@@ -7,14 +7,11 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
   styleUrls: ['button.css'],
   encapsulation: ViewEncapsulation.None,
   host: {
-    '[class]': '["nc-button", "bg-"+color+"-600", "hover:bg-"+ color +"-800", "focus:bg-"+ color +"-800"]',
+    '[class]': '["nc-button", "bg-cyan-600", "hover:bg-cyan-800", "focus:bg-cyan-800"]',
     '[class.expanded]': 'expanded'
   }
 })
 export class NcButtonComponent {
-
-  // _static_classes = [text-white px-4 py-2 rounded-md text-1xl font-medium];
-  // bg-[var(--colors-{{ color }})]-600  hover:bg-{{ color }}-800
 
   private _expanded: boolean = false;
 

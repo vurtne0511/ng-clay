@@ -1,11 +1,11 @@
-import { Subscription } from "rxjs";
+import { Subscription } from 'rxjs';
 
 export enum NcUploadStatus {
   BEGIN = 0,
   SENDING = 1,
   SUCCESS = 2,
   ERROR = 3,
-  UPLOADED = 4
+  UPLOADED = 4,
 }
 
 export abstract class NcUploadRef<T = any> {
@@ -22,5 +22,5 @@ export abstract class NcUploadRef<T = any> {
     public file: File | Blob,
     public name: string,
     public size: number
-  ) { }
+  ) {}
 }

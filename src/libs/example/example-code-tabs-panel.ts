@@ -25,8 +25,8 @@ export const NC_EXAMPLE_CODE_PANEL_PARENT = new InjectionToken<NcExampleCodeTabP
   `,
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'nt-example-code-tabs-panel',
-    '[class.is-active]': 'parent.activeTab === title'
+    'class': 'nc-example-code-tabs-panel',
+    '[class.block]': 'parent.activeTab === title'
   },
 })
 export class NcExampleCodeTabsPanelComponent {

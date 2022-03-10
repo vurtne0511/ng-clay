@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-// import { NcExampleModule } from '@ng-clay/example';
+import { NcExampleModule } from '@ng-clay/example';
 
+import { HeaderModule } from '../shared/header';
+// import { NcExampleModule } from '@ng-clay/example';
 import { COMPONENTS_ROUTES } from './components-routes';
 import { ComponentsComponent } from './components.component';
-import { HeaderModule } from '../shared/header';
-import { NcExampleModule } from 'src/libs/examples';
 
 @NgModule({
   imports: [

@@ -17,16 +17,15 @@ import { faAngular } from '@fortawesome/free-brands-svg-icons';
 @Component({
   selector: 'nc-example-code',
   template: `
-    <span class="nc-example-code-shown"
+    <span class="nc-example-code-shown -top-12 right-5"
       (click)="shown=!shown">
-      <fa-icon [icon]="faAngular" class="icon" [class.visible]="shown"></fa-icon>代码
+      <fa-icon [icon]="faAngular" class="icon mr-1" [class.text-red-600]="shown"></fa-icon>代码
     </span>
-    <pre class="code-container language-{{lang}}"><code class="language-{{lang}}">{{code}}</code></pre>
+    <pre class="nc-example-code-source language-{{lang}}" [class.!block]="shown"><code class="language-{{lang}}">{{code}}</code></pre>
   `,
   encapsulation: ViewEncapsulation.None,
   host: {
-    'class': 'nc-example-code',
-    '[class.shown]': 'shown'
+    'class': 'nc-example-code'
   }
 })
 export class NcExampleCodeComponent implements AfterContentInit, OnChanges {

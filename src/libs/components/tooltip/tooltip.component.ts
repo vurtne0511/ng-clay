@@ -28,7 +28,7 @@ export class NcTooltipComponent implements OnChanges {
 
   private _title = '';
 
-  private _template: TemplateRef<any> | null;
+  private _template!: TemplateRef<any> | null;
 
   readonly origin: CdkOverlayOrigin;
 
@@ -65,14 +65,14 @@ export class NcTooltipComponent implements OnChanges {
 
   @Output() positionChange = new EventEmitter<ConnectedOverlayPositionChange>();
 
-  @ViewChild(NcOverlayComponent, { static: true }) overlay: NcOverlayComponent;
+  @ViewChild(NcOverlayComponent, { static: true }) overlay!: NcOverlayComponent;
 
   constructor(private _elementRef: ElementRef) {
     this.origin = new CdkOverlayOrigin(_elementRef);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const change = changes.title || changes.template || changes.tooltip;
+    const change = changes['title'] || changes['template'] || changes['tooltip'];
     if (change && !change.firstChange) {
 
       /** 在内容更新之后提示框的位置需要更新，需要延迟执行，因为这时候画面还未渲染 */

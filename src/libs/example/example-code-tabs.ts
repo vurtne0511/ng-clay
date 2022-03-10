@@ -11,14 +11,14 @@ import {
   NC_EXAMPLE_CODE_PANEL_PARENT,
   NcExampleCodeTabPaneParent,
   NcExampleCodeTabsPanelComponent
-} from './example-code-tabs-panel.component';
+} from './example-code-tabs-panel';
 
 @Component({
   selector: 'nc-example-code-tabs',
   template: `
-    <span class="nc-example-code-shown"
+    <span class="nc-example-code-shown -top-12 right-5"
       (click)="shown=!shown">
-      <fa-icon [icon]="faAngular" class="icon" [class.visible]="shown"></fa-icon>代码
+      <fa-icon [icon]="faAngular" class="icon mr-1" [class.text-red-600]="shown"></fa-icon>代码
     </span>
     <div class="nc-example-code-tabs">
       <span class="nc-example-tabs-title" *ngFor="let pane of panes" [class.is-active]="activeTab === pane.title">
