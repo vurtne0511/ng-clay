@@ -1,16 +1,17 @@
-@tailwind components;
 
-@layer components {
-  .nc-button {
-    @apply inline-flex items-center justify-center;
-    @apply px-4 py-2;
-    @apply border border-transparent;
-    @apply rounded-md cursor-pointer;
-    @apply text-white;
-    @apply text-base;
-    /* color: theme('colors.white'); */
-    /* background-color: theme('colors.indigo.600'); */
-  }
+/* @layer components { */
+.nc-button {
+  @apply inline-flex items-center justify-center;
+  @apply px-4 py-2;
+  @apply border border-transparent;
+  @apply rounded-md cursor-pointer;
+  @apply text-white;
+  @apply text-base;
+  /* @apply  */
+  @apply transition-colors;
+  /* color: theme('colors.white'); */
+  /* background-color: theme('colors.indigo.600'); */
+}
 
   /* .nc-button:hover {
     background-color: theme('colors.indigo.800');
@@ -22,4 +23,4 @@
     @apply ring-offset-2;
     background-color: theme('colors.indigo.800');
   } */
-}
+/* } */
